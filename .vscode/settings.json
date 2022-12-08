@@ -4,5 +4,10 @@
   "css.validate": false,
   "scss.validate": false,
   "less.validate": false,
-  "stylelint.validate": ["css", "scss"]
+  "stylelint.snippet": ["css", "less", "postcss", "scss", "vue"],
+  "stylelint.validate": ["css", "less", "postcss", "scss", "vue"],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.fixAll.stylelint": true
+  }
 }
