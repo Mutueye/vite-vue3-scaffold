@@ -14,7 +14,7 @@ const defaultSizes = {
 
 export default defineConfig({
   darkMode: 'class', // or 'media'
-  preflight: true,
+  preflight: false,
   theme: {
     borderRadius: {
       none: '0',
