@@ -56,7 +56,7 @@
   },
   "lint-staged": {
     "*.{vue,js,ts,jsx,tsx,md,json}": "eslint --ignore-path .gitignore --fix",
-    "*.{vue,js,ts,jsx,tsx,md,json,scss,css}": "prettier . --write",
+    "*.{vue,js,ts,jsx,tsx,md,json,scss,css.html}": "prettier . --write",
     "*.{scss,css,vue}": "stylelint --fix"
   }
 }
