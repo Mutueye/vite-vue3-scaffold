@@ -2,7 +2,9 @@
   <div
     class="w-full h-header border-b-1 border-[var(--el-border-color)] flex flex-row items-center justify-between px-space">
     <div class="text-size-24px font-bold">vite-vue3-scaffold</div>
-    <el-button @click="toggleDark(!isDark)">{{ isDark ? 'dark' : 'light' }}</el-button>
+    <el-button :link="true" type="primary" @click="toggleDark(!isDark)">
+      <i class="dark:i-ion-moon i-ion-sunny text-size-20px" />
+    </el-button>
   </div>
   <RouterView />
 </template>

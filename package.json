@@ -17,6 +17,7 @@
     "lint:style:check": "stylelint ./src/**/*.{vue,css,scss}"
   },
   "dependencies": {
+    "@iconify/json": "^2.1.151",
     "@vueuse/core": "^9.6.0",
     "@vueuse/head": "^1.0.22",
     "element-plus": "^2.2.26",
@@ -29,7 +30,8 @@
     "@types/node": "^18.11.13",
     "@typescript-eslint/eslint-plugin": "^5.46.0",
     "@typescript-eslint/parser": "^5.46.0",
-    "@vitejs/plugin-vue": "^4.0.0",
+    "@unocss/vite": "^0.47.6",
+    "@vitejs/plugin-vue": "^3.2.0",
     "eslint": "^8.29.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-vue": "^9.8.0",
@@ -48,11 +50,10 @@
     "stylelint-config-standard-scss": "^6.1.0",
     "stylelint-scss": "^4.3.0",
     "typescript": "^4.9.4",
-    "vite": "^4.0.0",
-    "vite-plugin-windicss": "^1.8.8",
+    "unocss": "^0.47.5",
+    "vite": "^3.2.5",
     "vue-eslint-parser": "^9.1.0",
-    "vue-tsc": "^1.0.13",
-    "windicss": "^3.5.6"
+    "vue-tsc": "^1.0.13"
   },
   "lint-staged": {
     "*.{vue,js,ts,jsx,tsx,md,json}": "eslint --ignore-path .gitignore --fix",

@@ -8,7 +8,7 @@
 
 <template>
   <div>{{ msg }}</div>
-  <div class="p-space_md">
+  <div class="py-24px">
     <el-button type="primary" @click="count++">count is {{ count }}</el-button>
   </div>
 </template>
