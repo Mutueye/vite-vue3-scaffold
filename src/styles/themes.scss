@@ -16,10 +16,8 @@ $mix-modes: light, dark;
   background-color: $black;
 }
 
-// 设置主题颜色的各级别css变量
+// 设置主题颜色的某一级别的css变量
 @mixin set-color-css-var($type, $number, $mode, $mix-color, $base-color) {
-  // TODO 修复此处重复设置变量的问题
-  #{'--el-color-' + $type}: $base-color;
   #{'--el-color-' + $type + '-' + $mode + '-' + $number}: color.mix(
     $mix-color,
     $base-color,
@@ -27,21 +25,27 @@ $mix-modes: light, dark;
   );
 }
 
-// 蓝色主题
-.blue {
+// 设置主题颜色css变量列表
+@mixin set-theme-colors($theme-colors, $mode-colors) {
   @each $type in $types {
+    #{'--el-color-' + $type}: map.get($theme-colors, $type);
     @each $mode in $mix-modes {
       @for $i from 1 through 9 {
         @include set-color-css-var(
           $type,
           $i,
           $mode,
-          map.get($base-mode-colors, $mode),
-          map.get($theme-blue-colors, $type)
+          map.get($mode-colors, $mode),
+          map.get($theme-colors, $type)
         );
       }
     }
   }
+}
+
+// 蓝色主题
+.blue {
+  @include set-theme-colors($theme-blue-colors, $base-mode-colors);
 
   // 背景色 默认
   --el-bg-color: #ffffff;
@@ -101,19 +105,7 @@ $mix-modes: light, dark;
 
   // 暗黑模式
   &.dark {
-    @each $type in $types {
-      @each $mode in $mix-modes {
-        @for $i from 1 through 9 {
-          @include set-color-css-var(
-            $type,
-            $i,
-            $mode,
-            map.get($dark-mode-colors, $mode),
-            map.get($theme-blue-colors, $type)
-          );
-        }
-      }
-    }
+    @include set-theme-colors($theme-blue-colors, $dark-mode-colors);
 
     // 背景色 默认
     --el-bg-color: #222b45;
@@ -131,34 +123,10 @@ $mix-modes: light, dark;
 
 // 紫色主题
 .purple {
-  @each $type in $types {
-    @each $mode in $mix-modes {
-      @for $i from 1 through 9 {
-        @include set-color-css-var(
-          $type,
-          $i,
-          $mode,
-          map.get($base-mode-colors, $mode),
-          map.get($theme-purple-colors, $type)
-        );
-      }
-    }
-  }
+  @include set-theme-colors($theme-purple-colors, $base-mode-colors);
 
   // 暗黑模式
   &.dark {
-    @each $type in $types {
-      @each $mode in $mix-modes {
-        @for $i from 1 through 9 {
-          @include set-color-css-var(
-            $type,
-            $i,
-            $mode,
-            map.get($dark-mode-colors, $mode),
-            map.get($theme-purple-colors, $type)
-          );
-        }
-      }
-    }
+    @include set-theme-colors($theme-purple-colors, $dark-mode-colors);
   }
 }
