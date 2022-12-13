@@ -14,7 +14,7 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
-    '@typescript-eslint/explicit-function-return-type': 'warn',
+    // '@typescript-eslint/explicit-function-return-type': 'warn',
     'vue/multi-word-component-names': 'off',
   },
   globals: {

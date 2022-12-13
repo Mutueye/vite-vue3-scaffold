@@ -1,0 +1,31 @@
+$white: #ffffff;
+$black: #000000;
+
+$base-mode-colors: (
+  'light': $white,
+  'dark': $black,
+);
+
+// 暗黑模式的light和dark反过来，light级别越高越暗
+$dark-mode-colors: (
+  'light': $black,
+  'dark': $white,
+);
+
+$theme-blue-colors: (
+  'primary': #217aff,
+  'success': #67c23a,
+  'warning': #f2711c,
+  'danger': #db2828,
+  'error': #db2828,
+  'info': #96979c,
+);
+
+$theme-purple-colors: (
+  'primary': #5549ff,
+  'success': #33d3a5,
+  'warning': #f7cf45,
+  'danger': #f8739c,
+  'error': #f8739c,
+  'info': #96979c,
+);
