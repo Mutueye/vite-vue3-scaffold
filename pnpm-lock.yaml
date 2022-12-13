@@ -13,7 +13,6 @@ specifiers:
   eslint: ^8.29.0
   eslint-config-prettier: ^8.5.0
   eslint-plugin-vue: ^9.8.0
-  husky: ^8.0.2
   lint-staged: ^13.1.0
   lodash-es: ^4.17.21
   pinia: ^2.0.28
@@ -22,6 +21,7 @@ specifiers:
   postcss-scss: ^4.0.6
   prettier: ^2.8.1
   sass: ^1.56.2
+  simple-git-hooks: ^2.8.1
   stylelint: ^14.16.0
   stylelint-config-css-modules: ^4.1.0
   stylelint-config-prettier: ^9.0.4
@@ -56,13 +56,13 @@ devDependencies:
   eslint: 8.29.0
   eslint-config-prettier: 8.5.0_eslint@8.29.0
   eslint-plugin-vue: 9.8.0_eslint@8.29.0
-  husky: 8.0.2
   lint-staged: 13.1.0
   postcss: 8.4.20
   postcss-html: 1.5.0
   postcss-scss: 4.0.6_postcss@8.4.20
   prettier: 2.8.1
   sass: 1.56.2
+  simple-git-hooks: 2.8.1
   stylelint: 14.16.0
   stylelint-config-css-modules: 4.1.0_stylelint@14.16.0
   stylelint-config-prettier: 9.0.4_stylelint@14.16.0
@@ -1997,12 +1997,6 @@ packages:
     engines: {node: '>=12.20.0'}
     dev: true
 
-  /husky/8.0.2:
-    resolution: {integrity: sha512-Tkv80jtvbnkK3mYWxPZePGFpQ/tT3HNSs/sasF9P2YfkMezDl3ON37YN6jUUI4eTg5LcyVynlb6r4eyvOmspvg==}
-    engines: {node: '>=14'}
-    hasBin: true
-    dev: true
-
   /ignore/5.2.1:
     resolution: {integrity: sha512-d2qQLzTJ9WxQftPAuEQpSPmKqzxePjzVbpAVv62AQ64NTL+wR4JkrVqR/LqFsFEUsHDAiId52mJteHDFuDkElA==}
     engines: {node: '>= 4'}
@@ -2897,6 +2891,12 @@ packages:
 
   /signal-exit/3.0.7:
     resolution: {integrity: sha512-wnD2ZE+l+SPC/uoS0vXeE9L1+0wuaMqKlfz9AMUo38JsyLSBWSFcHR1Rri62LZc12vLr1gb3jl7iwQhgwpAbGQ==}
+    dev: true
+
+  /simple-git-hooks/2.8.1:
+    resolution: {integrity: sha512-DYpcVR1AGtSfFUNzlBdHrQGPsOhuuEJ/FkmPOOlFysP60AHd3nsEpkGq/QEOdtUyT1Qhk7w9oLmFoMG+75BDog==}
+    hasBin: true
+    requiresBuild: true
     dev: true
 
   /sirv/2.0.2:
