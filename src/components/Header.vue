@@ -1,7 +1,10 @@
 <template>
   <div
     class="w-full h-header flex flex-row items-center justify-between px-space bg-[var(--el-bg-color)]">
-    <div class="text-size-24px font-bold">vite-vue3-scaffold</div>
+    <div class="flex flex-row items-center">
+      <i inline-block align-middle text-size-32px class="i-uplus:logo" />
+      <div class="text-size-18px font-semibold ml-10px">前端脚手架</div>
+    </div>
     <div class="flex flex-row items-center">
       <button class="theme-btn blue mr-space" @click="toggleTheme('blue')">
         <i
