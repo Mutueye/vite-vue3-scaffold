@@ -1,7 +1,7 @@
 # vite-vue3-scaffold 前端脚手架项目
 ## 概述
 ### 1. 定制目的
-为统一前端项目技术栈(针对后续的常规web项目)，规范开发环境配置，特定制此前端脚手架项目。
+为统一团队前端项目技术栈(针对后续的常规web项目)，规范开发环境配置，特定制此前端脚手架项目。
 
 ### 2. 技术选型规范表
 根据具体 工具/包/插件 的使用要求，分为`必选`，`推荐`，`参考`三个级别：
@@ -551,18 +551,18 @@ $ pnpm add -D vitest @vitest/coverage-c8 @vue/test-utils jsdom
     // ...
 ```
 
-编辑`tsconfig.json`:
+编辑`tsconfig.json`，添加类型"vitest/globals":
 
 ```json
 {
   "compilerOptions": {
     // ...
-    "types": ["vitest/globals"]
+    "types": ["element-plus/global", "vitest/globals"]
   }
 }
 ```
 
-添加如下内容到`vite.config.ts`，注意第一行的&lt;refrence&gt;标签:
+添加如下内容到`vite.config.ts`，注意第一行添加reference标签:
 
 ```ts
 /// <reference types="vitest" />
