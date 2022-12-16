@@ -1,8 +1,8 @@
 /// <reference types="vite/client" />
 
 interface ImportMetaEnv {
-  // .env中设置的各环境变量，例如VITE_BASE_URL
-  VITE_BASE_URL: string;
+  VITE_API_BASE_PATH: string;
+  VITE_API_GATEWAY: string;
 }
 
 declare module '*.vue' {

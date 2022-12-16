@@ -1,6 +1,6 @@
 /// <reference types="vitest" />
 
-import { defineConfig } from 'vite';
+import { defineConfig, loadEnv } from 'vite';
 import * as path from 'path';
 import vue from '@vitejs/plugin-vue';
 import Unocss from 'unocss/vite';
@@ -13,8 +13,7 @@ import {
 } from 'unocss';
 import { theme, uplusIconCollection } from './unocss.theme';
 
-// https://vitejs.dev/config/
-export default defineConfig({
+const baseConfig = defineConfig({
   plugins: [
     vue(),
     Unocss({
@@ -43,15 +42,46 @@ export default defineConfig({
     globals: true,
     setupFiles: [path.resolve(__dirname, 'test/setup.ts')],
   },
-  server: {
-    open: true,
-    https: false,
-    // proxy: {
-    //   '/api': {
-    //     target: gateway,
-    //     secure: false,
-    //     changeOrigin: true,
-    //   },
-    // },
-  },
+});
+
+/**
+ * 通过不同模式的dev命令来启动不同的开发环境：
+ * npm run dev - 默认开发环境 uea.qstcloud.net
+ * npm run dev:tev - tev环境 tev.qstcloud.net
+ * npm run dev:production - 生产环境 www.eec-cn.com
+ * npm run dev:locally - 启动本地服务调试，需要根据你的本地服务地址，在/env/.env.local里配置VVITE_API_BASEPATH和ITE_API_GATEWAY变量
+ */
+export default defineConfig(({ mode }) => {
+  // 取env环境变量配置，没取到则默认开发环境
+  process.env = { ...process.env, ...loadEnv(mode, process.cwd() + '/env') };
+
+  // api前缀
+  const proxyApiPrepend = process.env.VITE_API_BASE_PATH
+    ? process.env.VITE_API_BASE_PATH
+    : '/spi-dev';
+
+  // 代理地址
+  const gateway = process.env.VITE_API_GATEWAY
+    ? process.env.VITE_API_GATEWAY
+    : 'https://dev-uc.qstcloud.net';
+
+  return {
+    ...baseConfig,
+    server: {
+      open: true,
+      port: 8080,
+      proxy: {
+        '/get_appconfig': {
+          target: gateway,
+          secure: false,
+        },
+        [proxyApiPrepend]: {
+          target: `${gateway}/api`,
+          ws: true,
+          changeOrigin: true,
+          rewrite: (path) => path.replace(proxyApiPrepend, ''),
+        },
+      },
+    },
+  };
 });
