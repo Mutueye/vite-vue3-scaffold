@@ -1,28 +1,32 @@
 <template>
-  <div class="w-full flex flex-col items-center prose">
-    <div class="w-full py-50px text-center font-bold prose-lg prose-green">HOME</div>
-    <HelloWorld msg="Hellow World" />
-    <el-button>text</el-button>
-    <div class="p-space-sm">
-      <el-select v-model="selectedSchool" value-key="id">
-        <el-option v-for="item in schoolList" :key="item.id" :label="item.name" :value="item" />
-      </el-select>
-    </div>
-    <div class="w-full px-space">
-      <el-table border :data="configList">
-        <el-table-column property="configKey" label="configKey" />
-        <el-table-column property="configValue" label="configValue" />
-      </el-table>
-    </div>
+  <DefaultLayout>
+    <div class="w-full flex flex-col items-center">
+      <div class="w-full py-50px text-center font-bold">HOME</div>
+      <HelloWorld msg="Hellow World" />
+      <el-button>text</el-button>
+      <div class="p-space-sm">
+        <el-select v-model="selectedSchool" value-key="id">
+          <el-option v-for="item in schoolList" :key="item.id" :label="item.name" :value="item" />
+        </el-select>
+      </div>
+      <div class="w-full px-space mb-space">
+        <el-table border :data="configList">
+          <el-table-column type="index" width="80" align="center" label="index" />
+          <el-table-column property="configKey" label="configKey" />
+          <el-table-column property="configValue" label="configValue" />
+        </el-table>
+      </div>
 
-    <!-- <div v-for="config in configList" :key="config.id">{{ config.configKey }}</div> -->
-  </div>
+      <!-- <div v-for="config in configList" :key="config.id">{{ config.configKey }}</div> -->
+    </div>
+  </DefaultLayout>
 </template>
 
 <script lang="ts" setup>
   import { onMounted, ref } from 'vue';
   import { get } from 'lodash-es';
   import HelloWorld from '@/components/HelloWorld.vue';
+  import DefaultLayout from '@/components/layout/DefaultLayout.vue';
   import { ConfigModel, getSchoolList, SchoolModel, getConfigList } from '@/api/dicts';
 
   const selectedSchool = ref<SchoolModel>();
