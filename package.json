@@ -8,8 +8,8 @@
     "prepare": "simple-git-hooks",
     "dev": "vite --mode development",
     "dev:tev": "vite --mode test",
-    "dev:local": "vite --mode local",
     "dev:prod": "vite --mode production",
+    "dev:local": "vite --mode local",
     "dev:release": "vite --mode release",
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
@@ -36,6 +36,7 @@
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
+    "@types/lodash-es": "^4.17.6",
     "@types/node": "^18.11.15",
     "@typescript-eslint/eslint-plugin": "^5.46.1",
     "@typescript-eslint/parser": "^5.46.1",

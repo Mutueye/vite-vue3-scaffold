@@ -46,24 +46,20 @@ const baseConfig = defineConfig({
 
 /**
  * 通过不同模式的dev命令来启动不同的开发环境：
- * npm run dev - 默认开发环境 uea.qstcloud.net
+ * npm run dev - 默认dev环境 uea.qstcloud.net
  * npm run dev:tev - tev环境 tev.qstcloud.net
- * npm run dev:production - 生产环境 www.eec-cn.com
+ * npm run dev:prod- 生产环境 www.eec-cn.com
  * npm run dev:locally - 启动本地服务调试，需要根据你的本地服务地址，在/env/.env.local里配置VVITE_API_BASEPATH和ITE_API_GATEWAY变量
  */
 export default defineConfig(({ mode }) => {
   // 取env环境变量配置，没取到则默认开发环境
   process.env = { ...process.env, ...loadEnv(mode, process.cwd() + '/env') };
-
   // api前缀
-  const proxyApiPrepend = process.env.VITE_API_BASE_PATH
-    ? process.env.VITE_API_BASE_PATH
-    : '/spi-dev';
-
-  // 代理地址
+  const proxyApiPrepend = process.env.VITE_API_BASE_PATH ? process.env.VITE_API_BASE_PATH : '/api';
+  // 要代理的地址
   const gateway = process.env.VITE_API_GATEWAY
     ? process.env.VITE_API_GATEWAY
-    : 'https://dev-uc.qstcloud.net';
+    : 'https://uea.qstcloud.net';
 
   return {
     ...baseConfig,
@@ -71,10 +67,6 @@ export default defineConfig(({ mode }) => {
       open: true,
       port: 8080,
       proxy: {
-        '/get_appconfig': {
-          target: gateway,
-          secure: false,
-        },
         [proxyApiPrepend]: {
           target: `${gateway}/api`,
           ws: true,
