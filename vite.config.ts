@@ -54,6 +54,8 @@ const baseConfig = defineConfig({
 export default defineConfig(({ mode }) => {
   // 取env环境变量配置，没取到则默认开发环境
   process.env = { ...process.env, ...loadEnv(mode, process.cwd() + '/env') };
+  // link issue https://github.com/sindresorhus/open/issues/205
+  process.env.SYSTEMROOT = process.env.SystemRoot;
   // api前缀
   const proxyApiPrepend = process.env.VITE_API_BASE_PATH ? process.env.VITE_API_BASE_PATH : '/api';
   // 要代理的地址
