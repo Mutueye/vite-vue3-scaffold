@@ -24,7 +24,7 @@
     "test:coverage": "vitest run --coverage",
     "test:update": "vitest --update",
     "test:watch": "vitest",
-    "deploy": "gh-pages -d dist"
+    "deploypages": "gh-pages -d dist"
   },
   "dependencies": {
     "@iconify/json": "^2.1.152",
