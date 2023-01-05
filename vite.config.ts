@@ -49,7 +49,7 @@ const baseConfig = defineConfig({
  * npm run dev - 默认dev环境 uea.qstcloud.net
  * npm run dev:tev - tev环境 tev.qstcloud.net
  * npm run dev:prod- 生产环境 www.eec-cn.com
- * npm run dev:locally - 启动本地服务调试，需要根据你的本地服务地址，在/env/.env.local里配置VVITE_API_BASEPATH和ITE_API_GATEWAY变量
+ * npm run dev:locally - 启动本地服务调试，需要根据你的本地服务地址，在/env/.env.local里配置VITE_API_BASEPATH和ITE_API_GATEWAY变量
  */
 export default defineConfig(({ mode }) => {
   // 取env环境变量配置，没取到则默认开发环境
@@ -67,7 +67,8 @@ export default defineConfig(({ mode }) => {
     ...baseConfig,
     server: {
       open: true,
-      port: 8080,
+      host: '0.0.0.0',
+      // port: 8080,
       proxy: {
         [proxyApiPrepend]: {
           target: `${gateway}/api`,

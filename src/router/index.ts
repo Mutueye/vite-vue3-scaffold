@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
 import Home from '@/modules/home/views/Home.vue';
+import FormExample from '@/modules/form/views/FormExample.vue';
 
 export const routes = [
   {
@@ -12,12 +13,11 @@ export const routes = [
     name: 'home',
     component: Home,
   },
-  // For lazy loading components
-  /* {
-    path: '/',
-    name: 'home',
-    component: () => import('@/pages/Home.vue'),
-  }, */
+  {
+    path: '/formexample',
+    name: 'formexample',
+    component: FormExample,
+  },
 ];
 
 export const router = createRouter({

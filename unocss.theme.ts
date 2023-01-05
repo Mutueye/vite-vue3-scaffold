@@ -8,6 +8,7 @@ export const defaultSizes = {
   space: '24px',
   'space-lg': '32px',
   'space-xl': '40px',
+  'space-xxl': '48px',
 };
 
 // theme配置示例。默认theme配置详见unocss源码：

@@ -55,7 +55,7 @@ $dark-mode-colors: (
 
 // 蓝色主题
 .blue {
-  // 色盘 例:--el-color-primary --el-coor-success-light-5 等
+  // 色盘 例:--el-color-primary --el-color-success-light-5 等
   @include set-theme-colors($theme-blue-colors, $base-mode-colors);
 
   // 背景色 默认
