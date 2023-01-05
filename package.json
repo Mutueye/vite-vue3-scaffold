@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "type": "module",
   "packageManager": "pnpm@7.18.1",
+  "homepage": "https://<username>.github.io/<repo>/",
   "scripts": {
     "prepare": "simple-git-hooks",
     "dev": "vite --mode development",
@@ -22,7 +23,8 @@
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "test:update": "vitest --update",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@iconify/json": "^2.1.152",
@@ -46,6 +48,7 @@
     "eslint": "^8.29.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-vue": "^9.8.0",
+    "gh-pages": "^4.0.0",
     "jsdom": "^20.0.3",
     "lint-staged": "^13.1.0",
     "postcss": "^8.4.20",
