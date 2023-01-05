@@ -74,6 +74,6 @@
   "lint-staged": {
     "*.{vue,js,ts,jsx,tsx,json}": "eslint --ignore-path .eslintignore --fix",
     "*.{vue,js,ts,jsx,tsx,md,json,scss,css,html}": "prettier . --write",
-    "*.{scss,css,vue}": "stylelint ./src/**/*.{vue,css,scss} --fix"
+    "*.{scss,css,vue}": "stylelint --fix"
   }
 }

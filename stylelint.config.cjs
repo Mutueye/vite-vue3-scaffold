@@ -25,5 +25,5 @@ module.exports = {
     'scss/dollar-variable-empty-line-before': null,
     'scss/selector-no-redundant-nesting-selector': true,
   },
-  ignoreFiles: ['dist/**/*'],
+  ignoreFiles: ['dist/**/*', 'docs/**/*'],
 };
