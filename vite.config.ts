@@ -42,7 +42,7 @@ const baseConfig = defineConfig({
     globals: true,
     setupFiles: [path.resolve(__dirname, 'test/setup.ts')],
   },
-  base: '/<repo>/',
+  base: '/vite-vue3-scaffold/',
 });
 
 /**

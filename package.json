@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "type": "module",
   "packageManager": "pnpm@7.18.1",
-  "homepage": "https://<username>.github.io/<repo>/",
+  "homepage": "https://mutyeye.github.io/vite-vue3-scaffold/",
   "scripts": {
     "prepare": "simple-git-hooks",
     "dev": "vite --mode development",
