@@ -15,8 +15,8 @@
     "preview": "vite preview",
     "format": "prettier . --write",
     "format:check": "prettier . --check",
-    "lint": "eslint --ext .js,.ts,.vue --ignore-path .gitignore --fix src/",
-    "lint:check": "eslint --ext .js,.ts,.vue --ignore-path .gitignore src/",
+    "lint": "eslint --ext .js,.ts,.vue --ignore-path .eslintignore --fix src/",
+    "lint:check": "eslint --ext .js,.ts,.vue --ignore-path .eslintignore src/",
     "lint:style": "stylelint ./src/**/*.{vue,css,scss} --fix",
     "lint:style:check": "stylelint ./src/**/*.{vue,css,scss}",
     "test": "vitest run",
@@ -72,7 +72,7 @@
     "pre-commit": "npx lint-staged"
   },
   "lint-staged": {
-    "*.{vue,js,ts,jsx,tsx,json}": "eslint --ignore-path .gitignore --fix",
+    "*.{vue,js,ts,jsx,tsx,json}": "eslint --ignore-path .eslintignore --fix",
     "*.{vue,js,ts,jsx,tsx,md,json,scss,css,html}": "prettier . --write",
     "*.{scss,css,vue}": "stylelint --fix"
   }

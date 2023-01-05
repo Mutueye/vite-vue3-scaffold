@@ -8,3 +8,4 @@ __snapshots__/
 *.md
 pnpm-lock.yaml
 .DS_Store
+docs
