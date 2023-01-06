@@ -30,7 +30,7 @@
           :model="formData"
           :rules="formRules"
           :hide-required-asterisk="true">
-          <el-form-item prop="name" label="姓名：">
+          <el-form-item prop="name" label="姓名(昵称)：">
             <el-input
               v-model="formData.name"
               maxlength="60"
@@ -38,15 +38,7 @@
               clearable
               @clear="() => (formRef ? formRef.validateField('name') : null)" />
           </el-form-item>
-          <div class="rule-box">
-            <div class="text-size-13px font-bold mb-5px">姓名/昵称</div>
-            <div class="rule-item">中文 1-20 个字符，英文 3-60 个字符（字节长度3-60）；</div>
-            <div class="rule-item">
-              可以包含中文、英文字母、数字、空格、半角句点、半角逗号、间隔号、短横线、下划线；
-            </div>
-            <div class="rule-item">不能以空格、半角句点、半角逗号、间隔号、短横线开头或结尾</div>
-            <div class="reg-content">正则（不包含长度限制）：{{ regName.toString() }}</div>
-          </div>
+          <RuleInfoBox :rule-info="ruleInfoList.name" />
           <el-form-item prop="password" label="密码：">
             <el-input
               v-model.trim="formData.password"
@@ -58,12 +50,7 @@
               :show-password="true"
               @clear="formRef ? formRef.validateField('password') : null" />
           </el-form-item>
-          <div class="rule-box">
-            <div class="text-size-13px font-bold mb-5px">密码</div>
-            <div class="rule-item">6-20 个字符，只能包含英文字母、数字、特殊字符（不含空格）；</div>
-            <div class="rule-item">字母、数字、标点符号至少包含 2 种</div>
-            <div class="reg-content">正则：{{ regPassword.toString() }}</div>
-          </div>
+          <RuleInfoBox :rule-info="ruleInfoList.password" />
           <el-form-item prop="account" label="账号：">
             <el-input
               v-model.trim="formData.account"
@@ -72,13 +59,7 @@
               placeholder="请输入账号名"
               @clear="formRef ? formRef.validateField('account') : null" />
           </el-form-item>
-          <div class="rule-box">
-            <div class="text-size-13px font-bold mb-5px">账号</div>
-            <div class="rule-item">只能包含中文、英文字母、数字、下划线；</div>
-            <div class="rule-item">中文 2-20 个字符，英文 6-60 个字符（字节长度6-60）；</div>
-            <div class="rule-item">不能以下划线开头或结尾；</div>
-            <div class="rule-item">不能是纯数字</div>
-          </div>
+          <RuleInfoBox :rule-info="ruleInfoList.account" />
           <el-form-item prop="captcha" label="验证码：">
             <el-input
               v-model.trim="formData.captcha"
@@ -87,11 +68,7 @@
               clearable
               @clear="formRef ? formRef.validateField('captcha') : null" />
           </el-form-item>
-          <div class="rule-box">
-            <div class="text-size-13px font-bold mb-5px">验证码</div>
-            <div class="rule-item">6位数字</div>
-            <div class="reg-content">正则：{{ regCaptcha.toString() }}</div>
-          </div>
+          <RuleInfoBox :rule-info="ruleInfoList.captcha" />
           <el-form-item prop="code" label="学号/工号：">
             <el-input
               v-model.trim="formData.code"
@@ -100,11 +77,7 @@
               placeholder="请输入学号/工号"
               @clear="formRef ? formRef.validateField('code') : null" />
           </el-form-item>
-          <div class="rule-box">
-            <div class="text-size-13px font-bold mb-5px">学号/工号</div>
-            <div class="rule-item">数字/字母，50个字符</div>
-            <div class="reg-content">正则：{{ regCode.toString() }}</div>
-          </div>
+          <RuleInfoBox :rule-info="ruleInfoList.code" />
           <el-form-item prop="mobile" label="手机号：">
             <el-input
               v-model.trim="formData.mobile"
@@ -113,12 +86,7 @@
               clearable
               @clear="formRef ? formRef.validateField('mobile') : null" />
           </el-form-item>
-          <div class="rule-box">
-            <div class="text-size-13px font-bold mb-5px">手机号</div>
-            <div class="rule-item">中国大陆(+86)的11位手机号；</div>
-            <div class="rule-item">数字1开头，第二位数字3到9</div>
-            <div class="reg-content">正则：{{ regMobile.toString() }}</div>
-          </div>
+          <RuleInfoBox :rule-info="ruleInfoList.mobile" />
           <el-form-item prop="email" label="邮箱：">
             <el-input
               v-model.trim="formData.email"
@@ -126,18 +94,7 @@
               clearable
               @clear="formRef ? formRef.validateField('email') : null" />
           </el-form-item>
-          <div class="rule-box">
-            <div class="text-size-13px font-bold mb-5px">邮箱</div>
-            <div class="rule-item">必须为标准邮箱地址格式；</div>
-            <div class="rule-item">
-              本地部分（@之前）允许英文字母、数字、中文、短横线、下划线、半角句点，最大长度64（字节长度64）；
-            </div>
-            <div class="rule-item">
-              域部分（@之后）允许英文字母、数字、中文、短横线、下划线、半角句点，最大长度255（字节长度255）；
-            </div>
-            <div class="rule-item">域部分最多支持 5 级域名</div>
-            <div class="reg-content">正则（不包含长度限制）：{{ regEmail.toString() }}</div>
-          </div>
+          <RuleInfoBox :rule-info="ruleInfoList.email" />
           <el-form-item prop="idcode" label="身份证号：">
             <el-input
               v-model.trim="formData.idcode"
@@ -146,22 +103,7 @@
               clearable
               @clear="formRef ? formRef.validateField('idcode') : null" />
           </el-form-item>
-          <div class="rule-box">
-            <div class="text-size-13px font-bold mb-5px">身份证号</div>
-            <div class="rule-item">
-              18位身份证号：6位地区号(其中前两位：[第一位1～6，第二位1-9]或者50(重庆地区50)) +
-              4位年份(18xx到20xx) + 2位月份(01到12) + 2位日期(01到31) + 3位数字顺序码 +
-              1位校验码(数字或X或x)；
-            </div>
-            <div class="rule-item">
-              15位身份证号：6位地区号(其中前两位：[第一位1～6，第二位1-9]或者50(重庆地区50)) +
-              2位年份数字(年份后两位) + 2位月份(01到12) + 2位日期(01到31) + 3位数字顺序码
-            </div>
-            <div class="reg-content">
-              <div>18位正则：{{ regId18.toString() }}</div>
-              <div class="mt-space-xs">15位正则：{{ regId15.toString() }}</div>
-            </div>
-          </div>
+          <RuleInfoBox :rule-info="ruleInfoList.idcode" />
           <el-form-item prop="organ" label="机构名称：">
             <el-input
               v-model.trim="formData.organ"
@@ -170,15 +112,7 @@
               clearable
               @clear="formRef ? formRef.validateField('organ') : null" />
           </el-form-item>
-          <div class="rule-box">
-            <div class="text-size-13px font-bold mb-5px">机构名称</div>
-            <div class="rule-item">
-              可以包含中文、英文字母、数字、空格、半角句点、半角逗号、中文圆括号、英文圆括号；
-            </div>
-            <div class="rule-item">中文 2-85 个字符，英文 6-255 个字符（字节长度6-255）；</div>
-            <div class="rule-item">不能以空格、半角句点、半角逗号、圆括号开头或结尾；</div>
-            <div class="reg-content">正则(不包含长度限制)：{{ regOrgan.toString() }}</div>
-          </div>
+          <RuleInfoBox :rule-info="ruleInfoList.organ" />
           <el-form-item>
             <el-button type="primary" class="w-full" @click="submit">确定</el-button>
           </el-form-item>
@@ -192,6 +126,7 @@
   import { ref, reactive } from 'vue';
   import { ElForm, ElMessage, FormRules } from 'element-plus';
   import DefaultLayout from '@/components/layout/DefaultLayout.vue';
+  import RuleInfoBox from './components/RuleInfoBox.vue';
   import {
     globalFormRules,
     regName,
@@ -204,6 +139,7 @@
     regId15,
     regOrgan,
   } from '@/utils/formRules';
+  import { ruleInfoList } from '../utils/ruleInfo';
 
   const formRef = ref<InstanceType<typeof ElForm>>();
   const formData = reactive<{
@@ -259,6 +195,9 @@
       @apply pl-space-sm text-size-12px mt-space-xs relative leading-18px;
       &::before {
         @apply content-empty absolute w-5px h-5px top-6px left-2px transform rotate-45 bg-[var(--el-text-color-secondary)];
+      }
+      &.message::before {
+        @apply rounded-full;
       }
     }
     .reg-content {

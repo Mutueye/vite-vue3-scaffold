@@ -114,7 +114,7 @@ export const usernameValidator = (
   callback: (err?: string | Error | undefined) => void,
 ) => {
   if (!value) {
-    callback(new Error('请输入账号名'));
+    callback();
   } else {
     const reg = /[^a-zA-Z0-9_\u4e00-\u9fa5]/;
     const min_byte_size = 6,
@@ -156,7 +156,7 @@ export const emailValidator = (
   callback: (err?: string | Error | undefined) => void,
 ) => {
   if (value === '') {
-    callback(new Error('请输入邮箱'));
+    callback();
   } else {
     if (!regEmail.test(value)) {
       callback(new Error('请输入格式正确的邮箱'));
@@ -190,7 +190,7 @@ export const idCodeValidator = (
     if (regId18.test(value) || regId15.test(value)) {
       callback();
     } else {
-      callback(new Error('请输入有效的身份正号'));
+      callback(new Error('请输入有效的身份证号'));
     }
   }
 };
@@ -271,9 +271,15 @@ export const globalFormRules = {
     { pattern: regCode, message: '学号/工号格式不正确', trigger: 'blur' },
   ],
   // 用户名（账号名）
-  username: [{ validator: usernameValidator, trigger: 'blur' }],
+  username: [
+    { required: true, message: '请输入账号名', trigger: 'blur' },
+    { validator: usernameValidator, trigger: 'blur' },
+  ],
   // 邮箱
-  email: [{ validator: emailValidator, trigger: 'blur' }],
+  email: [
+    { required: true, message: '请输入邮箱', trigger: 'blur' },
+    { validator: emailValidator, trigger: 'blur' },
+  ],
   // 身份证号
   idCode: [
     { required: true, message: '请输入身份证号', trigger: 'blur' },

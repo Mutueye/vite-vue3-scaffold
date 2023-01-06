@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router';
 
 import Home from '@/modules/home/views/Home.vue';
 import FormExample from '@/modules/form/views/FormExample.vue';
@@ -21,6 +21,6 @@ export const routes = [
 ];
 
 export const router = createRouter({
-  history: createWebHistory(import.meta.env.VITE_APP_BASE_PATH as string),
+  history: createWebHashHistory(),
   routes,
 });

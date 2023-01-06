@@ -1,0 +1,47 @@
+<template>
+  <div class="rule-box">
+    <div class="text-size-13px font-bold mb-5px">验证规则</div>
+    <div v-for="item in ruleInfo.rules" :key="item" class="rule-item">{{ item }}</div>
+    <div class="text-size-13px font-bold mb-5px separator">提示信息</div>
+    <div v-for="item in ruleInfo.messages" :key="item.condition" class="rule-item message">
+      <span>{{ item.condition }}：</span>
+      <span class="text-[var(--el-color-danger)]">{{ item.message }}</span>
+    </div>
+    <div
+      v-if="ruleInfo.regexInfo && ruleInfo.regexLabel"
+      class="text-size-13px font-bold mb-5px separator">
+      {{ ruleInfo.regexLabel }}
+    </div>
+    <div class="reg-content">
+      {{ ruleInfo.regexInfo }}
+    </div>
+  </div>
+</template>
+
+<script lang="ts" setup>
+  import { toRefs } from 'vue';
+  import { RuleInfo } from '../../utils/ruleInfo';
+  const props = defineProps<{ ruleInfo: RuleInfo }>();
+  const { ruleInfo } = toRefs(props);
+</script>
+
+<style lang="scss" scoped>
+  .rule-box {
+    @apply p-space-sm mt-space mb-space-xxl border border-[var(--el-color-warning-light-7)] rounded-[var(--el-border-radius-base)] bg-[var(--el-color-warning-light-9)];
+    .rule-item {
+      @apply pl-space-sm text-size-12px mt-space-xs relative leading-18px;
+      &::before {
+        @apply content-empty absolute w-5px h-5px top-6px left-2px transform rotate-45 bg-[var(--el-text-color-secondary)];
+      }
+      &.message::before {
+        @apply rounded-full;
+      }
+    }
+    .separator {
+      @apply border-t border-[var(--el-color-warning-light-7)] pt-space-sm mt-space-sm;
+    }
+    .reg-content {
+      @apply font-bold text-size-12px text-[var(--el-color-warning)];
+    }
+  }
+</style>
