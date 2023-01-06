@@ -90,6 +90,8 @@ export const ruleInfoList: Record<string, RuleInfo> = {
       { condition: '未填写', message: '请输入手机号' },
       { condition: '不符合验证规则', message: '请输入正确手机号' },
     ],
+    regexLabel: '正则',
+    regexInfo: regMobile.toString(),
   },
   email: {
     rules: [

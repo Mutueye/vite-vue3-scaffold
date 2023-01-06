@@ -42,7 +42,6 @@ const baseConfig = defineConfig({
     globals: true,
     setupFiles: [path.resolve(__dirname, 'test/setup.ts')],
   },
-  base: '/vite-vue3-scaffold/',
 });
 
 /**
@@ -66,6 +65,7 @@ export default defineConfig(({ mode }) => {
 
   return {
     ...baseConfig,
+    base: `${process.env.VITE_APP_BASE_PATH}`,
     server: {
       open: true,
       host: '0.0.0.0',
