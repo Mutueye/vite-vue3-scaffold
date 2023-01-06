@@ -127,18 +127,7 @@
   import { ElForm, ElMessage, FormRules } from 'element-plus';
   import DefaultLayout from '@/components/layout/DefaultLayout.vue';
   import RuleInfoBox from './components/RuleInfoBox.vue';
-  import {
-    globalFormRules,
-    regName,
-    regPassword,
-    regCaptcha,
-    regCode,
-    regMobile,
-    regEmail,
-    regId18,
-    regId15,
-    regOrgan,
-  } from '@/utils/formRules';
+  import { globalFormRules } from '@/utils/formRules';
   import { ruleInfoList } from '../utils/ruleInfo';
 
   const formRef = ref<InstanceType<typeof ElForm>>();
@@ -187,21 +176,3 @@
     });
   };
 </script>
-
-<style lang="scss" scoped>
-  .rule-box {
-    @apply p-space-sm mt-space mb-space-xxl border border-[var(--el-color-warning-light-7)] rounded-[var(--el-border-radius-base)] bg-[var(--el-color-warning-light-9)];
-    .rule-item {
-      @apply pl-space-sm text-size-12px mt-space-xs relative leading-18px;
-      &::before {
-        @apply content-empty absolute w-5px h-5px top-6px left-2px transform rotate-45 bg-[var(--el-text-color-secondary)];
-      }
-      &.message::before {
-        @apply rounded-full;
-      }
-    }
-    .reg-content {
-      @apply border-t border-[var(--el-color-warning-light-7)] font-bold pt-space-sm mt-space-sm text-size-12px text-[var(--el-color-warning)];
-    }
-  }
-</style>
