@@ -1,12 +1,18 @@
 <template>
   <div class="rule-box">
-    <div class="text-size-13px font-bold mb-5px">验证规则</div>
-    <div v-for="item in ruleInfo.rules" :key="item" class="rule-item">{{ item }}</div>
-    <div class="text-size-13px font-bold mb-5px separator">提示信息</div>
-    <div v-for="item in ruleInfo.messages" :key="item.condition" class="rule-item message">
-      <span>{{ item.condition }}：</span>
-      <span class="text-[var(--el-color-danger)]">{{ item.message }}</span>
+    <div class="text-size-13px font-bold mb-5px">
+      {{ ruleInfo.rulesTitle ? ruleInfo.rulesTitle : '验证规则' }}
     </div>
+    <div v-for="item in ruleInfo.rules" :key="item" class="rule-item">{{ item }}</div>
+
+    <div v-if="ruleInfo.messages && ruleInfo.messages.length > 0" class="flex flex-col items-start">
+      <div class="text-size-13px font-bold mb-5px separator w-full">提示信息</div>
+      <div v-for="item in ruleInfo.messages" :key="item.condition" class="rule-item message">
+        <span>{{ item.condition }}：</span>
+        <span class="text-[var(--el-color-danger)]">{{ item.message }}</span>
+      </div>
+    </div>
+
     <div
       v-if="ruleInfo.regexInfo && ruleInfo.regexLabel"
       class="text-size-13px font-bold mb-5px separator">

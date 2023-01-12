@@ -1,9 +1,17 @@
 <template>
   <DefaultLayout>
-    <div
-      class="flex flex-col w-full bg-[var(--el-bg-color)] my-space-lg rounded-[var(--el-border-radius-base)] shadow">
-      <div class="text-size-24px font-bold w-full text-center mt-space-lg">
-        常用字段验证规则（讨论稿）
+    <Card>
+      <div
+        class="w-full h-56px border-b border-[var(--el-border-color-lighter)] flex flex-row items-center justify-start">
+        <div
+          class="h-56px border-b border-[var(--el-color-primary)] leading-56px px-space text-size-16px font-bold text-[var(--el-text-color-primary)]">
+          常用字段验证规则(讨论稿)
+        </div>
+        <router-link
+          to="/forminteractive"
+          class="no-underline h-56px border-b border-[var(--el-border-color-lighter)] px-space leading-56px text-size-16px font-bold text-[var(--el-text-color-regular)] transition cursor-pointer hover:(bg-[var(--el-bg-color-page)] border-[var(--el-text-color-secondary)] text-[var(--el-text-color-primary)])">
+          表单交互细节范例(讨论稿)
+        </router-link>
       </div>
       <div class="flex flex-col w-560px mx-auto py-space">
         <div
@@ -14,12 +22,11 @@
           </div>
           <div class="text-size-14px text-[var(--el-text-color-regular)] mb-space">
             <span class="text-[var(--el-text-color-primary)] font-bold">目标：</span>
-            1. 确定常用字段验证规则；2. 确定每个字段各种情况下的错误提示文字；3.
-            确定常规表单交互细节(是否显示必填星标/点击清空图标时是否对字段进行验证/不同控件(输入框/下拉菜单等)的验证时机(change或blur)等)
+            1. 确定常用字段验证规则；2. 确定每个字段各种情况下的错误提示文字
           </div>
           <div class="text-size-14px text-[var(--el-text-color-regular)]">
             <span class="text-[var(--el-text-color-primary)] font-bold">期望：</span>
-            验证规则确定后，作为默认的缺省规则，由产品/开发/测试三方共同遵守，后续编写产品文档时，仅需要描述在默认规则基础上的变化或扩展，不需要浪费时间对表单交互进行详细描述
+            验证规则确定后，作为默认的缺省规则，由产品/开发/测试三方共同遵守，后续编写产品文档时，仅需要描述在默认规则基础上的变化或扩展，不需要浪费时间对规则进行详细描述
           </div>
         </div>
 
@@ -118,19 +125,20 @@
           </el-form-item>
         </el-form>
       </div>
-    </div>
+    </Card>
   </DefaultLayout>
 </template>
 
 <script lang="ts" setup>
   import { ref, reactive } from 'vue';
-  import { ElForm, ElMessage, FormRules } from 'element-plus';
+  import { ElForm, ElMessage, FormInstance, FormRules } from 'element-plus';
   import DefaultLayout from '@/components/layout/DefaultLayout.vue';
+  import Card from '@/components/layout/Card.vue';
   import RuleInfoBox from './components/RuleInfoBox.vue';
   import { globalFormRules } from '@/utils/formRules';
   import { ruleInfoList } from '../utils/ruleInfo';
 
-  const formRef = ref<InstanceType<typeof ElForm>>();
+  const formRef = ref<FormInstance>();
   const formData = reactive<{
     name: string;
     password: string;

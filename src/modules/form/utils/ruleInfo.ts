@@ -17,7 +17,8 @@ export interface MessageItem {
 
 export interface RuleInfo {
   rules: string[];
-  messages: MessageItem[];
+  rulesTitle?: string;
+  messages?: MessageItem[];
   regexLabel?: string;
   regexInfo?: string;
 }

@@ -47,6 +47,7 @@ export const theme: Theme = {
     full: '9999px',
   },
   colors: {
+    test: 'var(--el-color-primary)',
     // 示例：
     // theme: '#4680FF',
     // 'trans-black-20': 'rgba(0 0 0 / 20%)',
