@@ -1,13 +1,3 @@
-@use './themes.scss';
-
 :root {
-  @apply font-main;
-
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-body {
-  @apply bg-[var(--el-bg-color-page)];
+  @apply font-main antialiased color-text-primary bg-bg-page;
 }

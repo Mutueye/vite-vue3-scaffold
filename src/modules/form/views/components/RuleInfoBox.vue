@@ -9,7 +9,7 @@
       <div class="text-size-13px font-bold mb-5px separator w-full">提示信息</div>
       <div v-for="item in ruleInfo.messages" :key="item.condition" class="rule-item message">
         <span>{{ item.condition }}：</span>
-        <span class="text-[var(--el-color-danger)]">{{ item.message }}</span>
+        <span class="color-danger">{{ item.message }}</span>
       </div>
     </div>
 
@@ -33,21 +33,21 @@
 
 <style lang="scss" scoped>
   .rule-box {
-    @apply p-space-sm mt-space mb-space-xxl border border-[var(--el-color-warning-light-7)] rounded-[var(--el-border-radius-base)] bg-[var(--el-color-warning-light-9)];
+    @apply p-space-sm mt-space mb-space-xxl border border-warning-light-7 rounded-base bg-warning-light-9;
     .rule-item {
       @apply pl-space-sm text-size-12px mt-space-xs relative leading-18px;
       &::before {
-        @apply content-empty absolute w-5px h-5px top-6px left-2px transform rotate-45 bg-[var(--el-text-color-secondary)];
+        @apply content-empty absolute w-5px h-5px top-6px left-2px transform rotate-45 bg-text-secondary;
       }
       &.message::before {
         @apply rounded-full;
       }
     }
     .separator {
-      @apply border-t border-[var(--el-color-warning-light-7)] pt-space-sm mt-space-sm;
+      @apply border-t border-warning-light-7 pt-space-sm mt-space-sm;
     }
     .reg-content {
-      @apply font-bold text-size-12px text-[var(--el-color-warning)];
+      @apply font-bold text-size-12px color-warning;
     }
   }
 </style>

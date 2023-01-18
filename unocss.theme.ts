@@ -1,5 +1,49 @@
 import { Theme } from 'unocss/preset-mini';
 
+const cssVarPrepend = '--el';
+
+const colorTypes = ['primary', 'success', 'warning', 'danger', 'error', 'info'];
+const textColorTypes = ['primary', 'regular', 'secondary', 'placeholder', 'disabled'];
+const bgColorTypes = ['DEFAULT', 'overlay', 'page'];
+const borderColorTypes = ['DEFAULT', 'light', 'lighter', 'extralight', 'dark', 'darker'];
+const fillColorTypes = ['DEFAULT', 'light', 'lighter', 'extralight', 'dark', 'darker', 'blank'];
+// 圆角 border-radius 默认
+// --el-border-radius-base: 4px;
+// --el-border-radius-small: 2px;
+// --el-border-radius-round: 20px;
+// --el-border-radius-circle: 100%;
+const borderRadiusTypes = ['base', 'small', 'round', 'circle'];
+const mixModes = ['light', 'dark'];
+
+// 生成主题色变量配置表
+const generateThemeColors = () => {
+  const colors: Record<string, unknown> = {};
+  colorTypes.forEach((colorType) => {
+    colors[colorType] = { DEFAULT: `var(${cssVarPrepend}-color-${colorType})` };
+    mixModes.forEach((mixMode) => {
+      const subColors: Record<number, string> = {};
+      for (let i = 1; i < 10; i++) {
+        subColors[i] = `var(${cssVarPrepend}-color-${colorType}-${mixMode}-${i})`;
+      }
+      colors[colorType][mixMode] = subColors;
+    });
+  });
+  return colors;
+};
+
+// 根据类型生成对应的css变量配置列表
+const generateCssVarList = (colorTypes: string[], varPrepend: string) => {
+  const list: Record<string, string> = {};
+  colorTypes.forEach((type) => {
+    if (type === 'DEFAULT') {
+      list[type] = `var(${varPrepend})`;
+    } else {
+      list[type] = `var(${varPrepend}-${type})`;
+    }
+  });
+  return list;
+};
+
 export const defaultSizes = {
   header: '72px',
   'space-xs': '8px',
@@ -9,6 +53,7 @@ export const defaultSizes = {
   'space-lg': '32px',
   'space-xl': '40px',
   'space-xxl': '48px',
+  'left-menu': '240px',
 };
 
 // theme配置示例。默认theme配置详见unocss源码：
@@ -25,8 +70,6 @@ export const theme: Theme = {
     md: '0 4px 6px -1px rgb(0 0 0 / 7%), 0 2px 4px -1px rgb(0 0 0 / 6%)',
     lg: '0 10px 15px -3px rgb(0 0 0 / 10%), 0 4px 6px -2px rgb(0 0 0 / 5%)',
     xl: '0 20px 25px -5px rgb(0 0 0 / 10%), 0 10px 10px -5px rgb(0 0 0 / 4%)',
-    // inner: 'inset 0 2px 4px 0 rgb(0 0 0 / 6%)',
-    // blue: '0 2px 16px 0 rgb(72 95 234 / 10%), 0 0px 4px 0 rgb(72 95 234 / 10%)',
   },
   // 如果自定义breakpoints，会覆盖默认配置，而不是像其他一样合并默认配置
   breakpoints: {
@@ -45,12 +88,15 @@ export const theme: Theme = {
     xl: '10px',
     xxl: '12px',
     full: '9999px',
+    ...generateCssVarList(borderRadiusTypes, `${cssVarPrepend}-border-radius`),
   },
   colors: {
-    test: 'var(--el-color-primary)',
-    // 示例：
-    // theme: '#4680FF',
-    // 'trans-black-20': 'rgba(0 0 0 / 20%)',
+    theme: `var(${cssVarPrepend}-color-primary)`,
+    ...generateThemeColors(),
+    text: generateCssVarList(textColorTypes, `${cssVarPrepend}-text-color`),
+    bg: generateCssVarList(bgColorTypes, `${cssVarPrepend}-bg-color`),
+    border: generateCssVarList(borderColorTypes, `${cssVarPrepend}-border-color`),
+    fill: generateCssVarList(fillColorTypes, `${cssVarPrepend}-fill-color`),
   },
   fontFamily: {
     main: 'PingFang SC, Hiragino Sans GB, Microsoft YaHei, SimSun, sans-serif',

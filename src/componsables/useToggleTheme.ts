@@ -1,10 +1,15 @@
 import { onMounted, ref } from 'vue';
+import { useDark, useToggle } from '@vueuse/core';
+import { ThemeEnum } from '@/utils/theme/types';
 
-export type ColorTheme = 'blue' | 'purple';
-export const themeList: ColorTheme[] = ['blue', 'purple'];
+export const themeList: ThemeEnum[] = Object.keys(ThemeEnum).map(
+  (key) => ThemeEnum[key as ThemeEnum],
+);
 
 export const useToggleTheme = () => {
-  const currentTheme = ref<ColorTheme | ''>('');
+  const currentTheme = ref<ThemeEnum>(ThemeEnum.blue);
+  const isDark = useDark();
+  const toggleDark = useToggle(isDark);
 
   onMounted(() => {
     const htmlEl = document.getElementsByTagName('html')[0];
@@ -12,12 +17,12 @@ export const useToggleTheme = () => {
       if (htmlEl.classList.contains(theme)) {
         currentTheme.value = theme;
       } else {
-        toggleTheme('blue');
+        toggleTheme(themeList[0]);
       }
     });
   });
 
-  const toggleTheme = (themeName: ColorTheme): void => {
+  const toggleTheme = (themeName: ThemeEnum): void => {
     const htmlEl = document.getElementsByTagName('html')[0];
     themeList.forEach((theme) => {
       if (htmlEl.classList.contains(theme) && theme !== themeName) {
@@ -30,5 +35,9 @@ export const useToggleTheme = () => {
     currentTheme.value = themeName;
   };
 
-  return { currentTheme, toggleTheme };
+  const toggleDarkMode = () => {
+    toggleDark(!isDark.value);
+  };
+
+  return { currentTheme, toggleTheme, isDark, toggleDarkMode };
 };

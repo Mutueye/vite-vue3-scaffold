@@ -10,5 +10,32 @@
     "source.fixAll.eslint": true,
     "source.fixAll.stylelint": true
   },
-  "diffEditor.wordWrap": "off"
+  "diffEditor.wordWrap": "off",
+  "colorize.languages": [
+    "json",
+    "jsonc",
+    "css",
+    "sass",
+    "scss",
+    "less",
+    "postcss",
+    "sss",
+    "stylus",
+    "xml",
+    "svg",
+    "javascript",
+    "typescript",
+    "vue"
+  ],
+  "colorize.include": [
+    "**/*.json",
+    "**/*.css",
+    "**/*.scss",
+    "**/*.sass",
+    "**/*.less",
+    "**/*.styl",
+    "**/*.js",
+    "**/*.ts",
+    "**/*.vue"
+  ]
 }
