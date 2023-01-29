@@ -6,13 +6,13 @@
     </div>
     <div class="flex flex-row items-center">
       <button
-        v-for="theme in themeList"
-        :key="theme"
+        v-for="(theme, index) in themeList"
+        :key="'primary' + theme.mainColors.primary"
         class="theme-btn mr-space"
-        :style="{ backgroundColor: themeConfig[theme].mainColors.primary }"
-        @click="toggleTheme(theme)">
+        :style="{ backgroundColor: theme.mainColors.primary }"
+        @click="toggleTheme(`theme${index}`)">
         <i
-          v-if="currentTheme === theme"
+          v-if="currentTheme === `theme${index}`"
           inline-block
           align-middle
           text-size-18px
@@ -32,16 +32,14 @@
 </template>
 
 <script lang="ts" setup>
-  import { computed } from 'vue';
+  import { ref } from 'vue';
   import { useToggleTheme } from '@/componsables/useToggleTheme';
-  import { ThemeEnum } from '@/utils/theme/types';
-  import { themeConfig } from '@/utils/theme/themeConfig';
+  import { getThemeList } from '@/utils/theme/themeConfig';
 
   const { currentTheme, toggleTheme, toggleDarkMode } = useToggleTheme();
+  const themeList = ref(getThemeList());
 
-  let themeList = computed(() => {
-    return Object.keys(ThemeEnum).map((key) => key as ThemeEnum);
-  });
+  console.log('themeList:::::::::', themeList.value);
 </script>
 
 <style lang="scss" scoped>

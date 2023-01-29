@@ -63,11 +63,7 @@ export type ColorSchemeConfig = {
 
 // 单个UI主题配置
 export interface ThemeConfig {
+  themeName?: string;
   mainColors: MainColors;
   colorSchemes: ColorSchemeConfig;
 }
-
-// 全局主题配置
-export type AllThemeConfig = {
-  [key in ThemeEnum]: ThemeConfig;
-};

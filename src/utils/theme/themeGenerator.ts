@@ -3,15 +3,15 @@ import { mix, toHex } from 'color2k';
 import {
   ColorSchemeEnum,
   MainColorEnum,
-  ThemeEnum,
   MixModeEnum,
   TextColorEnum,
   MainColors,
   TextColors,
   BgColorEnum,
   BgColors,
+  ThemeConfig,
 } from './types';
-import { themeConfig } from './themeConfig';
+import { getThemeList } from './themeConfig';
 
 export const cssVarPrepend = '--el';
 
@@ -37,16 +37,17 @@ export const initThemeStyle = () => {
 export const setThemeVariables = () => {
   const styleEl = document.head.querySelector('#theme') as HTMLElement;
   let styleStr = '';
-  Object.keys(ThemeEnum).forEach((theme) => {
+  const themeList = getThemeList();
+  themeList.forEach((theme, index) => {
     Object.keys(ColorSchemeEnum).forEach((scheme) => {
       const themeStyleStr = generateTheme({
-        theme: theme as ThemeEnum,
+        targetTheme: theme,
         colorScheme: scheme as ColorSchemeEnum,
       });
       if ((scheme as ColorSchemeEnum) === ColorSchemeEnum.light) {
-        styleStr += `.${theme} ${themeStyleStr}`;
+        styleStr += `.theme${index} ${themeStyleStr}`;
       } else {
-        styleStr += `.${theme}.${scheme} ${themeStyleStr}`;
+        styleStr += `.theme${index}.${scheme} ${themeStyleStr}`;
       }
     });
   });
@@ -56,13 +57,12 @@ export const setThemeVariables = () => {
 
 // 生成具体某个主题和模式下的css变量样式
 const generateTheme = ({
-  theme,
+  targetTheme,
   colorScheme,
 }: {
-  theme: ThemeEnum;
+  targetTheme: ThemeConfig;
   colorScheme: ColorSchemeEnum;
 }) => {
-  const targetTheme = themeConfig[theme];
   const variablesObj = {
     ...getMainColors(targetTheme.mainColors, colorScheme),
     ...getTextColors(targetTheme.colorSchemes[colorScheme].textColors),

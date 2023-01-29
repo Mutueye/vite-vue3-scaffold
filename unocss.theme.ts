@@ -1,5 +1,6 @@
 import { Theme } from 'unocss/preset-mini';
 
+// css变量前缀
 const cssVarPrepend = '--el';
 
 const colorTypes = ['primary', 'success', 'warning', 'danger', 'error', 'info'];
@@ -7,11 +8,6 @@ const textColorTypes = ['primary', 'regular', 'secondary', 'placeholder', 'disab
 const bgColorTypes = ['DEFAULT', 'overlay', 'page'];
 const borderColorTypes = ['DEFAULT', 'light', 'lighter', 'extralight', 'dark', 'darker'];
 const fillColorTypes = ['DEFAULT', 'light', 'lighter', 'extralight', 'dark', 'darker', 'blank'];
-// 圆角 border-radius 默认
-// --el-border-radius-base: 4px;
-// --el-border-radius-small: 2px;
-// --el-border-radius-round: 20px;
-// --el-border-radius-circle: 100%;
 const borderRadiusTypes = ['base', 'small', 'round', 'circle'];
 const mixModes = ['light', 'dark'];
 

@@ -1,7 +1,17 @@
-import { AllThemeConfig } from './types';
-export const themeConfig: AllThemeConfig = {
-  // 蓝色主题
-  blue: {
+import { ThemeConfig } from './types';
+
+export const getThemeList = (): ThemeConfig[] => {
+  const storagedThemeStr = localStorage.getItem('themeList');
+  if (storagedThemeStr) {
+    return JSON.parse(storagedThemeStr);
+  } else {
+    localStorage.setItem('themeList', JSON.stringify(defaultThemeList));
+    return defaultThemeList;
+  }
+};
+
+export const defaultThemeList: ThemeConfig[] = [
+  {
     mainColors: {
       primary: '#217aff',
       success: '#67c23a',
@@ -35,8 +45,7 @@ export const themeConfig: AllThemeConfig = {
       },
     },
   },
-  // 紫色主题
-  purple: {
+  {
     mainColors: {
       primary: '#5549ff',
       success: '#33d3a5',
@@ -70,7 +79,7 @@ export const themeConfig: AllThemeConfig = {
       },
     },
   },
-};
+];
 
 /*********************************************************
 element-plus css变量参考列表
