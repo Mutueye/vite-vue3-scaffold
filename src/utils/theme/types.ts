@@ -1,9 +1,3 @@
-// UI主题枚举
-export enum ThemeEnum {
-  blue = 'blue',
-  purple = 'purple',
-}
-
 // 日间/夜间模式枚举
 export enum ColorSchemeEnum {
   light = 'light',
@@ -63,7 +57,6 @@ export type ColorSchemeConfig = {
 
 // 单个UI主题配置
 export interface ThemeConfig {
-  themeName?: string;
   mainColors: MainColors;
   colorSchemes: ColorSchemeConfig;
 }
