@@ -49,7 +49,7 @@ export const defaultSizes = {
   'space-lg': '32px',
   'space-xl': '40px',
   'space-xxl': '48px',
-  'left-menu': '240px',
+  'left-menu': '300px',
 };
 
 // theme配置示例。默认theme配置详见unocss源码：

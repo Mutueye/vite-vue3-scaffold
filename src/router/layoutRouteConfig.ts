@@ -6,15 +6,13 @@ import type { Component } from 'vue';
 /**
  * Page layout enum.
  */
-export enum LayoutName {
+export enum LayoutEnum {
   base = 'base',
   admin = 'admin',
 }
 
-export type RouteRecordData = Partial<Record<LayoutName | 'route', RouteRecordRaw[]>>;
-
 export interface LayoutRouteConfig {
-  name: LayoutName;
+  name: LayoutEnum;
   component: Component;
 }
 
@@ -22,18 +20,19 @@ const generateLayoutRoute = (config: LayoutRouteConfig): RouteRecordRaw => {
   return {
     path: `/${config.name}`,
     name: config.name,
+    props: { layout: config.name },
     component: config.component,
     children: [],
   };
 };
 
-export const layoutRoutes: Record<LayoutName, RouteRecordRaw> = {
+export const layoutRoutes: Record<LayoutEnum, RouteRecordRaw> = {
   base: generateLayoutRoute({
-    name: LayoutName.base,
+    name: LayoutEnum.base,
     component: BaseLayout,
   }),
   admin: generateLayoutRoute({
-    name: LayoutName.admin,
+    name: LayoutEnum.admin,
     component: AdminLayout,
   }),
 };

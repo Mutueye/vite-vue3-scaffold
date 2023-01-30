@@ -1,4 +1,4 @@
-import { RouteRecordData } from '@/router/layoutRouteConfig';
+import { RouteRecordData } from '@/router/types';
 import Home from './views/Home.vue';
 
 const routeData: RouteRecordData = {

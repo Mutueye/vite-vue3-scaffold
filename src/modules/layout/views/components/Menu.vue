@@ -1,0 +1,64 @@
+<template>
+  <el-menu :default-active="activeMenuRouteName" class="bg-transparent border-none">
+    <menu-item v-for="item in menus" :key="item.name" :menu-data="item" />
+  </el-menu>
+</template>
+
+<script lang="ts" setup>
+  import { toRefs, onMounted, computed } from 'vue';
+  import { sortBy, get } from 'lodash-es';
+
+  import { LayoutEnum } from '@/router/layoutRouteConfig';
+  import { useRouteInfo } from '@/componsables/useRouteInfo';
+  import type { RouteLocationNormalizedLoaded, RouteRecordRaw } from 'vue-router';
+  import MenuItem from './MenuItem.vue';
+
+  const props = defineProps<{ layout: LayoutEnum }>();
+  const { layout } = toRefs(props);
+
+  const { allRoutes, route } = useRouteInfo();
+
+  onMounted(() => {
+    console.log('menuTree:::::::;', menus.value);
+  });
+
+  const activeMenuRouteName = computed(() => getActiveMenuName(route));
+
+  const menus = computed(() => {
+    const layoutRoute = allRoutes.value.find((route) => route.name === layout.value);
+    // console.log('layuoutRoute::::', layoutRoute);
+    if (layoutRoute && layoutRoute.children) {
+      const result = getMenuRoutes(layoutRoute.children);
+      console.log('result::::::::::', result);
+      return result;
+    }
+    return [];
+  });
+
+  const getMenuRoutes = (routes: RouteRecordRaw[]) => {
+    const result: RouteRecordRaw[] = [];
+    routes.forEach((route) => {
+      if (route.meta && route.meta.menuConfig) {
+        if (route.children && route.children.length > 0) {
+          route.children = getMenuRoutes(route.children);
+        }
+        result.push(route);
+      }
+    });
+    return sortBy(result, (item) => get(item, 'meta.menuConfig.order', 1000));
+  };
+
+  const getActiveMenuName = (route: RouteLocationNormalizedLoaded | RouteRecordRaw): string => {
+    if (route && route.meta) {
+      if (route.meta.menuConfig) {
+        return route.name as string;
+      } else if (route.meta.parentRouteData) {
+        return getActiveMenuName(route.meta.parentRouteData.parentRoute);
+      } else {
+        return '';
+      }
+    } else {
+      return '';
+    }
+  };
+</script>

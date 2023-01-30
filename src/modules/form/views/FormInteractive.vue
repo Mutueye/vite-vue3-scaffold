@@ -1,18 +1,6 @@
 <template>
   <Card>
-    <div
-      class="w-full h-56px border-b border-border-lighter flex flex-row items-center justify-start">
-      <router-link
-        to="/formexample"
-        class="no-underline h-56px whitespace-nowrap border-b border-border-lighter px-space leading-56px text-size-16px font-bold color-text-regular transition cursor-pointer hover:(bg-bg-page border-text-secondary color-text-primary)">
-        常用字段验证规则(讨论稿)
-      </router-link>
-      <div
-        class="h-56px border-b border-primary leading-56px px-space text-size-16px font-bold color-text-primary">
-        表单交互细节范例(讨论稿)
-      </div>
-    </div>
-    <div class="flex flex-col w-560px mx-auto py-space">
+    <div class="flex flex-col w-560px mx-auto">
       <div class="border border-border p-space mb-space-lg rounded-base">
         <div class="text-size-14px color-text-regular mb-space">
           <span class="color-text-primary font-bold">说明：</span>
