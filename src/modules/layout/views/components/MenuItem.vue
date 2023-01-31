@@ -4,6 +4,7 @@
       v-if="menuData.children && menuData.children.length > 0"
       :index="(menuData.name as string)">
       <template #title>
+        <menu-icon :icon-class="get(menuData, 'meta.menuConfig.iconClass', '')" />
         <span class="font-semibold">{{ menuData.meta?.title }}</span>
       </template>
       <menu-item v-for="subItem in menuData.children" :key="subItem.name" :menu-data="subItem" />
@@ -12,6 +13,7 @@
       v-else
       :index="(menuData.name as string)"
       @click="router.push({ name: menuData.name })">
+      <menu-icon :icon-class="get(menuData, 'meta.menuConfig.iconClass', '')" />
       <span class="font-semibold">{{ menuData.meta?.title }}</span>
     </el-menu-item>
   </div>
@@ -21,6 +23,8 @@
   import { toRefs } from 'vue';
   import type { RouteRecordRaw } from 'vue-router';
   import { useRouteInfo } from '@/componsables/useRouteInfo';
+  import MenuIcon from './MenuIcon.vue';
+  import { get } from 'lodash-es';
 
   const { router } = useRouteInfo();
 

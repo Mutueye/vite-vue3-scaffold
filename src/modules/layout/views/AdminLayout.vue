@@ -12,6 +12,7 @@
       <div
         class="flex flex-row items-start justify-between px-space-lg py-space border-b border-border-light">
         <div class="text-size-18px font-semibold color-text-primary">{{ route.meta.title }}</div>
+        <ThemeToggler />
       </div>
       <el-scrollbar>
         <div class="p-space-lg flex-shrink-0">
@@ -23,17 +24,12 @@
 </template>
 
 <script lang="ts" setup>
-  import { onMounted, toRefs } from 'vue';
   import { useRoute } from 'vue-router';
   import { LayoutEnum } from '@/router/layoutRouteConfig';
   import Menu from './components/Menu.vue';
+  import ThemeToggler from './components/ThemeToggler.vue';
 
   const route = useRoute();
 
-  const props = defineProps<{ layout: LayoutEnum }>();
-  const { layout } = toRefs(props);
-
-  onMounted(() => {
-    console.log('layout:::::::::', layout.value);
-  });
+  defineProps<{ layout: LayoutEnum }>();
 </script>

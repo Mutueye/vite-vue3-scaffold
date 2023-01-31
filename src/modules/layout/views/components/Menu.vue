@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { toRefs, onMounted, computed } from 'vue';
+  import { toRefs, computed } from 'vue';
   import { sortBy, get } from 'lodash-es';
 
   import { LayoutEnum } from '@/router/layoutRouteConfig';
@@ -18,18 +18,12 @@
 
   const { allRoutes, route } = useRouteInfo();
 
-  onMounted(() => {
-    console.log('menuTree:::::::;', menus.value);
-  });
-
   const activeMenuRouteName = computed(() => getActiveMenuName(route));
 
   const menus = computed(() => {
     const layoutRoute = allRoutes.value.find((route) => route.name === layout.value);
-    // console.log('layuoutRoute::::', layoutRoute);
     if (layoutRoute && layoutRoute.children) {
       const result = getMenuRoutes(layoutRoute.children);
-      console.log('result::::::::::', result);
       return result;
     }
     return [];

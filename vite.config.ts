@@ -21,13 +21,16 @@ const baseConfig = defineConfig({
         presetUno(),
         presetAttributify(),
         presetIcons({
-          scale: 1.2,
+          scale: 1,
           warn: true,
           collections: {
             uplus: uplusIconCollection,
           },
         }),
       ],
+      // unocss can't render icon class dynamically, when adding menu icon class
+      // in route.meta.menuConfig, you must also add the icon class in safelist.
+      safelist: ['i-mdi-home', 'i-mdi-form-textbox-password'],
       transformers: [transformerDirectives(), transformerVariantGroup()],
       theme,
     }),
