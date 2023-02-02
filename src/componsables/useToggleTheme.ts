@@ -1,37 +1,23 @@
-import { onMounted, ref } from 'vue';
+import { storeToRefs } from 'pinia';
 import { useDark, useToggle } from '@vueuse/core';
-import { getThemeList } from '@/utils/theme/themeConfig';
+import { useThemeStore } from '@/store/theme';
 
 export const useToggleTheme = () => {
-  const currentTheme = ref<string>('theme0');
   const isDark = useDark();
   const toggleDark = useToggle(isDark);
-  const themeList = ref(getThemeList());
-
-  onMounted(() => {
-    const htmlEl = document.getElementsByTagName('html')[0];
-    themeList.value.forEach((_, index) => {
-      if (htmlEl.classList.contains(`theme${index}`)) {
-        currentTheme.value = `theme${index}`;
-      } else {
-        toggleTheme('theme0');
-      }
-    });
-  });
+  const themeStore = useThemeStore();
+  const { currentThemeIndex, themeList } = storeToRefs(themeStore);
+  const { setCurrentThemeIndex } = themeStore;
 
   // 切换主题
-  const toggleTheme = (themeName: string): void => {
-    const htmlEl = document.getElementsByTagName('html')[0];
-    themeList.value.forEach((_, index) => {
-      const name = `theme${index}`;
-      if (htmlEl.classList.contains(name) && name !== themeName) {
-        htmlEl.classList.remove(name);
-      }
-    });
-    if (!htmlEl.classList.contains(themeName)) {
-      htmlEl.classList.add(themeName);
+  const toggleTheme = (themeIndex: number) => {
+    if (themeIndex < themeList.value.length) {
+      setCurrentThemeIndex(themeIndex);
     }
-    currentTheme.value = themeName;
+  };
+
+  const initThemeIndex = () => {
+    setCurrentThemeIndex(currentThemeIndex.value);
   };
 
   // 切换日间/夜间模式
@@ -39,5 +25,5 @@ export const useToggleTheme = () => {
     toggleDark(!isDark.value);
   };
 
-  return { currentTheme, toggleTheme, isDark, toggleDarkMode };
+  return { currentThemeIndex, initThemeIndex, toggleTheme, isDark, toggleDarkMode };
 };

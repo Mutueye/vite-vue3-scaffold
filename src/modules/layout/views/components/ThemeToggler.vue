@@ -3,16 +3,15 @@
     <button
       v-for="(theme, index) in themeList"
       :key="'primary' + theme.mainColors.primary"
-      class="theme-btn mr-space"
+      class="theme-btn mr-space color-white"
       :style="{ backgroundColor: theme.mainColors.primary }"
-      @click="toggleTheme(`theme${index}`)">
+      @click="toggleTheme(index)">
       <i
-        v-if="currentTheme === `theme${index}`"
+        v-if="currentThemeIndex === index"
         inline-block
         align-middle
         text-size-18px
-        color-white
-        class="i-line-md-confirm-circle" />
+        class="i-mdi-check-circle-outline" />
     </button>
     <button class="theme-btn" @click="toggleDarkMode">
       <i
@@ -26,12 +25,14 @@
 </template>
 
 <script lang="ts" setup>
-  import { ref } from 'vue';
+  import { storeToRefs } from 'pinia';
   import { useToggleTheme } from '@/componsables/useToggleTheme';
-  import { getThemeList } from '@/utils/theme/themeConfig';
+  import { useThemeStore } from '@/store/theme';
 
-  const { currentTheme, toggleTheme, toggleDarkMode } = useToggleTheme();
-  const themeList = ref(getThemeList());
+  const themeStore = useThemeStore();
+  const { themeList } = storeToRefs(themeStore);
+
+  const { currentThemeIndex, toggleTheme, toggleDarkMode } = useToggleTheme();
 </script>
 
 <style lang="scss" scoped>

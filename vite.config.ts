@@ -30,7 +30,7 @@ const baseConfig = defineConfig({
       ],
       // unocss can't render icon class dynamically, when adding menu icon class
       // in route.meta.menuConfig, you must also add the icon class in safelist.
-      safelist: ['i-mdi-home', 'i-mdi-form-textbox-password'],
+      safelist: ['i-mdi-collage', 'i-mdi-form-textbox-password', 'i-mdi-clover'],
       transformers: [transformerDirectives(), transformerVariantGroup()],
       theme,
     }),

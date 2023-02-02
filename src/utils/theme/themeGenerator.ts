@@ -1,5 +1,5 @@
 import { mix, toHex } from 'color2k';
-
+import { useThemeStore } from '@/store/theme';
 import {
   ColorSchemeEnum,
   MainColorEnum,
@@ -11,7 +11,6 @@ import {
   BgColors,
   ThemeConfig,
 } from './types';
-import { getThemeList } from './themeConfig';
 
 export const cssVarPrepend = '--el';
 
@@ -37,7 +36,7 @@ export const initThemeStyle = () => {
 export const setThemeVariables = () => {
   const styleEl = document.head.querySelector('#theme') as HTMLElement;
   let styleStr = '';
-  const themeList = getThemeList();
+  const { themeList } = useThemeStore();
   themeList.forEach((theme, index) => {
     Object.keys(ColorSchemeEnum).forEach((scheme) => {
       const themeStyleStr = generateTheme({
@@ -51,6 +50,7 @@ export const setThemeVariables = () => {
       }
     });
   });
+
   // styleEl.appendChild(document.createTextNode(styleStr));
   styleEl.innerText = styleStr;
 };

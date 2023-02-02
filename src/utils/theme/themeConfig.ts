@@ -1,13 +1,38 @@
 import { ThemeConfig } from './types';
 
-export const getThemeList = (): ThemeConfig[] => {
-  const storagedThemeStr = localStorage.getItem('themeList');
-  if (storagedThemeStr) {
-    return JSON.parse(storagedThemeStr);
-  } else {
-    localStorage.setItem('themeList', JSON.stringify(defaultThemeList));
-    return defaultThemeList;
-  }
+export const defaultThemeConfig: ThemeConfig = {
+  mainColors: {
+    primary: '#217aff',
+    success: '#67c23a',
+    warning: '#f2711c',
+    danger: '#db2828',
+    error: '#db2828',
+    info: '#96979c',
+  },
+  colorSchemes: {
+    // 日间模式
+    light: {
+      textColors: {
+        primary: '#131b26',
+        regular: '#5f6165',
+        secondary: '#96979c',
+        placeholder: '#cacbd0',
+        disabled: '#c0c4cc',
+      },
+      bgColors: { DEFAULT: '#ffffff', overlay: '#ffffff', page: '#f7f8fd' },
+    },
+    // 夜间模式
+    dark: {
+      textColors: {
+        primary: '#ffffff',
+        regular: '#cfd3dc',
+        secondary: '#a3a6ad',
+        placeholder: '#8d9095',
+        disabled: '#6c6e72',
+      },
+      bgColors: { DEFAULT: '#28303d', overlay: '#28303d', page: '#1b2431' },
+    },
+  },
 };
 
 export const defaultThemeList: ThemeConfig[] = [

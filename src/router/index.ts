@@ -52,7 +52,7 @@ const addRouteParentMeta = (
 export const baseRoutes: RouteRecordRaw[] = [
   {
     path: '/',
-    redirect: '/home',
+    redirect: '/dashboard',
   },
 ];
 

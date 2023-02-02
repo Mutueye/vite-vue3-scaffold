@@ -10,7 +10,7 @@
     </div>
     <div class="h-screen w-full flex flex-col bg-bg">
       <div
-        class="flex flex-row items-start justify-between px-space-lg py-space border-b border-border-light">
+        class="flex flex-row items-center justify-between px-space-lg py-space border-b border-border-light">
         <div class="text-size-18px font-semibold color-text-primary">{{ route.meta.title }}</div>
         <ThemeToggler />
       </div>
