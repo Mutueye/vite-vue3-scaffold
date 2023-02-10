@@ -1,7 +1,11 @@
 :root {
-  @apply font-main antialiased color-text-primary bg-bg-page;
+  @apply font-main antialiased color-text-primary bg-bg-page h-full;
   --el-menu-bg-color: transparent;
   --el-menu-text-color: var(--el-text-color-regular);
   --el-menu-base-level-padding: 24px;
   --el-menu-level-padding: 16px;
+}
+
+body {
+  @apply h-full;
 }

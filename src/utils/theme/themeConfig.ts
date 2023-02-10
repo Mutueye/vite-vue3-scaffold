@@ -19,7 +19,7 @@ export const defaultThemeConfig: ThemeConfig = {
         placeholder: '#cacbd0',
         disabled: '#c0c4cc',
       },
-      bgColors: { DEFAULT: '#ffffff', overlay: '#ffffff', page: '#f7f8fd' },
+      bgColors: { DEFAULT: '#ffffff', overlay: '#ffffff', page: '#f7f8fd', secondary: '#f2f3fa' },
     },
     // 夜间模式
     dark: {
@@ -30,13 +30,14 @@ export const defaultThemeConfig: ThemeConfig = {
         placeholder: '#8d9095',
         disabled: '#6c6e72',
       },
-      bgColors: { DEFAULT: '#28303d', overlay: '#28303d', page: '#1b2431' },
+      bgColors: { DEFAULT: '#28303d', overlay: '#28303d', page: '#1b2431', secondary: '#0e1825' },
     },
   },
 };
 
 export const defaultThemeList: ThemeConfig[] = [
   {
+    name: 'blue',
     mainColors: {
       primary: '#217aff',
       success: '#67c23a',
@@ -55,7 +56,7 @@ export const defaultThemeList: ThemeConfig[] = [
           placeholder: '#cacbd0',
           disabled: '#c0c4cc',
         },
-        bgColors: { DEFAULT: '#ffffff', overlay: '#ffffff', page: '#f7f8fd' },
+        bgColors: { DEFAULT: '#ffffff', overlay: '#ffffff', page: '#f7f8fd', secondary: '#f2f3fa' },
       },
       // 夜间模式
       dark: {
@@ -66,11 +67,12 @@ export const defaultThemeList: ThemeConfig[] = [
           placeholder: '#8d9095',
           disabled: '#6c6e72',
         },
-        bgColors: { DEFAULT: '#28303d', overlay: '#28303d', page: '#1b2431' },
+        bgColors: { DEFAULT: '#28303d', overlay: '#28303d', page: '#1b2431', secondary: '#0e1825' },
       },
     },
   },
   {
+    name: 'purple',
     mainColors: {
       primary: '#5549ff',
       success: '#33d3a5',
@@ -89,7 +91,7 @@ export const defaultThemeList: ThemeConfig[] = [
           placeholder: '#bbbbbb',
           disabled: '#cccccc',
         },
-        bgColors: { DEFAULT: '#ffffff', overlay: '#ffffff', page: '#f5f4fd' },
+        bgColors: { DEFAULT: '#ffffff', overlay: '#ffffff', page: '#f5f4fd', secondary: '#eeecfa' },
       },
       // 夜间模式
       dark: {
@@ -100,7 +102,7 @@ export const defaultThemeList: ThemeConfig[] = [
           placeholder: '#8d9095',
           disabled: '#6c6e72',
         },
-        bgColors: { DEFAULT: '#252433', overlay: '#252433', page: '#181726' },
+        bgColors: { DEFAULT: '#252433', overlay: '#252433', page: '#181726', secondary: '#121123' },
       },
     },
   },

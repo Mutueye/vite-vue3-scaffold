@@ -5,7 +5,7 @@ const cssVarPrepend = '--el';
 
 const colorTypes = ['primary', 'success', 'warning', 'danger', 'error', 'info'];
 const textColorTypes = ['primary', 'regular', 'secondary', 'placeholder', 'disabled'];
-const bgColorTypes = ['DEFAULT', 'overlay', 'page'];
+const bgColorTypes = ['DEFAULT', 'overlay', 'page', 'secondary'];
 const borderColorTypes = ['DEFAULT', 'light', 'lighter', 'extralight', 'dark', 'darker'];
 const fillColorTypes = ['DEFAULT', 'light', 'lighter', 'extralight', 'dark', 'darker', 'blank'];
 const borderRadiusTypes = ['base', 'small', 'round', 'circle'];

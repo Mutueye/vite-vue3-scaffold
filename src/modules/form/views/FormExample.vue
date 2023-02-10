@@ -1,5 +1,5 @@
 <template>
-  <Card>
+  <ContentScrollable>
     <div class="flex flex-col w-560px mx-auto">
       <div class="border border-border p-space mb-space-lg rounded-base">
         <div class="text-size-14px color-text-regular mb-space">
@@ -111,13 +111,13 @@
         </el-form-item>
       </el-form>
     </div>
-  </Card>
+  </ContentScrollable>
 </template>
 
 <script lang="ts" setup>
   import { ref, reactive } from 'vue';
   import { ElForm, ElMessage, FormInstance, FormRules } from 'element-plus';
-  import Card from '@/modules/layout/views/components/Card.vue';
+  import ContentScrollable from '@/modules/layout/views/components/ContentScrollable.vue';
   import RuleInfoBox from './components/RuleInfoBox.vue';
   import { globalFormRules } from '@/utils/formRules';
   import { ruleInfoList } from '../utils/ruleInfo';

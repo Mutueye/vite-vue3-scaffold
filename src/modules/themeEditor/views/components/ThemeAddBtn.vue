@@ -1,8 +1,7 @@
 <template>
   <div
-    class="rounded-base w-160px h-80px relative flex flex-col items-center justify-center cursor-pointer bg-bg-page border border-primary-light-6 hover:border-primary group transition-color"
-    @click="null">
-    <i
-      class="inline-block text-size-40px color-primary-light-2 i-mdi-plus group-hover:color-primary transition-colors" />
+    class="rounded-full w-140px h-48px relative flex flex-row items-center justify-center cursor-pointer bg-bg color-text-regular hover:color-primary m-space-sm">
+    <i class="inline-block text-size-20px i-mdi-plus" />
+    <span class="text-size-14px">新增主题</span>
   </div>
 </template>

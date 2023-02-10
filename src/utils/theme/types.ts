@@ -34,6 +34,7 @@ export enum BgColorEnum {
   default = 'DEFAULT',
   overlay = 'overlay',
   page = 'page',
+  secondary = 'secondary',
 }
 
 export type MainColors = {
@@ -55,8 +56,9 @@ export type ColorSchemeConfig = {
   };
 };
 
-// 单个UI主题配置
+// UI主题配置
 export interface ThemeConfig {
+  name?: string;
   mainColors: MainColors;
   colorSchemes: ColorSchemeConfig;
 }

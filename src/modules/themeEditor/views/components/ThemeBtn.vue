@@ -1,5 +1,20 @@
 <template>
-  <div
+  <div class="theme-btn">
+    <div class="theme-btn-cnt" :class="selected ? 'selected' : ''" @click="toggleTheme(themeIndex)">
+      <div class="flex flex-row">
+        <div
+          v-for="(mainColor, index) in mainColorList"
+          :key="mainColor"
+          class="w-24px h-24px rounded-full border-bg border-2px relative"
+          :class="index > 0 && !selected ? '-ml-18px' : ''"
+          :style="{ backgroundColor: mainColor, zIndex: mainColorList.length - index }" />
+      </div>
+      <div v-if="!selected" class="text-size-12px truncate flex-1 ml-space-xs">
+        {{ themeName }}
+      </div>
+    </div>
+  </div>
+  <!-- <div
     class="rounded-base w-160px h-80px relative flex flex-col items-center justify-center cursor-pointer overflow-hidden group hover:opacity-90"
     :style="{ backgroundColor: themeData.mainColors.primary }"
     @click="toggleTheme(themeIndex)">
@@ -14,26 +29,51 @@
     <div class="text-size-13px font-semibold color-white opacity-70 mt-5px">
       {{ themeData.mainColors.primary }}
     </div>
-  </div>
+  </div> -->
 </template>
 
 <script lang="ts" setup>
   import { toRefs, computed } from 'vue';
+  import { storeToRefs } from 'pinia';
   import { ElMessageBox } from 'element-plus';
-  import type { ThemeConfig } from '@/utils/theme/types';
   import { useToggleTheme } from '@/componsables/useToggleTheme';
   import { useThemeStore } from '@/store/theme';
+  import { MainColorEnum } from '@/utils/theme/types';
 
   const themeStore = useThemeStore();
+  const { themeList } = storeToRefs(themeStore);
 
-  const props = defineProps<{ themeData: ThemeConfig; themeIndex: number }>();
+  const props = defineProps<{ themeIndex: number }>();
   const { themeIndex } = toRefs(props);
 
   const { currentThemeIndex, toggleTheme } = useToggleTheme();
 
-  const themeName = computed(
-    () => `THEME${themeIndex.value > 10 ? themeIndex.value + 1 : '0' + (themeIndex.value + 1)}`,
-  );
+  // 主题配置
+  const themeData = computed(() => themeList.value[themeIndex.value]);
+  // 主题色列表
+  const mainColorList = computed(() => {
+    const list: string[] = [];
+    if (themeData.value.mainColors) {
+      Object.keys(themeData.value.mainColors).forEach((key) => {
+        if (key !== MainColorEnum.error) {
+          list.push(themeData.value.mainColors[key as MainColorEnum]);
+        }
+      });
+    }
+    return list;
+  });
+  // 主题名称
+  const themeName = computed(() => {
+    if (themeData.value.name) {
+      return themeData.value.name;
+    } else {
+      return `THEME${themeIndex.value > 10 ? themeIndex.value + 1 : '0' + (themeIndex.value + 1)}`;
+    }
+  });
+  // 是否被选中
+  const selected = computed(() => {
+    return currentThemeIndex.value === themeIndex.value;
+  });
 
   const deleteTheme = () => {
     ElMessageBox.confirm(`确定要删除主题${themeName.value}吗？`, '提示', {
@@ -48,11 +88,17 @@
   };
 </script>
 
-<style lang="scss">
-  .check-icon {
-    @apply inline-block text-size-180px color-white opacity-0 i-mdi-check-circle-outline transform-gpu scale-50 transition-all;
-    &.active {
-      @apply opacity-15 scale-100;
+<style lang="scss" scoped>
+  .theme-btn {
+    @apply w-140px flex flex-row m-space-sm cursor-pointer min-w-0;
+    .theme-btn-cnt {
+      @apply p-12px flex flex-row flex-1 justify-between items-center rounded-full bg-bg min-w-0;
+      &:hover {
+        @apply bg-bg;
+      }
+      &.selected {
+        @apply bg-bg -mr-space-sm rounded-r-0;
+      }
     }
   }
 </style>

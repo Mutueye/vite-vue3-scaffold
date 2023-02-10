@@ -11,12 +11,10 @@ export enum LayoutEnum {
   admin = 'admin',
 }
 
-export interface LayoutRouteConfig {
+const generateLayoutRoute = (config: {
   name: LayoutEnum;
   component: Component;
-}
-
-const generateLayoutRoute = (config: LayoutRouteConfig): RouteRecordRaw => {
+}): RouteRecordRaw => {
   return {
     path: `/${config.name}`,
     name: config.name,
