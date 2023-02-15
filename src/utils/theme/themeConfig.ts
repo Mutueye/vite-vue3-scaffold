@@ -37,7 +37,7 @@ export const defaultThemeConfig: ThemeConfig = {
 
 export const defaultThemeList: ThemeConfig[] = [
   {
-    name: 'blue',
+    name: 'ATHENA',
     mainColors: {
       primary: '#217aff',
       success: '#67c23a',
@@ -72,7 +72,42 @@ export const defaultThemeList: ThemeConfig[] = [
     },
   },
   {
-    name: 'purple',
+    name: 'UPLUS',
+    mainColors: {
+      primary: '#67aef7',
+      success: '#a8d3a6',
+      warning: '#f39800',
+      danger: '#fc7373',
+      error: '#fc7373',
+      info: '#969eb3',
+    },
+    colorSchemes: {
+      // 日间模式
+      light: {
+        textColors: {
+          primary: '#222222',
+          regular: '#666666',
+          secondary: '#999999',
+          placeholder: '#bbbbbb',
+          disabled: '#cccccc',
+        },
+        bgColors: { DEFAULT: '#ffffff', overlay: '#ffffff', page: '#f8f9fa', secondary: '#f2f3f4' },
+      },
+      // 夜间模式
+      dark: {
+        textColors: {
+          primary: '#e5eaf3',
+          regular: '#cfd3dc',
+          secondary: '#a3a6ad',
+          placeholder: '#8d9095',
+          disabled: '#6c6e72',
+        },
+        bgColors: { DEFAULT: '#252525', overlay: '#252525', page: '#181818', secondary: '#111111' },
+      },
+    },
+  },
+  {
+    name: 'PURPLE',
     mainColors: {
       primary: '#5549ff',
       success: '#33d3a5',

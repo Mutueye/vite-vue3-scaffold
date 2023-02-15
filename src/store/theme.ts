@@ -1,7 +1,8 @@
 import { defineStore } from 'pinia';
 import type { ThemeConfig } from '@/utils/theme/types';
-import { defaultThemeList } from '@/utils/theme/themeConfig';
+import { defaultThemeList, defaultThemeConfig } from '@/utils/theme/themeConfig';
 import { setThemeVariables } from '@/utils/theme/themeGenerator';
+import { ElMessageBox } from 'element-plus';
 
 interface ThemeState {
   themeList: ThemeConfig[];
@@ -22,6 +23,16 @@ export const useThemeStore = defineStore('persist', {
       },
     ],
   },
+  getters: {
+    // 当前主题
+    currentThemeData: (state) => {
+      let themeData: ThemeConfig = defaultThemeConfig;
+      if (state.themeList && state.themeList[state.currentThemeIndex]) {
+        themeData = state.themeList[state.currentThemeIndex];
+      }
+      return themeData;
+    },
+  },
   actions: {
     setThemeList(themes: ThemeConfig[], toggle?: boolean) {
       this.themeList = themes;
@@ -31,14 +42,25 @@ export const useThemeStore = defineStore('persist', {
       setThemeVariables();
     },
     deleteThemeByIndex(themeIndex: number) {
-      if (themeIndex > 0 && themeIndex < this.themeList.length) {
-        this.themeList.splice(themeIndex, 1);
-        if (themeIndex === this.currentThemeIndex) {
-          this.setCurrentThemeIndex(0);
-        } else if (themeIndex < this.currentThemeIndex) {
-          this.setCurrentThemeIndex(this.currentThemeIndex - 1);
-        }
-      }
+      const themeName = this.themeList[themeIndex].name
+        ? this.themeList[themeIndex].name
+        : `THEME${themeIndex}`;
+      ElMessageBox.confirm(`确定要删除主题：${themeName}？`, '提示', {
+        confirmButtonText: '确定',
+        cancelButtonClass: '取消',
+        icon: '',
+      })
+        .then(() => {
+          if (themeIndex > 0 && themeIndex < this.themeList.length) {
+            this.themeList.splice(themeIndex, 1);
+            if (themeIndex === this.currentThemeIndex) {
+              this.setCurrentThemeIndex(0);
+            } else if (themeIndex < this.currentThemeIndex) {
+              this.setCurrentThemeIndex(this.currentThemeIndex - 1);
+            }
+          }
+        })
+        .catch(() => null);
     },
     resetThemeList() {
       this.themeList = defaultThemeList;

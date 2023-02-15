@@ -10,8 +10,7 @@
       <Menu :layout="layout" />
     </div>
     <div class="h-full w-full flex flex-col bg-bg-page">
-      <div
-        class="flex flex-row items-center justify-between px-space-lg py-space border-b border-border-lighter">
+      <div class="flex flex-row items-center justify-between px-space-lg py-space">
         <div class="text-size-18px font-semibold color-text-primary">{{ route.meta.title }}</div>
         <ThemeToggler />
       </div>

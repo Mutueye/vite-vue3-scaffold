@@ -4,9 +4,13 @@
 
 <script setup lang="ts">
   import { onMounted } from 'vue';
-  import { useToggleTheme } from './componsables/useToggleTheme';
+  import { storeToRefs } from 'pinia';
+  import { useThemeStore } from './store/theme';
 
-  const { initThemeIndex } = useToggleTheme();
+  const themeStore = useThemeStore();
+  const { currentThemeIndex } = storeToRefs(themeStore);
 
-  onMounted(() => initThemeIndex());
+  onMounted(() => {
+    themeStore.setCurrentThemeIndex(currentThemeIndex.value);
+  });
 </script>

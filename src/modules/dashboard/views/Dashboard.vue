@@ -1,5 +1,5 @@
 <template>
-  <ContentScrollable>
+  <ScrollableContentPage>
     <div class="w-full flex flex-col items-center">
       <div class="w-full py-50px text-center font-bold">HOME</div>
       <HelloWorld msg="Hellow World" />
@@ -19,14 +19,14 @@
 
       <!-- <div v-for="config in configList" :key="config.id">{{ config.configKey }}</div> -->
     </div>
-  </ContentScrollable>
+  </ScrollableContentPage>
 </template>
 
 <script lang="ts" setup>
   import { onMounted, ref } from 'vue';
   import { get } from 'lodash-es';
   import HelloWorld from '@/components/HelloWorld.vue';
-  import ContentScrollable from '@/modules/layout/views/components/ContentScrollable.vue';
+  import ScrollableContentPage from '@/modules/layout/views/components/ScrollableContentPage.vue';
   import { ConfigModel, getSchoolList, SchoolModel, getConfigList } from '@/api/dicts';
 
   const selectedSchool = ref<SchoolModel>();

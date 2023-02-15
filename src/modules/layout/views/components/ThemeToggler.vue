@@ -5,7 +5,7 @@
       :key="'primary' + theme.mainColors.primary"
       class="theme-btn mr-space color-white"
       :style="{ backgroundColor: theme.mainColors.primary }"
-      @click="toggleTheme(index)">
+      @click="themeStore.setCurrentThemeIndex(index)">
       <i
         v-if="currentThemeIndex === index"
         inline-block
@@ -13,7 +13,7 @@
         text-size-18px
         class="i-mdi-check-circle-outline" />
     </button>
-    <button class="theme-btn" @click="toggleDarkMode">
+    <button class="theme-btn" @click="toggleDayNight">
       <i
         inline-block
         align-middle
@@ -26,13 +26,12 @@
 
 <script lang="ts" setup>
   import { storeToRefs } from 'pinia';
-  import { useToggleTheme } from '@/componsables/useToggleTheme';
+  import { useToggleDayNight } from '@/componsables/useToggleDayNight';
   import { useThemeStore } from '@/store/theme';
 
   const themeStore = useThemeStore();
-  const { themeList } = storeToRefs(themeStore);
-
-  const { currentThemeIndex, toggleTheme, toggleDarkMode } = useToggleTheme();
+  const { themeList, currentThemeIndex } = storeToRefs(themeStore);
+  const { toggleDayNight } = useToggleDayNight();
 </script>
 
 <style lang="scss" scoped>

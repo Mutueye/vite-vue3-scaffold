@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-row h-full min-h-0 p-space-lg">
+  <div class="flex flex-row h-full min-h-0 px-space-lg pb-space-lg">
     <div class="flex flex-row w-500px h-full rounded-8px overflow-hidden min-h-0 bg-bg">
       <div class="flex flex-col h-full bg-bg-secondary">
         <el-scrollbar>
@@ -33,7 +33,10 @@
   const { themeList } = storeToRefs(themeStore);
 
   const addTheme = () => {
-    const newThemeList = [...themeList.value, defaultThemeConfig];
+    const newThemeList = [
+      ...themeList.value,
+      Object.assign({ name: `THEME0${themeList.value.length}` }, defaultThemeConfig),
+    ];
     themeStore.setThemeList(newThemeList, true);
   };
 </script>
