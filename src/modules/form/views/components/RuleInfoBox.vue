@@ -33,9 +33,9 @@
 
 <style lang="scss" scoped>
   .rule-box {
-    @apply p-space-sm mt-space mb-space-xxl border border-warning-light-7 rounded-base bg-warning-light-9;
+    @apply p-space-sm mt-space mb-space-xl border border-warning-light-7 rounded-base bg-warning-light-9;
     .rule-item {
-      @apply pl-space-sm text-size-12px mt-space-xs relative leading-18px;
+      @apply pl-space-sm text-size-12px mt-space-xxs relative leading-18px;
       &::before {
         @apply content-empty absolute w-5px h-5px top-6px left-2px transform rotate-45 bg-text-secondary;
       }

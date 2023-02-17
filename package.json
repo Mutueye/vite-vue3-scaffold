@@ -36,6 +36,7 @@
     "lodash-es": "^4.17.21",
     "pinia": "^2.0.28",
     "pinia-plugin-persist": "^1.0.0",
+    "vanilla-colorful": "^0.7.2",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6"
   },

@@ -1,0 +1,63 @@
+<template>
+  <el-popover placement="top" width="auto" :visible="pickerVisible" @before-enter="onShow">
+    <template #reference>
+      <div
+        class="w-full h-24px rounded-base cursor-pointer"
+        :style="{ backgroundColor: color }"
+        @click.prevent="onClickColor"></div>
+    </template>
+    <div v-click-outside="onClickOutside" class="flex flex-col">
+      <hex-color-picker :color="pickerColor" @color-changed="handleColorChanged"></hex-color-picker>
+      <div class="flex flex-row items-center justify-between pt-space-xs">
+        <el-input v-model="pickerColor" class="mr-space-xs flex-1 w-50px"></el-input>
+        <el-button type="primary" @click="onConfirmPicker">确定</el-button>
+      </div>
+    </div>
+  </el-popover>
+</template>
+
+<script lang="ts" setup>
+  import 'vanilla-colorful';
+  import { toRefs, ref } from 'vue';
+  import { ClickOutside as vClickOutside } from 'element-plus';
+
+  const props = defineProps<{
+    color: string;
+  }>();
+  const { color } = toRefs(props);
+
+  const pickerColor = ref(color.value);
+  const pickerVisible = ref(false);
+
+  const emit = defineEmits(['update:modelValue', 'change']);
+
+  const onShow = () => {
+    pickerColor.value = color.value;
+  };
+
+  const onClickColor = () => {
+    if (!pickerVisible.value) {
+      pickerVisible.value = true;
+    }
+  };
+
+  const onClickOutside = () => {
+    if (pickerVisible.value) {
+      setTimeout(() => {
+        pickerVisible.value = false;
+      }, 10);
+    }
+  };
+
+  const handleColorChanged = (event: CustomEvent<{ value: string }>) => {
+    pickerColor.value = event.detail.value;
+  };
+
+  const onConfirmPicker = () => {
+    pickerVisible.value = false;
+    if (pickerColor.value !== color.value) {
+      console.log('pickerColor.value:::::::;', pickerColor.value);
+      emit('change', pickerColor.value[0] !== '#' ? '#' + pickerColor.value : pickerColor.value);
+    }
+  };
+</script>

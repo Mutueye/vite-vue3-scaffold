@@ -15,7 +15,13 @@ import { theme, uplusIconCollection } from './unocss.theme';
 
 const baseConfig = defineConfig({
   plugins: [
-    vue(),
+    vue({
+      template: {
+        compilerOptions: {
+          isCustomElement: (tag) => tag === 'hex-color-picker',
+        },
+      },
+    }),
     Unocss({
       presets: [
         presetUno(),
@@ -30,6 +36,7 @@ const baseConfig = defineConfig({
       ],
       // unocss can't render icon class dynamically, when adding menu icon class
       // in route.meta.menuConfig, you must also add the icon class in safelist.
+      // TODO get icon name list from all route's meta.iconName
       safelist: ['i-mdi-collage', 'i-mdi-form-textbox-password', 'i-mdi-clover'],
       transformers: [transformerDirectives(), transformerVariantGroup()],
       theme,

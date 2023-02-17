@@ -56,7 +56,7 @@ export const setThemeVariables = () => {
 };
 
 // 生成具体某个主题和模式下的css变量样式
-const generateTheme = ({
+export const generateTheme = ({
   targetTheme,
   colorScheme,
 }: {
@@ -75,15 +75,27 @@ const generateTheme = ({
   return `{${styleStr}}`;
 };
 
-const getMainColors = (colors: MainColors, colorScheme: ColorSchemeEnum) => {
-  const vars: Record<string, string> = {};
+export const getMainColorList = (colors: MainColors) => {
+  const list: { colorType: string; cssVar: string; value: string }[] = [];
   Object.keys(colors).forEach((colorType) => {
     const mainColor = colors[colorType as MainColorEnum];
-    vars[`${cssVarPrepend}-color-${colorType}`] = mainColor;
+    list.push({
+      colorType,
+      cssVar: `${cssVarPrepend}-color-${colorType}`,
+      value: mainColor,
+    });
+  });
+  return list;
+};
+
+const getMainColors = (colors: MainColors, colorScheme: ColorSchemeEnum) => {
+  const vars: Record<string, string> = {};
+  getMainColorList(colors).forEach((item) => {
+    vars[item.cssVar] = item.value;
     Object.keys(MixModeEnum).forEach((mode) => {
       for (let i = 1; i < 10; i++) {
-        vars[`${cssVarPrepend}-color-${colorType}-${mode}-${i}`] = toHex(
-          mix(mainColor, mixModeBaseColors[colorScheme][mode as MixModeEnum], i * 0.1),
+        vars[`${cssVarPrepend}-color-${item.colorType}-${mode}-${i}`] = toHex(
+          mix(item.value, mixModeBaseColors[colorScheme][mode as MixModeEnum], i * 0.1),
         );
       }
     });
@@ -91,7 +103,7 @@ const getMainColors = (colors: MainColors, colorScheme: ColorSchemeEnum) => {
   return vars;
 };
 
-const getTextColors = (colors: TextColors) => {
+export const getTextColors = (colors: TextColors) => {
   const vars: Record<string, string> = {};
   Object.keys(colors).forEach((colorType) => {
     vars[`${cssVarPrepend}-text-color-${colorType}`] = colors[colorType as TextColorEnum];
@@ -99,7 +111,7 @@ const getTextColors = (colors: TextColors) => {
   return vars;
 };
 
-const getBgColors = (colors: BgColors) => {
+export const getBgColors = (colors: BgColors) => {
   const vars: Record<string, string> = {};
   Object.keys(colors).forEach((colorType) => {
     if (colorType === BgColorEnum.default) {

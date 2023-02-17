@@ -52,12 +52,12 @@ export const useThemeStore = defineStore('persist', {
       })
         .then(() => {
           if (themeIndex > 0 && themeIndex < this.themeList.length) {
-            this.themeList.splice(themeIndex, 1);
             if (themeIndex === this.currentThemeIndex) {
               this.setCurrentThemeIndex(0);
             } else if (themeIndex < this.currentThemeIndex) {
               this.setCurrentThemeIndex(this.currentThemeIndex - 1);
             }
+            this.themeList.splice(themeIndex, 1);
           }
         })
         .catch(() => null);

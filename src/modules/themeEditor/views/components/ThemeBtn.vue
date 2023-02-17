@@ -12,7 +12,7 @@
           :class="index > 0 && !selected ? '-ml-17px' : ''"
           :style="{ backgroundColor: mainColor, zIndex: mainColorList.length - index }" />
       </div>
-      <div v-if="!selected" class="text-size-12px truncate flex-1 ml-space-xs">
+      <div v-if="!selected" class="text-size-12px truncate flex-1 ml-space-xxs">
         {{ themeName }}
       </div>
     </div>

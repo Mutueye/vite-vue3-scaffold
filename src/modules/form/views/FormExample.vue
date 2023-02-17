@@ -1,7 +1,7 @@
 <template>
   <ScrollableContentPage>
     <div class="flex flex-col w-560px mx-auto">
-      <div class="border border-border p-space mb-space-lg rounded-base">
+      <div class="border border-border p-space mb-space-xl rounded-base">
         <div class="text-size-14px color-text-regular mb-space">
           <span class="color-text-primary font-bold">说明：</span>
           以下字段验证规则汇总了用户中心和优加竞赛所涉及的相关规则，在本页面进行展示，方便讨论时参考

@@ -41,14 +41,16 @@ const generateCssVarList = (colorTypes: string[], varPrepend: string) => {
 };
 
 export const defaultSizes = {
-  header: '72px',
-  'space-xs': '8px',
+  'space-xxs': '8px',
+  'space-xs': '12px',
   'space-sm': '16px',
-  'space-md': '24px',
+  'space-md': '20px',
   space: '24px',
-  'space-lg': '32px',
-  'space-xl': '40px',
-  'space-xxl': '48px',
+  'space-lg': '28px',
+  'space-xl': '32px',
+  'space-xxl': '36px',
+  'space-xxxl': '40px',
+  header: '72px',
   'left-menu': '300px',
 };
 

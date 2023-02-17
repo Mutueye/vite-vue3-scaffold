@@ -1,7 +1,7 @@
 <template>
   <ScrollableContentPage>
     <div class="flex flex-col w-560px mx-auto">
-      <div class="border border-border p-space mb-space-lg rounded-base">
+      <div class="border border-border p-space mb-space-xl rounded-base">
         <div class="text-size-14px color-text-regular mb-space">
           <span class="color-text-primary font-bold">说明：</span>
           下方表单结合了ElementUI自带的交互细节和以往项目中常用的交互细节，在本页面进行展示，方便讨论时参考
