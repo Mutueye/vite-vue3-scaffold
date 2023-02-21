@@ -1,5 +1,5 @@
 <template>
-  <div class="px-space pt-space flex flex-col">
+  <div class="px-space pt-space pb-space-xxs flex flex-col">
     <div class="font-bold color-text-primary mb-space-xxs">{{ sectionTitle }}</div>
     <slot />
   </div>

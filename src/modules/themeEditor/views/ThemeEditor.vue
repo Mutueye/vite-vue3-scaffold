@@ -26,7 +26,9 @@
           <div class="absolute left-space h-1px right-space bottom-0 bg-border-lighter" />
         </div>
         <el-scrollbar>
-          <MainColorsEditor />
+          <MainColorEditor />
+          <BgColorEditor />
+          <TextColorEditor />
         </el-scrollbar>
       </div>
     </div>
@@ -39,7 +41,9 @@
   import { useThemeStore } from '@/store/theme';
   import ThemeBtn from './components/ThemeBtn.vue';
   import ThemeAddBtn from './components/ThemeAddBtn.vue';
-  import MainColorsEditor from './components/editor/MainColorsEditor.vue';
+  import MainColorEditor from './components/editor/MainColorEditor.vue';
+  import BgColorEditor from './components/editor/BgColorEditor.vue';
+  import TextColorEditor from './components/editor/TextColorEditor.vue';
   import { defaultThemeConfig } from '@/utils/theme/themeConfig';
 
   const themeStore = useThemeStore();

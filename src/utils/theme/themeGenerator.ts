@@ -10,6 +10,7 @@ import {
   BgColorEnum,
   BgColors,
   ThemeConfig,
+  ConfigItemTransformer,
 } from './types';
 
 export const cssVarPrepend = '--el';
@@ -19,6 +20,7 @@ export const mixModeBaseColors = {
     light: '#FFFFFF',
     dark: '#000000',
   },
+  // light & dark are reversed in dark mode
   [ColorSchemeEnum.dark]: {
     light: '#000000',
     dark: '#FFFFFF',
@@ -64,9 +66,9 @@ export const generateTheme = ({
   colorScheme: ColorSchemeEnum;
 }) => {
   const variablesObj = {
-    ...getMainColors(targetTheme.mainColors, colorScheme),
+    ...getVarsOfMainColor(targetTheme.mainColors, colorScheme),
     ...getTextColors(targetTheme.colorSchemes[colorScheme].textColors),
-    ...getBgColors(targetTheme.colorSchemes[colorScheme].bgColors),
+    ...getVarsOfBgColor(targetTheme.colorSchemes[colorScheme].bgColors),
   };
   let styleStr = '';
   Object.keys(variablesObj).forEach((key) => {
@@ -76,25 +78,54 @@ export const generateTheme = ({
 };
 
 export const getMainColorList = (colors: MainColors) => {
-  const list: { colorType: string; cssVar: string; value: string }[] = [];
+  const list: ConfigItemTransformer[] = [];
   Object.keys(colors).forEach((colorType) => {
-    const mainColor = colors[colorType as MainColorEnum];
+    const color = colors[colorType as MainColorEnum];
     list.push({
-      colorType,
+      type: colorType,
       cssVar: `${cssVarPrepend}-color-${colorType}`,
-      value: mainColor,
+      value: color,
     });
   });
   return list;
 };
 
-const getMainColors = (colors: MainColors, colorScheme: ColorSchemeEnum) => {
+export const getTextColorList = (colors: TextColors) => {
+  const list: ConfigItemTransformer[] = [];
+  Object.keys(colors).forEach((colorType) => {
+    const color = colors[colorType as TextColorEnum];
+    list.push({
+      type: colorType,
+      cssVar: `${cssVarPrepend}-text-color-${colorType}`,
+      value: color,
+    });
+  });
+  return list;
+};
+
+export const getBgColorList = (colors: BgColors) => {
+  const list: ConfigItemTransformer[] = [];
+  Object.keys(colors).forEach((colorType) => {
+    const color = colors[colorType as BgColorEnum];
+    list.push({
+      type: colorType,
+      cssVar:
+        colorType === BgColorEnum.default
+          ? `${cssVarPrepend}-bg-color`
+          : `${cssVarPrepend}-bg-color-${colorType}`,
+      value: color,
+    });
+  });
+  return list;
+};
+
+const getVarsOfMainColor = (colors: MainColors, colorScheme: ColorSchemeEnum) => {
   const vars: Record<string, string> = {};
   getMainColorList(colors).forEach((item) => {
     vars[item.cssVar] = item.value;
     Object.keys(MixModeEnum).forEach((mode) => {
       for (let i = 1; i < 10; i++) {
-        vars[`${cssVarPrepend}-color-${item.colorType}-${mode}-${i}`] = toHex(
+        vars[`${cssVarPrepend}-color-${item.type}-${mode}-${i}`] = toHex(
           mix(item.value, mixModeBaseColors[colorScheme][mode as MixModeEnum], i * 0.1),
         );
       }
@@ -103,22 +134,18 @@ const getMainColors = (colors: MainColors, colorScheme: ColorSchemeEnum) => {
   return vars;
 };
 
-export const getTextColors = (colors: TextColors) => {
+const getTextColors = (colors: TextColors) => {
   const vars: Record<string, string> = {};
-  Object.keys(colors).forEach((colorType) => {
-    vars[`${cssVarPrepend}-text-color-${colorType}`] = colors[colorType as TextColorEnum];
+  getTextColorList(colors).forEach((item) => {
+    vars[item.cssVar] = item.value;
   });
   return vars;
 };
 
-export const getBgColors = (colors: BgColors) => {
+const getVarsOfBgColor = (colors: BgColors) => {
   const vars: Record<string, string> = {};
-  Object.keys(colors).forEach((colorType) => {
-    if (colorType === BgColorEnum.default) {
-      vars[`${cssVarPrepend}-bg-color`] = colors[colorType as BgColorEnum];
-    } else {
-      vars[`${cssVarPrepend}-bg-color-${colorType}`] = colors[colorType as BgColorEnum];
-    }
+  getBgColorList(colors).forEach((item) => {
+    vars[item.cssVar] = item.value;
   });
   return vars;
 };

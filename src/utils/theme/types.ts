@@ -10,7 +10,7 @@ export enum MixModeEnum {
   dark = 'dark',
 }
 
-// 主要颜色类型枚举
+// main colors enum
 export enum MainColorEnum {
   primary = 'primary',
   success = 'success',
@@ -20,7 +20,7 @@ export enum MainColorEnum {
   info = 'info',
 }
 
-// 字色类型枚举
+// text colors enum
 export enum TextColorEnum {
   primary = 'primary',
   regular = 'regular',
@@ -29,11 +29,12 @@ export enum TextColorEnum {
   disabled = 'disabled',
 }
 
-// 背景色类型枚举
+// background colors enum
 export enum BgColorEnum {
   default = 'DEFAULT',
   overlay = 'overlay',
   page = 'page',
+  // element-plus之外的扩展类型
   secondary = 'secondary',
 }
 
@@ -56,9 +57,16 @@ export type ColorSchemeConfig = {
   };
 };
 
-// UI主题配置
+// UI Theme config
 export interface ThemeConfig {
   name?: string;
   mainColors: MainColors;
   colorSchemes: ColorSchemeConfig;
 }
+
+// helper type for transform config to css var
+export type ConfigItemTransformer = {
+  type: string;
+  cssVar: string;
+  value: string;
+};
