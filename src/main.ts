@@ -4,7 +4,6 @@ import zhCn from 'element-plus/es/locale/lang/zh-cn';
 import App from '@/App.vue';
 import { router } from '@/router/index';
 import pinia from './store';
-// import { initThemeStyle } from './utils/theme/themeGenerator';
 import { initThemeStyle } from './utils/theme/themeManager';
 
 // css reset

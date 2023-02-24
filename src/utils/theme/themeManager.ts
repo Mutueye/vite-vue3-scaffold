@@ -1,8 +1,19 @@
 import { mix, toHex } from 'color2k';
-import { DayNightModeEnum, MixModeEnum } from './types';
 import { useThemeStore } from '@/store/theme';
 
 export const cssVarPrepend = '--el';
+
+// 日间/夜间模式枚举
+export enum DayNightModeEnum {
+  light = 'light',
+  dark = 'dark',
+}
+
+// 混合模式枚举
+export enum MixModeEnum {
+  light = 'light',
+  dark = 'dark',
+}
 
 export enum ThemeCategory {
   Color = 'color',
@@ -14,6 +25,9 @@ export enum ThemeCategory {
   // 暂不启用box-shadow配置
   // BoxShadow = 'box-shadow',
 }
+
+// 用于主题编辑器判断显示颜色控件还是input控件： 边框/间距/字号 等等
+export const numCategories = [ThemeCategory.BorderRadius];
 
 export const cssVarCodex = {
   [ThemeCategory.Color]: ['primary', 'success', 'warning', 'danger', 'info'],
@@ -140,23 +154,23 @@ export const defaultThemeList: UITheme[] = [
     config: {
       light: {
         color: {
-          primary: '#217aff',
-          success: '#67c23a',
-          warning: '#f2711c',
-          danger: '#db2828',
-          info: '#96979c',
+          primary: '#67aef7',
+          success: '#a8d3a6',
+          warning: '#f39800',
+          danger: '#fc7373',
+          info: '#969eb3',
         },
         'text-color': {
-          primary: '#131b26',
-          regular: '#5f6165',
-          secondary: '#96979c',
-          placeholder: '#cacbd0',
-          disabled: '#c0c4cc',
+          primary: '#222222',
+          regular: '#666666',
+          secondary: '#999999',
+          placeholder: '#bbbbbb',
+          disabled: '#cccccc',
         },
         'bg-color': {
           DEFAULT: '#ffffff',
-          page: '#f7f8fd',
-          secondary: '#f2f3fa',
+          page: '#f8f9fa',
+          secondary: '#f2f3f4',
         },
         'border-color': {
           DEFAULT: '#dcdfe6',
@@ -185,23 +199,23 @@ export const defaultThemeList: UITheme[] = [
       },
       dark: {
         color: {
-          primary: '#217aff',
-          success: '#67c23a',
-          warning: '#f2711c',
-          danger: '#db2828',
-          info: '#96979c',
+          primary: '#67aef7',
+          success: '#a8d3a6',
+          warning: '#f39800',
+          danger: '#fc7373',
+          info: '#969eb3',
         },
         'text-color': {
-          primary: '#ffffff',
+          primary: '#e5eaf3',
           regular: '#cfd3dc',
           secondary: '#a3a6ad',
           placeholder: '#8d9095',
           disabled: '#6c6e72',
         },
         'bg-color': {
-          DEFAULT: '#28303d',
-          page: '#1b2431',
-          secondary: '#0e1825',
+          DEFAULT: '#252525',
+          page: '#181818',
+          secondary: '#111111',
         },
         'border-color': {
           DEFAULT: '#4C4D4F',
@@ -235,23 +249,23 @@ export const defaultThemeList: UITheme[] = [
     config: {
       light: {
         color: {
-          primary: '#217aff',
-          success: '#67c23a',
-          warning: '#f2711c',
-          danger: '#db2828',
-          info: '#96979c',
+          primary: '#5549ff',
+          success: '#33d3a5',
+          warning: '#edaa28',
+          danger: '#f8739c',
+          info: '#969eb3',
         },
         'text-color': {
-          primary: '#131b26',
-          regular: '#5f6165',
-          secondary: '#96979c',
-          placeholder: '#cacbd0',
-          disabled: '#c0c4cc',
+          primary: '#222222',
+          regular: '#666666',
+          secondary: '#999999',
+          placeholder: '#bbbbbb',
+          disabled: '#cccccc',
         },
         'bg-color': {
           DEFAULT: '#ffffff',
-          page: '#f7f8fd',
-          secondary: '#f2f3fa',
+          page: '#f5f4fd',
+          secondary: '#eeecfa',
         },
         'border-color': {
           DEFAULT: '#dcdfe6',
@@ -287,16 +301,16 @@ export const defaultThemeList: UITheme[] = [
           info: '#96979c',
         },
         'text-color': {
-          primary: '#ffffff',
+          primary: '#e5eaf3',
           regular: '#cfd3dc',
           secondary: '#a3a6ad',
           placeholder: '#8d9095',
           disabled: '#6c6e72',
         },
         'bg-color': {
-          DEFAULT: '#28303d',
-          page: '#1b2431',
-          secondary: '#0e1825',
+          DEFAULT: '#252433',
+          page: '#181726',
+          secondary: '#121123',
         },
         'border-color': {
           DEFAULT: '#4C4D4F',

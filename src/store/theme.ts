@@ -1,8 +1,5 @@
 import { defineStore } from 'pinia';
-// import type { ThemeConfig } from '@/utils/theme/types';
 import type { UITheme } from '@/utils/theme/themeManager';
-// import { defaultThemeList, defaultThemeConfig } from '@/utils/theme/themeConfig';
-// import { setThemeVariables } from '@/utils/theme/themeGenerator';
 import {
   setThemeVariables,
   defaultThemeConfig,

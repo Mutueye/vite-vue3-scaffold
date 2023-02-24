@@ -23,7 +23,7 @@
   import { toRefs, computed } from 'vue';
   import { storeToRefs } from 'pinia';
   import { useThemeStore } from '@/store/theme';
-  import { MainColorEnum, DayNightModeEnum } from '@/utils/theme/types';
+  import { DayNightModeEnum } from '@/utils/theme/themeManager';
 
   const themeStore = useThemeStore();
   const { themeList, currentThemeIndex } = storeToRefs(themeStore);
@@ -40,9 +40,7 @@
       const mainColors = themeData.value.config[DayNightModeEnum.light].color;
       if (mainColors) {
         Object.keys(mainColors).forEach((key) => {
-          if (key !== MainColorEnum.error) {
-            list.push(mainColors[key as keyof typeof mainColors]);
-          }
+          list.push(mainColors[key as keyof typeof mainColors]);
         });
       }
     }
