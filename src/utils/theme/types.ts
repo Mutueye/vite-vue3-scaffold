@@ -1,5 +1,5 @@
 // 日间/夜间模式枚举
-export enum ColorSchemeEnum {
+export enum DayNightModeEnum {
   light = 'light',
   dark = 'dark',
 }
@@ -38,6 +38,15 @@ export enum BgColorEnum {
   secondary = 'secondary',
 }
 
+export enum BorderColorEnum {
+  default = 'DEFAULT',
+  light = 'light',
+  lighter = 'lighter',
+  extralight = 'extra-light',
+  dark = 'dark',
+  darker = 'darker',
+}
+
 export type MainColors = {
   [key in MainColorEnum]: string;
 };
@@ -50,10 +59,15 @@ export type BgColors = {
   [key in BgColorEnum]: string;
 };
 
+export type BorderColors = {
+  [key in BorderColorEnum]: string;
+};
+
 export type ColorSchemeConfig = {
-  [key in ColorSchemeEnum]: {
+  [key in DayNightModeEnum]: {
     textColors: TextColors;
     bgColors: BgColors;
+    borderColors: BorderColors;
   };
 };
 

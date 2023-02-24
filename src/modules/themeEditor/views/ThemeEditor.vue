@@ -29,6 +29,7 @@
           <MainColorEditor />
           <BgColorEditor />
           <TextColorEditor />
+          <BorderColorEditor />
         </el-scrollbar>
       </div>
     </div>
@@ -44,6 +45,7 @@
   import MainColorEditor from './components/editor/MainColorEditor.vue';
   import BgColorEditor from './components/editor/BgColorEditor.vue';
   import TextColorEditor from './components/editor/TextColorEditor.vue';
+  import BorderColorEditor from './components/editor/BorderColorEditor.vue';
   import { defaultThemeConfig } from '@/utils/theme/themeConfig';
 
   const themeStore = useThemeStore();

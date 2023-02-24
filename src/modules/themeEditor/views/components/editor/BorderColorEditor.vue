@@ -1,5 +1,5 @@
 <template>
-  <EditorSection section-title="背景色">
+  <EditorSection section-title="边框色">
     <div class="flex flex-col w-full">
       <EditorControlItem
         v-for="item in colorList"
@@ -17,8 +17,8 @@
   import { storeToRefs } from 'pinia';
   import EditorSection from './EditorSection.vue';
   import { useThemeStore } from '@/store/theme';
-  import { getBgColorList, setThemeVariables } from '@/utils/theme/themeGenerator';
-  import { BgColorEnum, DayNightModeEnum } from '@/utils/theme/types';
+  import { getBorderColorList, setThemeVariables } from '@/utils/theme/themeGenerator';
+  import { BorderColorEnum, DayNightModeEnum } from '@/utils/theme/types';
   import EditorControlItem from './EditorControlItem.vue';
   import ColorEditor from './ColorEditor.vue';
   import { useToggleDayNight } from '@/componsables/useToggleDayNight';
@@ -30,23 +30,13 @@
   const configDataList = computed(() => {
     return currentThemeData.value.colorSchemes[
       isDark.value ? DayNightModeEnum.dark : DayNightModeEnum.light
-    ].bgColors;
+    ].borderColors;
   });
 
-  const colorList = computed(() =>
-    getBgColorList(configDataList.value).filter(
-      // No need to show overlay color cause it's value equals to default bg color
-      (item) => item.type !== BgColorEnum.overlay,
-    ),
-  );
+  const colorList = computed(() => getBorderColorList(configDataList.value));
 
   const onColorChange = (val: string, colorType: string) => {
-    // currentThemeData.value.mainColors[colorType as MainColorEnum] = val;
-    configDataList.value[colorType as BgColorEnum] = val;
-    if (colorType === BgColorEnum.default) {
-      // overlay color is the same as default bg color
-      configDataList.value[BgColorEnum.overlay] = val;
-    }
+    configDataList.value[colorType as BorderColorEnum] = val;
     setThemeVariables();
   };
 </script>

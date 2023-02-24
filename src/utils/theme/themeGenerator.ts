@@ -1,7 +1,7 @@
 import { mix, toHex } from 'color2k';
 import { useThemeStore } from '@/store/theme';
 import {
-  ColorSchemeEnum,
+  DayNightModeEnum,
   MainColorEnum,
   MixModeEnum,
   TextColorEnum,
@@ -9,6 +9,8 @@ import {
   TextColors,
   BgColorEnum,
   BgColors,
+  BorderColors,
+  BorderColorEnum,
   ThemeConfig,
   ConfigItemTransformer,
 } from './types';
@@ -16,12 +18,12 @@ import {
 export const cssVarPrepend = '--el';
 
 export const mixModeBaseColors = {
-  [ColorSchemeEnum.light]: {
+  [DayNightModeEnum.light]: {
     light: '#FFFFFF',
     dark: '#000000',
   },
   // light & dark are reversed in dark mode
-  [ColorSchemeEnum.dark]: {
+  [DayNightModeEnum.dark]: {
     light: '#000000',
     dark: '#FFFFFF',
   },
@@ -40,12 +42,12 @@ export const setThemeVariables = () => {
   let styleStr = '';
   const { themeList } = useThemeStore();
   themeList.forEach((theme, index) => {
-    Object.keys(ColorSchemeEnum).forEach((scheme) => {
+    Object.keys(DayNightModeEnum).forEach((scheme) => {
       const themeStyleStr = generateTheme({
         targetTheme: theme,
-        colorScheme: scheme as ColorSchemeEnum,
+        colorScheme: scheme as DayNightModeEnum,
       });
-      if ((scheme as ColorSchemeEnum) === ColorSchemeEnum.light) {
+      if ((scheme as DayNightModeEnum) === DayNightModeEnum.light) {
         styleStr += `.theme${index} ${themeStyleStr}`;
       } else {
         styleStr += `.theme${index}.${scheme} ${themeStyleStr}`;
@@ -63,12 +65,13 @@ export const generateTheme = ({
   colorScheme,
 }: {
   targetTheme: ThemeConfig;
-  colorScheme: ColorSchemeEnum;
+  colorScheme: DayNightModeEnum;
 }) => {
   const variablesObj = {
     ...getVarsOfMainColor(targetTheme.mainColors, colorScheme),
     ...getTextColors(targetTheme.colorSchemes[colorScheme].textColors),
     ...getVarsOfBgColor(targetTheme.colorSchemes[colorScheme].bgColors),
+    ...getVarsOfBorderColor(targetTheme.colorSchemes[colorScheme].borderColors),
   };
   let styleStr = '';
   Object.keys(variablesObj).forEach((key) => {
@@ -90,6 +93,7 @@ export const getMainColorList = (colors: MainColors) => {
   return list;
 };
 
+// TODO 通用的生成cssvar列表的方法
 export const getTextColorList = (colors: TextColors) => {
   const list: ConfigItemTransformer[] = [];
   Object.keys(colors).forEach((colorType) => {
@@ -119,7 +123,23 @@ export const getBgColorList = (colors: BgColors) => {
   return list;
 };
 
-const getVarsOfMainColor = (colors: MainColors, colorScheme: ColorSchemeEnum) => {
+export const getBorderColorList = (colors: BorderColors) => {
+  const list: ConfigItemTransformer[] = [];
+  Object.keys(colors).forEach((colorType) => {
+    const color = colors[colorType as BorderColorEnum];
+    list.push({
+      type: colorType,
+      cssVar:
+        colorType === BorderColorEnum.default
+          ? `${cssVarPrepend}-border-color`
+          : `${cssVarPrepend}-border-color-${colorType}`,
+      value: color,
+    });
+  });
+  return list;
+};
+
+const getVarsOfMainColor = (colors: MainColors, colorScheme: DayNightModeEnum) => {
   const vars: Record<string, string> = {};
   getMainColorList(colors).forEach((item) => {
     vars[item.cssVar] = item.value;
@@ -145,6 +165,14 @@ const getTextColors = (colors: TextColors) => {
 const getVarsOfBgColor = (colors: BgColors) => {
   const vars: Record<string, string> = {};
   getBgColorList(colors).forEach((item) => {
+    vars[item.cssVar] = item.value;
+  });
+  return vars;
+};
+
+const getVarsOfBorderColor = (colors: BorderColors) => {
+  const vars: Record<string, string> = {};
+  getBorderColorList(colors).forEach((item) => {
     vars[item.cssVar] = item.value;
   });
   return vars;

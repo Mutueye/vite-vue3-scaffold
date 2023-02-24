@@ -9,7 +9,7 @@
       </div>
     </template>
     <div v-click-outside="onClickOutside" class="flex flex-col">
-      <hex-color-picker :color="pickerColor" @color-changed="handleColorChanged"></hex-color-picker>
+      <hex-alpha-color-picker :color="pickerColor" @color-changed="handleColorChanged" />
       <div class="flex flex-row items-center justify-between pt-space-xs">
         <el-input v-model="pickerColor" class="mr-space-xs flex-1 w-50px"></el-input>
         <el-button type="primary" @click="onConfirmPicker">确定</el-button>
@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts" setup>
-  import 'vanilla-colorful';
+  import 'vanilla-colorful/hex-alpha-color-picker.js';
   import { toRefs, ref, computed } from 'vue';
   import { hasBadContrast } from 'color2k';
   import { ClickOutside as vClickOutside } from 'element-plus';
@@ -32,7 +32,7 @@
   const pickerColor = ref(color.value);
   const pickerVisible = ref(false);
 
-  const emit = defineEmits(['update:modelValue', 'change']);
+  const emit = defineEmits(['change']);
 
   const tc = computed(() => (hasBadContrast('#fff', 'decorative', color.value) ? '#000' : '#fff'));
 
@@ -61,7 +61,6 @@
   const onConfirmPicker = () => {
     pickerVisible.value = false;
     if (pickerColor.value !== color.value) {
-      console.log('pickerColor.value:::::::;', pickerColor.value);
       emit('change', pickerColor.value[0] !== '#' ? '#' + pickerColor.value : pickerColor.value);
     }
   };

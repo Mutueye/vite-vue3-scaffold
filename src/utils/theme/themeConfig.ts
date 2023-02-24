@@ -20,6 +20,14 @@ export const defaultThemeConfig: ThemeConfig = {
         disabled: '#c0c4cc',
       },
       bgColors: { DEFAULT: '#ffffff', overlay: '#ffffff', page: '#f7f8fd', secondary: '#f2f3fa' },
+      borderColors: {
+        DEFAULT: '#dcdfe6',
+        light: '#e4e7ed',
+        lighter: '#ebeef5',
+        'extra-light': '#f2f6fc',
+        dark: '#d4d7de',
+        darker: '#cdd0d6',
+      },
     },
     // 夜间模式
     dark: {
@@ -31,6 +39,14 @@ export const defaultThemeConfig: ThemeConfig = {
         disabled: '#6c6e72',
       },
       bgColors: { DEFAULT: '#28303d', overlay: '#28303d', page: '#1b2431', secondary: '#0e1825' },
+      borderColors: {
+        DEFAULT: '#4C4D4F',
+        light: '#414243',
+        lighter: '#363637',
+        'extra-light': '#2B2B2C',
+        dark: '#58585B',
+        darker: '#636466',
+      },
     },
   },
 };
@@ -57,6 +73,14 @@ export const defaultThemeList: ThemeConfig[] = [
           disabled: '#c0c4cc',
         },
         bgColors: { DEFAULT: '#ffffff', overlay: '#ffffff', page: '#f7f8fd', secondary: '#f2f3fa' },
+        borderColors: {
+          DEFAULT: '#dcdfe6',
+          light: '#e4e7ed',
+          lighter: '#ebeef5',
+          'extra-light': '#f2f6fc',
+          dark: '#d4d7de',
+          darker: '#cdd0d6',
+        },
       },
       // 夜间模式
       dark: {
@@ -68,6 +92,14 @@ export const defaultThemeList: ThemeConfig[] = [
           disabled: '#6c6e72',
         },
         bgColors: { DEFAULT: '#28303d', overlay: '#28303d', page: '#1b2431', secondary: '#0e1825' },
+        borderColors: {
+          DEFAULT: '#4C4D4F',
+          light: '#414243',
+          lighter: '#363637',
+          'extra-light': '#2B2B2C',
+          dark: '#58585B',
+          darker: '#636466',
+        },
       },
     },
   },
@@ -92,6 +124,14 @@ export const defaultThemeList: ThemeConfig[] = [
           disabled: '#cccccc',
         },
         bgColors: { DEFAULT: '#ffffff', overlay: '#ffffff', page: '#f8f9fa', secondary: '#f2f3f4' },
+        borderColors: {
+          DEFAULT: '#dcdfe6',
+          light: '#e4e7ed',
+          lighter: '#ebeef5',
+          'extra-light': '#f2f6fc',
+          dark: '#d4d7de',
+          darker: '#cdd0d6',
+        },
       },
       // 夜间模式
       dark: {
@@ -103,6 +143,14 @@ export const defaultThemeList: ThemeConfig[] = [
           disabled: '#6c6e72',
         },
         bgColors: { DEFAULT: '#252525', overlay: '#252525', page: '#181818', secondary: '#111111' },
+        borderColors: {
+          DEFAULT: '#4C4D4F',
+          light: '#414243',
+          lighter: '#363637',
+          'extra-light': '#2B2B2C',
+          dark: '#58585B',
+          darker: '#636466',
+        },
       },
     },
   },
@@ -127,6 +175,14 @@ export const defaultThemeList: ThemeConfig[] = [
           disabled: '#cccccc',
         },
         bgColors: { DEFAULT: '#ffffff', overlay: '#ffffff', page: '#f5f4fd', secondary: '#eeecfa' },
+        borderColors: {
+          DEFAULT: '#dcdfe6',
+          light: '#e4e7ed',
+          lighter: '#ebeef5',
+          'extra-light': '#f2f6fc',
+          dark: '#d4d7de',
+          darker: '#cdd0d6',
+        },
       },
       // 夜间模式
       dark: {
@@ -138,6 +194,14 @@ export const defaultThemeList: ThemeConfig[] = [
           disabled: '#6c6e72',
         },
         bgColors: { DEFAULT: '#252433', overlay: '#252433', page: '#181726', secondary: '#121123' },
+        borderColors: {
+          DEFAULT: '#4C4D4F',
+          light: '#414243',
+          lighter: '#363637',
+          'extra-light': '#2B2B2C',
+          dark: '#58585B',
+          darker: '#636466',
+        },
       },
     },
   },
@@ -153,23 +217,23 @@ element-plus css变量参考列表
 --el-color-primary: #409eff; // 主色调
 // primary的多级混合色，级别从1到9，
 // 日间模式 light越来越浅 dark越来越深，夜间模式则相反
---el-color-primary-light-1 ~ --el-color-primary-light-9
---el-color-primary-dark-1 ~ --el-color-primary-dark-9
+// --el-color-primary-light-1 ~ --el-color-primary-light-9
+// --el-color-primary-dark-1 ~ --el-color-primary-dark-9
 --el-color-success: #67c23a; // 成功
---el-color-success-light-1 ~ --el-color-success-light-9
---el-color-success-dark-1 ~ --el-color-success-dark-9
+// --el-color-success-light-1 ~ --el-color-success-light-9
+// --el-color-success-dark-1 ~ --el-color-success-dark-9
 --el-color-warning: #e6a23c; // 警告
---el-color-warning-light-1 ~ --el-color-warning-light-9
---el-color-warning-dark-1 ~ --el-color-warning-dark-9
+// --el-color-warning-light-1 ~ --el-color-warning-light-9
+// --el-color-warning-dark-1 ~ --el-color-warning-dark-9
 --el-color-danger: #f56c6c; // 危险
---el-color-danger-light-1 ~ --el-color-danger-light-9
---el-color-danger-dark-1 ~ --el-color-danger-dark-9
+// --el-color-danger-light-1 ~ --el-color-danger-light-9
+// --el-color-danger-dark-1 ~ --el-color-danger-dark-9
 --el-color-error: #f56c6c; // 错误
---el-color-error-light-1 ~ --el-color-error-light-9
---el-color-error-dark-1 ~ --el-color-error-dark-9
+// --el-color-error-light-1 ~ --el-color-error-light-9
+//--el-color-error-dark-1 ~ --el-color-error-dark-9
 --el-color-info: #909399; // 信息
---el-color-info-light-1 ~ --el-color-info-light-9
---el-color-info-dark-1 ~ --el-color-info-dark-9
+// --el-color-info-light-1 ~ --el-color-info-light-9
+// --el-color-info-dark-1 ~ --el-color-info-dark-9
 
 // 背景色 默认
 --el-bg-color: #ffffff;

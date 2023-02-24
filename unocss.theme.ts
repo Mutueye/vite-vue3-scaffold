@@ -2,41 +2,60 @@ import { Theme } from 'unocss/preset-mini';
 
 // css变量前缀
 const cssVarPrepend = '--el';
+export type CssVarConfigType = Record<string, (string | CssVarConfigType)[]>;
+export interface ConfigList {
+  [key: string]: ConfigList | string;
+}
 
-const colorTypes = ['primary', 'success', 'warning', 'danger', 'error', 'info'];
-const textColorTypes = ['primary', 'regular', 'secondary', 'placeholder', 'disabled'];
-const bgColorTypes = ['DEFAULT', 'overlay', 'page', 'secondary'];
-const borderColorTypes = ['DEFAULT', 'light', 'lighter', 'extralight', 'dark', 'darker'];
-const fillColorTypes = ['DEFAULT', 'light', 'lighter', 'extralight', 'dark', 'darker', 'blank'];
-const borderRadiusTypes = ['base', 'small', 'round', 'circle'];
-const mixModes = ['light', 'dark'];
+const cssVarConfig: CssVarConfigType = {
+  color: ['primary', 'success', 'warning', 'danger', 'error', 'info'],
+  'text-color': ['primary', 'regular', 'secondary', 'placeholder', 'disabled'],
+  'bg-color': ['DEFAULT', 'overlay', 'page', 'secondary'],
+  'border-color': ['DEFAULT', 'light', 'lighter', { extra: ['light'] }, 'dark', 'darker'],
+  'fill-color': ['DEFAULT', 'light', 'lighter', { extra: ['light'] }, 'dark', 'darker', 'blank'],
+  'border-radius': ['base', 'small', 'round', 'circle'],
+  'box-shadow': ['DEFAULT', 'light', 'lighter', 'dark'],
+};
 
 // 生成主题色变量配置表
-const generateThemeColors = () => {
+const generateMainColors = () => {
   const colors: Record<string, unknown> = {};
-  colorTypes.forEach((colorType) => {
-    colors[colorType] = { DEFAULT: `var(${cssVarPrepend}-color-${colorType})` };
+  cssVarConfig.color.forEach((colorType) => {
+    colors[colorType as string] = { DEFAULT: `var(${cssVarPrepend}-color-${colorType})` };
+    const mixModes = ['light', 'dark'];
     mixModes.forEach((mixMode) => {
       const subColors: Record<number, string> = {};
       for (let i = 1; i < 10; i++) {
         subColors[i] = `var(${cssVarPrepend}-color-${colorType}-${mixMode}-${i})`;
       }
-      colors[colorType][mixMode] = subColors;
+      colors[colorType as string][mixMode] = subColors;
     });
   });
   return colors;
 };
 
 // 根据类型生成对应的css变量配置列表
-const generateCssVarList = (colorTypes: string[], varPrepend: string) => {
-  const list: Record<string, string> = {};
-  colorTypes.forEach((type) => {
-    if (type === 'DEFAULT') {
-      list[type] = `var(${varPrepend})`;
-    } else {
-      list[type] = `var(${varPrepend}-${type})`;
-    }
-  });
+const generateCssVarFromConfig = (config: CssVarConfigType, key: string, varPrepend: string) => {
+  const list: ConfigList = {};
+  const targetCnofigSource = config[key];
+  if (targetCnofigSource) {
+    targetCnofigSource.forEach((type) => {
+      if (typeof type === 'string') {
+        if (type === 'DEFAULT') {
+          list[type] = `var(${varPrepend}-${key})`;
+        } else {
+          list[type] = `var(${varPrepend}-${key}-${type})`;
+        }
+      } else {
+        const subKey = Object.keys(type as CssVarConfigType)[0];
+        list[subKey] = generateCssVarFromConfig(
+          type as CssVarConfigType,
+          subKey,
+          `${varPrepend}-${key}`,
+        );
+      }
+    });
+  }
   return list;
 };
 
@@ -68,6 +87,7 @@ export const theme: Theme = {
     md: '0 4px 6px -1px rgb(0 0 0 / 7%), 0 2px 4px -1px rgb(0 0 0 / 6%)',
     lg: '0 10px 15px -3px rgb(0 0 0 / 10%), 0 4px 6px -2px rgb(0 0 0 / 5%)',
     xl: '0 20px 25px -5px rgb(0 0 0 / 10%), 0 10px 10px -5px rgb(0 0 0 / 4%)',
+    ...generateCssVarFromConfig(cssVarConfig, 'box-shadow', cssVarPrepend),
   },
   // 如果自定义breakpoints，会覆盖默认配置，而不是像其他一样合并默认配置
   breakpoints: {
@@ -86,15 +106,15 @@ export const theme: Theme = {
     xl: '10px',
     xxl: '12px',
     full: '9999px',
-    ...generateCssVarList(borderRadiusTypes, `${cssVarPrepend}-border-radius`),
+    ...generateCssVarFromConfig(cssVarConfig, 'border-radius', cssVarPrepend),
   },
   colors: {
     theme: `var(${cssVarPrepend}-color-primary)`,
-    ...generateThemeColors(),
-    text: generateCssVarList(textColorTypes, `${cssVarPrepend}-text-color`),
-    bg: generateCssVarList(bgColorTypes, `${cssVarPrepend}-bg-color`),
-    border: generateCssVarList(borderColorTypes, `${cssVarPrepend}-border-color`),
-    fill: generateCssVarList(fillColorTypes, `${cssVarPrepend}-fill-color`),
+    ...generateMainColors(),
+    text: generateCssVarFromConfig(cssVarConfig, 'text-color', cssVarPrepend),
+    bg: generateCssVarFromConfig(cssVarConfig, 'bg-color', cssVarPrepend),
+    border: generateCssVarFromConfig(cssVarConfig, 'border-color', cssVarPrepend),
+    fill: generateCssVarFromConfig(cssVarConfig, 'fill-color', cssVarPrepend),
   },
   fontFamily: {
     main: 'PingFang SC, Hiragino Sans GB, Microsoft YaHei, SimSun, sans-serif',

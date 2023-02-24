@@ -18,7 +18,10 @@ const baseConfig = defineConfig({
     vue({
       template: {
         compilerOptions: {
-          isCustomElement: (tag) => tag === 'hex-color-picker',
+          isCustomElement: (tag) => {
+            const tagList = ['hex-color-picker', 'hex-alpha-color-picker'];
+            return tagList.includes(tag);
+          },
         },
       },
     }),

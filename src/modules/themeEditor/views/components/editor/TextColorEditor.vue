@@ -1,5 +1,5 @@
 <template>
-  <EditorSection section-title="文本色">
+  <EditorSection section-title="字色">
     <div class="flex flex-col w-full">
       <EditorControlItem
         v-for="item in colorList"
@@ -18,7 +18,7 @@
   import EditorSection from './EditorSection.vue';
   import { useThemeStore } from '@/store/theme';
   import { getTextColorList, setThemeVariables } from '@/utils/theme/themeGenerator';
-  import { ColorSchemeEnum, TextColorEnum } from '@/utils/theme/types';
+  import { DayNightModeEnum, TextColorEnum } from '@/utils/theme/types';
   import EditorControlItem from './EditorControlItem.vue';
   import ColorEditor from './ColorEditor.vue';
   import { useToggleDayNight } from '@/componsables/useToggleDayNight';
@@ -29,14 +29,13 @@
 
   const configDataList = computed(() => {
     return currentThemeData.value.colorSchemes[
-      isDark.value ? ColorSchemeEnum.dark : ColorSchemeEnum.light
+      isDark.value ? DayNightModeEnum.dark : DayNightModeEnum.light
     ].textColors;
   });
 
   const colorList = computed(() => getTextColorList(configDataList.value));
 
   const onColorChange = (val: string, colorType: string) => {
-    // currentThemeData.value.mainColors[colorType as MainColorEnum] = val;
     configDataList.value[colorType as TextColorEnum] = val;
     setThemeVariables();
   };
