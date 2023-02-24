@@ -1,26 +1,24 @@
-import { ThemeConfig } from './types';
+import type { UITheme } from './themeManager';
 
-export const defaultThemeConfig: ThemeConfig = {
-  mainColors: {
-    primary: '#217aff',
-    success: '#67c23a',
-    warning: '#f2711c',
-    danger: '#db2828',
-    error: '#db2828',
-    info: '#96979c',
-  },
-  colorSchemes: {
-    // 日间模式
+export const defaultThemeConfig: UITheme = {
+  config: {
     light: {
-      textColors: {
+      color: {
+        primary: '#217aff',
+        success: '#67c23a',
+        warning: '#f2711c',
+        danger: '#db2828',
+        info: '#96979c',
+      },
+      'text-color': {
         primary: '#131b26',
         regular: '#5f6165',
         secondary: '#96979c',
         placeholder: '#cacbd0',
         disabled: '#c0c4cc',
       },
-      bgColors: { DEFAULT: '#ffffff', overlay: '#ffffff', page: '#f7f8fd', secondary: '#f2f3fa' },
-      borderColors: {
+      'bg-color': { DEFAULT: '#ffffff', page: '#f7f8fd', secondary: '#f2f3fa' },
+      'border-color': {
         DEFAULT: '#dcdfe6',
         light: '#e4e7ed',
         lighter: '#ebeef5',
@@ -28,18 +26,40 @@ export const defaultThemeConfig: ThemeConfig = {
         dark: '#d4d7de',
         darker: '#cdd0d6',
       },
+      'fill-color': {
+        DEFAULT: '#f0f2f5',
+        light: '#f5f7fa',
+        lighter: '#fafafa',
+        'extra-light': '#fafcff',
+        dark: '#ebedf0',
+        darker: '#e6e8eb',
+        blank: '#ffffff',
+      },
+      'border-radius': {
+        base: '4px',
+        small: '2px',
+        large: '6px',
+        round: '20px',
+        circle: '100%',
+      },
     },
-    // 夜间模式
     dark: {
-      textColors: {
+      color: {
+        primary: '#217aff',
+        success: '#67c23a',
+        warning: '#f2711c',
+        danger: '#db2828',
+        info: '#96979c',
+      },
+      'text-color': {
         primary: '#ffffff',
         regular: '#cfd3dc',
         secondary: '#a3a6ad',
         placeholder: '#8d9095',
         disabled: '#6c6e72',
       },
-      bgColors: { DEFAULT: '#28303d', overlay: '#28303d', page: '#1b2431', secondary: '#0e1825' },
-      borderColors: {
+      'bg-color': { DEFAULT: '#28303d', page: '#1b2431', secondary: '#0e1825' },
+      'border-color': {
         DEFAULT: '#4C4D4F',
         light: '#414243',
         lighter: '#363637',
@@ -47,84 +67,55 @@ export const defaultThemeConfig: ThemeConfig = {
         dark: '#58585B',
         darker: '#636466',
       },
+      'fill-color': {
+        DEFAULT: '#303030',
+        light: '#262727',
+        lighter: '#1D1D1D',
+        'extra-light': '#191919',
+        dark: '#39393A',
+        darker: '#424243',
+        blank: 'transparent',
+      },
+      'border-radius': {
+        base: '4px',
+        small: '2px',
+        large: '6px',
+        round: '20px',
+        circle: '100%',
+      },
     },
   },
 };
 
-export const defaultThemeList: ThemeConfig[] = [
+export const defaultThemeList: UITheme[] = [
   {
     name: 'ATHENA',
-    mainColors: {
-      primary: '#217aff',
-      success: '#67c23a',
-      warning: '#f2711c',
-      danger: '#db2828',
-      error: '#db2828',
-      info: '#96979c',
-    },
-    colorSchemes: {
-      // 日间模式
-      light: {
-        textColors: {
-          primary: '#131b26',
-          regular: '#5f6165',
-          secondary: '#96979c',
-          placeholder: '#cacbd0',
-          disabled: '#c0c4cc',
-        },
-        bgColors: { DEFAULT: '#ffffff', overlay: '#ffffff', page: '#f7f8fd', secondary: '#f2f3fa' },
-        borderColors: {
-          DEFAULT: '#dcdfe6',
-          light: '#e4e7ed',
-          lighter: '#ebeef5',
-          'extra-light': '#f2f6fc',
-          dark: '#d4d7de',
-          darker: '#cdd0d6',
-        },
-      },
-      // 夜间模式
-      dark: {
-        textColors: {
-          primary: '#ffffff',
-          regular: '#cfd3dc',
-          secondary: '#a3a6ad',
-          placeholder: '#8d9095',
-          disabled: '#6c6e72',
-        },
-        bgColors: { DEFAULT: '#28303d', overlay: '#28303d', page: '#1b2431', secondary: '#0e1825' },
-        borderColors: {
-          DEFAULT: '#4C4D4F',
-          light: '#414243',
-          lighter: '#363637',
-          'extra-light': '#2B2B2C',
-          dark: '#58585B',
-          darker: '#636466',
-        },
-      },
-    },
+    config: Object.assign({}, defaultThemeConfig.config),
   },
   {
     name: 'UPLUS',
-    mainColors: {
-      primary: '#67aef7',
-      success: '#a8d3a6',
-      warning: '#f39800',
-      danger: '#fc7373',
-      error: '#fc7373',
-      info: '#969eb3',
-    },
-    colorSchemes: {
-      // 日间模式
+    config: {
       light: {
-        textColors: {
+        color: {
+          primary: '#67aef7',
+          success: '#a8d3a6',
+          warning: '#f39800',
+          danger: '#fc7373',
+          info: '#969eb3',
+        },
+        'text-color': {
           primary: '#222222',
           regular: '#666666',
           secondary: '#999999',
           placeholder: '#bbbbbb',
           disabled: '#cccccc',
         },
-        bgColors: { DEFAULT: '#ffffff', overlay: '#ffffff', page: '#f8f9fa', secondary: '#f2f3f4' },
-        borderColors: {
+        'bg-color': {
+          DEFAULT: '#ffffff',
+          page: '#f8f9fa',
+          secondary: '#f2f3f4',
+        },
+        'border-color': {
           DEFAULT: '#dcdfe6',
           light: '#e4e7ed',
           lighter: '#ebeef5',
@@ -132,50 +123,94 @@ export const defaultThemeList: ThemeConfig[] = [
           dark: '#d4d7de',
           darker: '#cdd0d6',
         },
+        'fill-color': {
+          DEFAULT: '#f0f2f5',
+          light: '#f5f7fa',
+          lighter: '#fafafa',
+          'extra-light': '#fafcff',
+          dark: '#ebedf0',
+          darker: '#e6e8eb',
+          blank: '#ffffff',
+        },
+        'border-radius': {
+          base: '4px',
+          small: '2px',
+          large: '6px',
+          round: '20px',
+          circle: '100%',
+        },
       },
-      // 夜间模式
       dark: {
-        textColors: {
+        color: {
+          primary: '#67aef7',
+          success: '#a8d3a6',
+          warning: '#f39800',
+          danger: '#fc7373',
+          info: '#969eb3',
+        },
+        'text-color': {
           primary: '#e5eaf3',
           regular: '#cfd3dc',
           secondary: '#a3a6ad',
           placeholder: '#8d9095',
           disabled: '#6c6e72',
         },
-        bgColors: { DEFAULT: '#252525', overlay: '#252525', page: '#181818', secondary: '#111111' },
-        borderColors: {
+        'bg-color': {
+          DEFAULT: '#252525',
+          page: '#181818',
+          secondary: '#111111',
+        },
+        'border-color': {
           DEFAULT: '#4C4D4F',
           light: '#414243',
           lighter: '#363637',
           'extra-light': '#2B2B2C',
           dark: '#58585B',
           darker: '#636466',
+        },
+        'fill-color': {
+          DEFAULT: '#303030',
+          light: '#262727',
+          lighter: '#1D1D1D',
+          'extra-light': '#191919',
+          dark: '#39393A',
+          darker: '#424243',
+          blank: 'transparent',
+        },
+        'border-radius': {
+          base: '4px',
+          small: '2px',
+          large: '6px',
+          round: '20px',
+          circle: '100%',
         },
       },
     },
   },
   {
     name: 'PURPLE',
-    mainColors: {
-      primary: '#5549ff',
-      success: '#33d3a5',
-      warning: '#edaa28',
-      danger: '#f8739c',
-      error: '#f8739c',
-      info: '#969eb3',
-    },
-    colorSchemes: {
-      // 日间模式
+    config: {
       light: {
-        textColors: {
+        color: {
+          primary: '#5549ff',
+          success: '#33d3a5',
+          warning: '#edaa28',
+          danger: '#f8739c',
+          info: '#969eb3',
+        },
+        'text-color': {
           primary: '#222222',
           regular: '#666666',
           secondary: '#999999',
           placeholder: '#bbbbbb',
           disabled: '#cccccc',
         },
-        bgColors: { DEFAULT: '#ffffff', overlay: '#ffffff', page: '#f5f4fd', secondary: '#eeecfa' },
-        borderColors: {
+        'bg-color': {
+          DEFAULT: '#ffffff',
+          page: '#f5f4fd',
+          secondary: '#eeecfa',
+        },
+        'border-color': {
           DEFAULT: '#dcdfe6',
           light: '#e4e7ed',
           lighter: '#ebeef5',
@@ -183,24 +218,66 @@ export const defaultThemeList: ThemeConfig[] = [
           dark: '#d4d7de',
           darker: '#cdd0d6',
         },
+        'fill-color': {
+          DEFAULT: '#f0f2f5',
+          light: '#f5f7fa',
+          lighter: '#fafafa',
+          'extra-light': '#fafcff',
+          dark: '#ebedf0',
+          darker: '#e6e8eb',
+          blank: '#ffffff',
+        },
+        'border-radius': {
+          base: '4px',
+          small: '2px',
+          large: '6px',
+          round: '20px',
+          circle: '100%',
+        },
       },
-      // 夜间模式
       dark: {
-        textColors: {
+        color: {
+          primary: '#5549ff',
+          success: '#33d3a5',
+          warning: '#edaa28',
+          danger: '#f8739c',
+          info: '#969eb3',
+        },
+        'text-color': {
           primary: '#e5eaf3',
           regular: '#cfd3dc',
           secondary: '#a3a6ad',
           placeholder: '#8d9095',
           disabled: '#6c6e72',
         },
-        bgColors: { DEFAULT: '#252433', overlay: '#252433', page: '#181726', secondary: '#121123' },
-        borderColors: {
+        'bg-color': {
+          DEFAULT: '#252433',
+          page: '#181726',
+          secondary: '#121123',
+        },
+        'border-color': {
           DEFAULT: '#4C4D4F',
           light: '#414243',
           lighter: '#363637',
           'extra-light': '#2B2B2C',
           dark: '#58585B',
           darker: '#636466',
+        },
+        'fill-color': {
+          DEFAULT: '#303030',
+          light: '#262727',
+          lighter: '#1D1D1D',
+          'extra-light': '#191919',
+          dark: '#39393A',
+          darker: '#424243',
+          blank: 'transparent',
+        },
+        'border-radius': {
+          base: '4px',
+          small: '2px',
+          large: '6px',
+          round: '20px',
+          circle: '100%',
         },
       },
     },

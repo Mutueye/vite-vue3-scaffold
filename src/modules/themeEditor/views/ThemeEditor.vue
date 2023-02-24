@@ -26,11 +26,15 @@
           <div class="absolute left-space h-1px right-space bottom-0 bg-border-lighter" />
         </div>
         <el-scrollbar>
-          <EditorSection title="主题色" :config-category="ThemeCategory.Color" />
+          <EditorSection
+            v-for="item in editorCategories"
+            :key="item.category"
+            :editor-category="item" />
+          <!-- <EditorSection title="主题色" :config-category="ThemeCategory.Color" />
           <EditorSection title="背景色" :config-category="ThemeCategory.BgColor" />
           <EditorSection title="文字色" :config-category="ThemeCategory.TextColor" />
           <EditorSection title="边框色" :config-category="ThemeCategory.BorderColor" />
-          <EditorSection title="填充色" :config-category="ThemeCategory.FillColor" />
+          <EditorSection title="填充色" :config-category="ThemeCategory.FillColor" /> -->
         </el-scrollbar>
       </div>
     </div>
@@ -44,17 +48,25 @@
   import ThemeBtn from './components/ThemeBtn.vue';
   import ThemeAddBtn from './components/ThemeAddBtn.vue';
   import EditorSection from './components/editor/EditorSection.vue';
-  import { defaultThemeConfig, ThemeCategory } from '@/utils/theme/themeManager';
+  import { editorCategories } from '@/utils/theme/themeManager';
+  import { defaultThemeConfig } from '@/utils/theme/themeConfig';
   import { cloneDeep } from 'lodash-es';
 
   const themeStore = useThemeStore();
   const { themeList, currentThemeData, currentThemeIndex } = storeToRefs(themeStore);
 
   const addTheme = () => {
+    let name = `THEME0${themeList.value.length}`;
+    // avoid duplicate names
+    themeList.value.forEach((theme) => {
+      if (theme.name === name) {
+        name = `THEME0${themeList.value.length + 1}`;
+      }
+    });
     const newThemeList = [
       ...themeList.value,
       {
-        name: `THEME0${themeList.value.length}`,
+        name,
         config: cloneDeep(defaultThemeConfig.config),
       },
     ];

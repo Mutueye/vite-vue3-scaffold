@@ -1,10 +1,7 @@
 import { defineStore } from 'pinia';
 import type { UITheme } from '@/utils/theme/themeManager';
-import {
-  setThemeVariables,
-  defaultThemeConfig,
-  defaultThemeList,
-} from '@/utils/theme/themeManager';
+import { setThemeVariables } from '@/utils/theme/themeManager';
+import { defaultThemeConfig, defaultThemeList } from '@/utils/theme/themeConfig';
 import { ElMessageBox } from 'element-plus';
 
 interface ThemeState {
