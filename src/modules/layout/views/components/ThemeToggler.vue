@@ -2,9 +2,9 @@
   <div class="flex flex-row items-center">
     <button
       v-for="(theme, index) in themeList"
-      :key="'primary' + theme.mainColors.primary"
+      :key="'primary' + theme.name"
       class="theme-btn mr-space color-white"
-      :style="{ backgroundColor: theme.mainColors.primary }"
+      :style="{ backgroundColor: theme.config[dayNightMode].color.primary }"
       @click="themeStore.setCurrentThemeIndex(index)">
       <i
         v-if="currentThemeIndex === index"
@@ -31,7 +31,7 @@
 
   const themeStore = useThemeStore();
   const { themeList, currentThemeIndex } = storeToRefs(themeStore);
-  const { toggleDayNight } = useToggleDayNight();
+  const { toggleDayNight, dayNightMode } = useToggleDayNight();
 </script>
 
 <style lang="scss" scoped>

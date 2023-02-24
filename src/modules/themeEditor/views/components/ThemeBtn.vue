@@ -23,7 +23,7 @@
   import { toRefs, computed } from 'vue';
   import { storeToRefs } from 'pinia';
   import { useThemeStore } from '@/store/theme';
-  import { MainColorEnum } from '@/utils/theme/types';
+  import { MainColorEnum, DayNightModeEnum } from '@/utils/theme/types';
 
   const themeStore = useThemeStore();
   const { themeList, currentThemeIndex } = storeToRefs(themeStore);
@@ -36,13 +36,17 @@
   // 主题色列表
   const mainColorList = computed(() => {
     const list: string[] = [];
-    if (themeData.value.mainColors) {
-      Object.keys(themeData.value.mainColors).forEach((key) => {
-        if (key !== MainColorEnum.error) {
-          list.push(themeData.value.mainColors[key as MainColorEnum]);
-        }
-      });
+    if (themeData.value) {
+      const mainColors = themeData.value.config[DayNightModeEnum.light].color;
+      if (mainColors) {
+        Object.keys(mainColors).forEach((key) => {
+          if (key !== MainColorEnum.error) {
+            list.push(mainColors[key as keyof typeof mainColors]);
+          }
+        });
+      }
     }
+
     return list;
   });
   // 主题名称

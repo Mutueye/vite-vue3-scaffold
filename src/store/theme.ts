@@ -1,12 +1,17 @@
 import { defineStore } from 'pinia';
-import type { ThemeConfig } from '@/utils/theme/types';
-// import type { UITheme } from '@/utils/theme/themeManager';
-import { defaultThemeList, defaultThemeConfig } from '@/utils/theme/themeConfig';
-import { setThemeVariables } from '@/utils/theme/themeGenerator';
+// import type { ThemeConfig } from '@/utils/theme/types';
+import type { UITheme } from '@/utils/theme/themeManager';
+// import { defaultThemeList, defaultThemeConfig } from '@/utils/theme/themeConfig';
+// import { setThemeVariables } from '@/utils/theme/themeGenerator';
+import {
+  setThemeVariables,
+  defaultThemeConfig,
+  defaultThemeList,
+} from '@/utils/theme/themeManager';
 import { ElMessageBox } from 'element-plus';
 
 interface ThemeState {
-  themeList: ThemeConfig[];
+  themeList: UITheme[];
   currentThemeIndex: number;
 }
 
@@ -27,7 +32,7 @@ export const useThemeStore = defineStore('persist', {
   getters: {
     // 当前主题
     currentThemeData: (state) => {
-      let themeData: ThemeConfig = defaultThemeConfig;
+      let themeData: UITheme = defaultThemeConfig;
       if (state.themeList && state.themeList[state.currentThemeIndex]) {
         themeData = state.themeList[state.currentThemeIndex];
       }
@@ -35,12 +40,12 @@ export const useThemeStore = defineStore('persist', {
     },
   },
   actions: {
-    setThemeList(themes: ThemeConfig[], toggle?: boolean) {
+    setThemeList(themes: UITheme[], toggle?: boolean) {
       this.themeList = themes;
-      if (toggle) {
-        this.currentThemeIndex = themes.length - 1;
-      }
       setThemeVariables();
+      if (toggle) {
+        this.setCurrentThemeIndex(themes.length - 1);
+      }
     },
     deleteThemeByIndex(themeIndex: number) {
       const themeName = this.themeList[themeIndex].name

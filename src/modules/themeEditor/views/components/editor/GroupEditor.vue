@@ -18,6 +18,7 @@
 <script lang="ts" setup>
   import { computed, toRefs } from 'vue';
   import { storeToRefs } from 'pinia';
+
   import { useThemeStore } from '@/store/theme';
   import { useToggleDayNight } from '@/componsables/useToggleDayNight';
   import { setThemeVariables, cssVarPrepend, ThemeCategory } from '@/utils/theme/themeManager';

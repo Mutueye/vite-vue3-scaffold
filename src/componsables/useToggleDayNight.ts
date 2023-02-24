@@ -1,3 +1,5 @@
+import { computed } from 'vue';
+import { DayNightModeEnum } from '@/utils/theme/types';
 import { useDark, useToggle } from '@vueuse/core';
 
 export const useToggleDayNight = () => {
@@ -10,5 +12,9 @@ export const useToggleDayNight = () => {
     toggleDark(!isDark.value);
   };
 
-  return { isDark, toggleDayNight };
+  const dayNightMode = computed(() =>
+    isDark.value ? DayNightModeEnum.dark : DayNightModeEnum.light,
+  );
+
+  return { isDark, toggleDayNight, dayNightMode };
 };

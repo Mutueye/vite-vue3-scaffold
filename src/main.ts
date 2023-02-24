@@ -4,8 +4,8 @@ import zhCn from 'element-plus/es/locale/lang/zh-cn';
 import App from '@/App.vue';
 import { router } from '@/router/index';
 import pinia from './store';
-import { initThemeStyle } from './utils/theme/themeGenerator';
-import { setThemeVariables } from './utils/theme/themeManager';
+// import { initThemeStyle } from './utils/theme/themeGenerator';
+import { initThemeStyle } from './utils/theme/themeManager';
 
 // css reset
 import '@/styles/reset.scss';
@@ -22,4 +22,3 @@ const app = createApp(App);
 app.use(ElementPlus, { locale: zhCn }).use(pinia).use(router).mount('#app');
 
 initThemeStyle();
-setThemeVariables();

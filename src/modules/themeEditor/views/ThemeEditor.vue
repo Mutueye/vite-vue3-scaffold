@@ -5,7 +5,7 @@
         <el-scrollbar>
           <ThemeBtn
             v-for="(data, index) in themeList"
-            :key="'primary' + data.mainColors.primary"
+            :key="'primary' + (data.name ? data.name : index)"
             :theme-data="data"
             :theme-index="index" />
           <ThemeAddBtn v-if="themeList.length < 6" @click="addTheme" />
@@ -26,10 +26,11 @@
           <div class="absolute left-space h-1px right-space bottom-0 bg-border-lighter" />
         </div>
         <el-scrollbar>
-          <MainColorEditor />
-          <BgColorEditor />
-          <TextColorEditor />
-          <BorderColorEditor />
+          <EditorSection title="主题色" :config-category="ThemeCategory.Color" />
+          <EditorSection title="背景色" :config-category="ThemeCategory.BgColor" />
+          <EditorSection title="文字色" :config-category="ThemeCategory.TextColor" />
+          <EditorSection title="边框色" :config-category="ThemeCategory.BorderColor" />
+          <EditorSection title="填充色" :config-category="ThemeCategory.FillColor" />
         </el-scrollbar>
       </div>
     </div>
@@ -42,11 +43,9 @@
   import { useThemeStore } from '@/store/theme';
   import ThemeBtn from './components/ThemeBtn.vue';
   import ThemeAddBtn from './components/ThemeAddBtn.vue';
-  import MainColorEditor from './components/editor/MainColorEditor.vue';
-  import BgColorEditor from './components/editor/BgColorEditor.vue';
-  import TextColorEditor from './components/editor/TextColorEditor.vue';
-  import BorderColorEditor from './components/editor/BorderColorEditor.vue';
-  import { defaultThemeConfig } from '@/utils/theme/themeConfig';
+  import EditorSection from './components/editor/EditorSection.vue';
+  import { defaultThemeConfig, ThemeCategory } from '@/utils/theme/themeManager';
+  import { cloneDeep } from 'lodash-es';
 
   const themeStore = useThemeStore();
   const { themeList, currentThemeData, currentThemeIndex } = storeToRefs(themeStore);
@@ -54,7 +53,10 @@
   const addTheme = () => {
     const newThemeList = [
       ...themeList.value,
-      Object.assign({ name: `THEME0${themeList.value.length}` }, defaultThemeConfig),
+      {
+        name: `THEME0${themeList.value.length}`,
+        config: cloneDeep(defaultThemeConfig.config),
+      },
     ];
     themeStore.setThemeList(newThemeList, true);
   };

@@ -1,6 +1,8 @@
-import { DayNightModeEnum } from './types';
+import { mix, toHex } from 'color2k';
+import { DayNightModeEnum, MixModeEnum } from './types';
+import { useThemeStore } from '@/store/theme';
 
-const cssVarPrepend = '--el';
+export const cssVarPrepend = '--el';
 
 export enum ThemeCategory {
   Color = 'color',
@@ -9,13 +11,14 @@ export enum ThemeCategory {
   BorderColor = 'border-color',
   FillColor = 'fill-color',
   BorderRadius = 'border-radius',
+  // 暂不启用box-shadow配置
   // BoxShadow = 'box-shadow',
 }
 
 export const cssVarCodex = {
-  [ThemeCategory.Color]: ['primary', 'success', 'warning', 'danger', 'error', 'info'],
+  [ThemeCategory.Color]: ['primary', 'success', 'warning', 'danger', 'info'],
   [ThemeCategory.TextColor]: ['primary', 'regular', 'secondary', 'placeholder', 'disabled'],
-  [ThemeCategory.BgColor]: ['DEFAULT', 'overlay', 'page', 'secondary'],
+  [ThemeCategory.BgColor]: ['DEFAULT', 'page', 'secondary'],
   [ThemeCategory.BorderColor]: ['DEFAULT', 'light', 'lighter', 'extra-light', 'dark', 'darker'],
   [ThemeCategory.FillColor]: [
     'DEFAULT',
@@ -31,7 +34,7 @@ export const cssVarCodex = {
   // [ThemeCategory.BoxShadow]: ['DEFAULT', 'light', 'lighter', 'dark'],
 } as const;
 
-type ThemeConfig = { [K in ThemeCategory]: Record<typeof cssVarCodex[K][number], string> };
+export type ThemeConfig = { [K in ThemeCategory]: Record<typeof cssVarCodex[K][number], string> };
 
 export interface UITheme {
   name?: string;
@@ -40,7 +43,7 @@ export interface UITheme {
   };
 }
 
-export const defaultUITheme: UITheme = {
+export const defaultThemeConfig: UITheme = {
   config: {
     light: {
       color: {
@@ -48,7 +51,6 @@ export const defaultUITheme: UITheme = {
         success: '#67c23a',
         warning: '#f2711c',
         danger: '#db2828',
-        error: '#db2828',
         info: '#96979c',
       },
       'text-color': {
@@ -58,7 +60,7 @@ export const defaultUITheme: UITheme = {
         placeholder: '#cacbd0',
         disabled: '#c0c4cc',
       },
-      'bg-color': { DEFAULT: '#ffffff', overlay: '#ffffff', page: '#f7f8fd', secondary: '#f2f3fa' },
+      'bg-color': { DEFAULT: '#ffffff', page: '#f7f8fd', secondary: '#f2f3fa' },
       'border-color': {
         DEFAULT: '#dcdfe6',
         light: '#e4e7ed',
@@ -90,7 +92,6 @@ export const defaultUITheme: UITheme = {
         success: '#67c23a',
         warning: '#f2711c',
         danger: '#db2828',
-        error: '#db2828',
         info: '#96979c',
       },
       'text-color': {
@@ -100,7 +101,7 @@ export const defaultUITheme: UITheme = {
         placeholder: '#8d9095',
         disabled: '#6c6e72',
       },
-      'bg-color': { DEFAULT: '#28303d', overlay: '#28303d', page: '#1b2431', secondary: '#0e1825' },
+      'bg-color': { DEFAULT: '#28303d', page: '#1b2431', secondary: '#0e1825' },
       'border-color': {
         DEFAULT: '#4C4D4F',
         light: '#414243',
@@ -129,10 +130,10 @@ export const defaultUITheme: UITheme = {
   },
 };
 
-export const defaultUIThemeList: UITheme[] = [
+export const defaultThemeList: UITheme[] = [
   {
     name: 'ATHENA',
-    config: Object.assign({}, defaultUITheme.config),
+    config: Object.assign({}, defaultThemeConfig.config),
   },
   {
     name: 'UPLUS',
@@ -143,7 +144,6 @@ export const defaultUIThemeList: UITheme[] = [
           success: '#67c23a',
           warning: '#f2711c',
           danger: '#db2828',
-          error: '#db2828',
           info: '#96979c',
         },
         'text-color': {
@@ -155,7 +155,6 @@ export const defaultUIThemeList: UITheme[] = [
         },
         'bg-color': {
           DEFAULT: '#ffffff',
-          overlay: '#ffffff',
           page: '#f7f8fd',
           secondary: '#f2f3fa',
         },
@@ -190,7 +189,6 @@ export const defaultUIThemeList: UITheme[] = [
           success: '#67c23a',
           warning: '#f2711c',
           danger: '#db2828',
-          error: '#db2828',
           info: '#96979c',
         },
         'text-color': {
@@ -202,7 +200,6 @@ export const defaultUIThemeList: UITheme[] = [
         },
         'bg-color': {
           DEFAULT: '#28303d',
-          overlay: '#28303d',
           page: '#1b2431',
           secondary: '#0e1825',
         },
@@ -242,7 +239,6 @@ export const defaultUIThemeList: UITheme[] = [
           success: '#67c23a',
           warning: '#f2711c',
           danger: '#db2828',
-          error: '#db2828',
           info: '#96979c',
         },
         'text-color': {
@@ -254,7 +250,6 @@ export const defaultUIThemeList: UITheme[] = [
         },
         'bg-color': {
           DEFAULT: '#ffffff',
-          overlay: '#ffffff',
           page: '#f7f8fd',
           secondary: '#f2f3fa',
         },
@@ -289,7 +284,6 @@ export const defaultUIThemeList: UITheme[] = [
           success: '#67c23a',
           warning: '#f2711c',
           danger: '#db2828',
-          error: '#db2828',
           info: '#96979c',
         },
         'text-color': {
@@ -301,7 +295,6 @@ export const defaultUIThemeList: UITheme[] = [
         },
         'bg-color': {
           DEFAULT: '#28303d',
-          overlay: '#28303d',
           page: '#1b2431',
           secondary: '#0e1825',
         },
@@ -334,6 +327,18 @@ export const defaultUIThemeList: UITheme[] = [
   },
 ];
 
+export const mixModeBaseColors = {
+  [DayNightModeEnum.light]: {
+    light: '#FFFFFF',
+    dark: '#000000',
+  },
+  // light & dark are reversed in dark mode
+  [DayNightModeEnum.dark]: {
+    light: '#000000',
+    dark: '#FFFFFF',
+  },
+};
+
 export const initThemeStyle = () => {
   const head = document.head || document.getElementsByTagName('head')[0];
   const style = document.createElement('style');
@@ -345,7 +350,8 @@ export const initThemeStyle = () => {
 export const setThemeVariables = () => {
   const styleEl = document.head.querySelector('#theme') as HTMLElement;
   let styleStr = '';
-  defaultUIThemeList.forEach((theme, index) => {
+  const { themeList } = useThemeStore();
+  themeList.forEach((theme, index) => {
     Object.keys(DayNightModeEnum).forEach((mode) => {
       const themeStyleStr = generateThemeStyle({
         targetTheme: theme,
@@ -374,10 +380,27 @@ const generateThemeStyle = ({
   for (configKey in config) {
     const oneConfig = config[configKey];
     Object.keys(oneConfig).forEach((valKey) => {
-      styleStr += `${cssVarPrepend}-${configKey}-${valKey}: ${
-        oneConfig[valKey as keyof typeof oneConfig]
-      }; `;
+      const cssVarName =
+        valKey === 'DEFAULT'
+          ? `${cssVarPrepend}-${configKey}`
+          : `${cssVarPrepend}-${configKey}-${valKey}`;
+      styleStr += `${cssVarName}: ${oneConfig[valKey as keyof typeof oneConfig]}; `;
+      if (configKey === ThemeCategory.Color) {
+        Object.keys(MixModeEnum).forEach((mixmode) => {
+          for (let i = 1; i < 10; i++) {
+            styleStr += `${cssVarName}-${mixmode}-${i}: ${toHex(
+              mix(
+                oneConfig[valKey as keyof typeof oneConfig],
+                mixModeBaseColors[mode][mixmode as MixModeEnum],
+                i * 0.1,
+              ),
+            )}; `;
+          }
+        });
+      }
     });
   }
-  return `{${styleStr}}`;
+  // --el-color-error = --el-color-danger; --el-bg-color-overlay = --el-bg-color;
+  styleStr = `{${styleStr} --el-color-error: var(--el-color-danger); --el-bg-color-overlay: var(--el-bg-color);}`;
+  return styleStr;
 };
