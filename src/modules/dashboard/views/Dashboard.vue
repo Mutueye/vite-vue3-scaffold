@@ -1,7 +1,7 @@
 <template>
   <ScrollableContentPage>
     <div class="w-full flex flex-col items-center">
-      <div class="w-full py-50px text-center font-bold">HOME</div>
+      <div class="w-full py-space-xxxl text-center font-bold">HOME</div>
       <HelloWorld msg="Hellow World" />
       <el-button>text</el-button>
       <div class="p-space-sm">
@@ -16,8 +16,6 @@
           <el-table-column property="configValue" label="configValue" />
         </el-table>
       </div>
-
-      <!-- <div v-for="config in configList" :key="config.id">{{ config.configKey }}</div> -->
     </div>
   </ScrollableContentPage>
 </template>

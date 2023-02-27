@@ -1,5 +1,8 @@
 <template>
-  <div class="px-space pt-space pb-space-xxs flex flex-col">
+  <div
+    v-if="configList && configList.length > 0"
+    class="mx-space pt-space pb-space-xxs flex flex-col"
+    :class="showDivider ? 'border-b border-border-lighter' : ''">
     <div class="font-bold color-text-primary mb-space-xxs">{{ editorCategory.title }}</div>
     <div class="flex flex-col w-full">
       <EditorControlItem
@@ -7,9 +10,10 @@
         :key="item.type"
         :title="item.type"
         :label="item.cssVar">
-        <div v-if="editorCategory.configType === ThemeEditorControlType.Input">
-          {{ item.value }}
-        </div>
+        <ValueEditor
+          v-if="editorCategory.configType === ThemeEditorControlType.Input"
+          :css-value="item.value"
+          @change="(val: string) => onConfigChange(val, item.type)" />
         <ColorEditor
           v-else
           :color="item.value"
@@ -34,14 +38,15 @@
   } from '@/utils/theme/themeManager';
   import EditorControlItem from './EditorControlItem.vue';
   import ColorEditor from './ColorEditor.vue';
+  import ValueEditor from './ValueEditor.vue';
 
   const { isDark, dayNightMode } = useToggleDayNight();
 
   const themeStore = useThemeStore();
   const { currentThemeData } = storeToRefs(themeStore);
 
-  const props = defineProps<{ editorCategory: ThemeEditorCategory }>();
-  const { editorCategory } = toRefs(props);
+  const props = defineProps<{ editorCategory: ThemeEditorCategory; showDivider?: boolean }>();
+  const { editorCategory, showDivider } = toRefs(props);
 
   const targetConfigData = computed(() => {
     return currentThemeData.value.config[dayNightMode.value][
@@ -61,17 +66,19 @@
 
   const getConfigList = (configObj: Record<string, string>) => {
     const list: { type: string; cssVar: string; value: string }[] = [];
-    Object.keys(configObj).forEach((configKey) => {
-      const configVal = configObj[configKey];
-      const cssVar = `${cssVarPrepend}-${editorCategory.value.category}${
-        configKey === 'DEFAULT' ? '' : '-' + configKey
-      }`;
-      list.push({
-        type: configKey,
-        cssVar,
-        value: configVal,
+    if (configObj) {
+      Object.keys(configObj).forEach((configKey) => {
+        const configVal = configObj[configKey];
+        const cssVar = `${cssVarPrepend}-${editorCategory.value.category}${
+          configKey === 'DEFAULT' ? '' : '-' + configKey
+        }`;
+        list.push({
+          type: configKey,
+          cssVar,
+          value: configVal,
+        });
       });
-    });
+    }
     return list;
   };
 

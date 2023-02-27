@@ -12,7 +12,8 @@
         </el-scrollbar>
       </div>
       <div class="flex flex-col flex-1 h-full">
-        <div class="flex flex-row p-space items-center justify-between relative">
+        <div
+          class="flex flex-row py-space mx-space items-center justify-between relative border-b border-border-light">
           <div class="text-size-16px font-semibold flex-1 min-w-0 truncate">
             {{ currentThemeData.name }}
           </div>
@@ -23,12 +24,13 @@
             @click="themeStore.deleteThemeByIndex(currentThemeIndex)">
             删除
           </el-link>
-          <div class="absolute left-space h-1px right-space bottom-0 bg-border-lighter" />
+          <!-- <div class="absolute left-space h-1px right-space bottom-0 bg-border-lighter" /> -->
         </div>
         <el-scrollbar>
           <EditorSection
-            v-for="item in editorCategories"
+            v-for="(item, index) in editorCategories"
             :key="item.category"
+            :show-divider="index < editorCategories.length - 1"
             :editor-category="item" />
           <!-- <EditorSection title="主题色" :config-category="ThemeCategory.Color" />
           <EditorSection title="背景色" :config-category="ThemeCategory.BgColor" />

@@ -1,10 +1,12 @@
+@use './element';
+
 :root {
   @apply font-main antialiased color-text-primary bg-bg-page h-full;
-  --el-menu-bg-color: transparent;
-  --el-menu-base-level-padding: 24px;
-  --el-menu-level-padding: 16px;
-}
+  body {
+    @apply h-full text-size-14px;
+  }
 
-body {
-  @apply h-full text-size-14px;
+  input {
+    @apply font-main;
+  }
 }

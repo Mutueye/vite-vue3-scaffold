@@ -4,12 +4,12 @@
       class="theme-btn-cnt"
       :class="selected ? 'selected' : ''"
       @click="themeStore.setCurrentThemeIndex(themeIndex)">
-      <div class="flex flex-row">
+      <div class="flex flex-row flex-1 justify-between">
         <div
           v-for="(mainColor, index) in mainColorList"
           :key="mainColor"
-          class="w-24px h-24px rounded-base border-bg border-2px relative"
-          :class="index > 0 && !selected ? '-ml-17px' : ''"
+          class="w-20px h-24px rounded-base border-bg border-2px relative"
+          :class="index > 0 && !selected ? '-ml-14px' : ''"
           :style="{ backgroundColor: mainColor, zIndex: mainColorList.length - index }" />
       </div>
       <div v-if="!selected" class="text-size-12px truncate flex-1 ml-space-xxs">

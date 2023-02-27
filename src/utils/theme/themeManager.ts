@@ -9,7 +9,7 @@ export enum DayNightModeEnum {
   dark = 'dark',
 }
 
-// 混合模式枚举
+// 混合模式枚举，用于根据5种主色生成各主色的10个级别的亮色/暗色
 export enum MixModeEnum {
   light = 'light',
   dark = 'dark',
@@ -24,6 +24,9 @@ export enum ThemeCategory {
   BorderRadius = 'border-radius',
   // 暂不启用box-shadow配置
   // BoxShadow = 'box-shadow',
+  Space = 'space',
+  FontSize = 'font-size',
+  ComponentSize = 'component-size',
 }
 
 // 主题配置的类型： 颜色 / 数值
@@ -69,6 +72,21 @@ export const editorCategories: ThemeEditorCategory[] = [
     category: ThemeCategory.BorderRadius,
     configType: ThemeEditorControlType.Input,
   },
+  {
+    title: '间距',
+    category: ThemeCategory.Space,
+    configType: ThemeEditorControlType.Input,
+  },
+  {
+    title: '字号',
+    category: ThemeCategory.FontSize,
+    configType: ThemeEditorControlType.Input,
+  },
+  {
+    title: '组件大小',
+    category: ThemeCategory.ComponentSize,
+    configType: ThemeEditorControlType.Input,
+  },
 ];
 
 export const cssVarCodex = {
@@ -85,9 +103,21 @@ export const cssVarCodex = {
     'darker',
     'blank',
   ],
-  // border radius 在 element-plus 定义的变量之外，新增了'large'值
-  [ThemeCategory.BorderRadius]: ['base', 'small', 'round', 'large', 'circle'],
+  // border radius 在 element-plus 定义的变量之外，新增了'large'和'huge'值
+  [ThemeCategory.BorderRadius]: ['small', 'base', 'round', 'large', 'huge', 'circle'],
   // [ThemeCategory.BoxShadow]: ['DEFAULT', 'light', 'lighter', 'dark'],
+  // TODO font-size component-size space
+
+  // 4px 8px 12px 16px 20px 24px 28px 32px 36px 40px
+  [ThemeCategory.Space]: ['xxxs', 'xxs', 'xs', 'sm', 'md', 'DEFAULT', 'lg', 'xl', 'xxl', 'xxxl'],
+
+  // 12px 13px 14px 16px 18px 20px
+  [ThemeCategory.FontSize]: ['extra-small', 'small', 'base', 'medium', 'large', 'extra-large'],
+
+  // --el-component-size-large: 40px;
+  // --el-component-size: 32px;
+  // --el-component-size-small: 24px;
+  [ThemeCategory.ComponentSize]: ['small', 'DEFAULT', 'large'],
 } as const;
 
 export type ThemeConfig = { [K in ThemeCategory]: Record<typeof cssVarCodex[K][number], string> };

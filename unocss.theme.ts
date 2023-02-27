@@ -15,6 +15,9 @@ const cssVarConfig: CssVarConfigType = {
   'fill-color': ['DEFAULT', 'light', 'lighter', { extra: ['light'] }, 'dark', 'darker', 'blank'],
   'border-radius': ['base', 'small', 'round', 'circle'],
   'box-shadow': ['DEFAULT', 'light', 'lighter', 'dark'],
+  space: ['xxxs', 'xxs', 'xs', 'sm', 'md', 'DEFAULT', 'lg', 'xl', 'xxl', 'xxxl'],
+  'font-size': ['extra-small', 'small', 'base', 'medium', 'large', 'extra-large'],
+  'component-size': ['small', 'DEFAULT', 'large'],
 };
 
 // 生成主题色变量配置表
@@ -35,20 +38,25 @@ const generateMainColors = () => {
 };
 
 // 根据类型生成对应的css变量配置列表
-const generateCssVarFromConfig = (config: CssVarConfigType, key: string, varPrepend: string) => {
+const generateCssVarFromConfig = (
+  config: CssVarConfigType,
+  key: string,
+  varPrepend: string,
+  keyPrepend = '',
+) => {
   const list: ConfigList = {};
   const targetCnofigSource = config[key];
   if (targetCnofigSource) {
     targetCnofigSource.forEach((type) => {
       if (typeof type === 'string') {
         if (type === 'DEFAULT') {
-          list[type] = `var(${varPrepend}-${key})`;
+          list[keyPrepend ? keyPrepend : type] = `var(${varPrepend}-${key})`;
         } else {
-          list[type] = `var(${varPrepend}-${key}-${type})`;
+          list[keyPrepend ? keyPrepend + '-' + type : type] = `var(${varPrepend}-${key}-${type})`;
         }
       } else {
         const subKey = Object.keys(type as CssVarConfigType)[0];
-        list[subKey] = generateCssVarFromConfig(
+        list[keyPrepend ? keyPrepend + '-' + subKey : subKey] = generateCssVarFromConfig(
           type as CssVarConfigType,
           subKey,
           `${varPrepend}-${key}`,
@@ -60,15 +68,8 @@ const generateCssVarFromConfig = (config: CssVarConfigType, key: string, varPrep
 };
 
 export const defaultSizes = {
-  'space-xxs': '8px',
-  'space-xs': '12px',
-  'space-sm': '16px',
-  'space-md': '20px',
-  space: '24px',
-  'space-lg': '28px',
-  'space-xl': '32px',
-  'space-xxl': '36px',
-  'space-xxxl': '40px',
+  ...generateCssVarFromConfig(cssVarConfig, 'space', cssVarPrepend, 'space'),
+  ...generateCssVarFromConfig(cssVarConfig, 'component-size', cssVarPrepend, 'component-size'),
   header: '72px',
   'left-menu': '300px',
 };
@@ -76,8 +77,6 @@ export const defaultSizes = {
 // theme配置示例。默认theme配置详见unocss源码：
 // https://github.com/unocss/unocss/tree/main/packages/preset-mini/src/_theme
 export const theme: Theme = {
-  width: defaultSizes,
-  height: defaultSizes,
   spacing: defaultSizes,
   boxShadow: {
     // 示例
@@ -119,7 +118,15 @@ export const theme: Theme = {
   fontFamily: {
     main: 'PingFang SC, Hiragino Sans GB, Microsoft YaHei, SimSun, sans-serif',
   },
+  fontSize: {
+    ...(generateCssVarFromConfig(cssVarConfig, 'font-size', cssVarPrepend) as Record<
+      string,
+      string
+    >),
+  },
 };
+
+console.log('theme::::::', theme);
 
 export const uplusIconCollection = {
   // uplus logo

@@ -1,0 +1,20 @@
+:root {
+  --el-menu-bg-color: transparent;
+  --el-menu-base-level-padding: var(--el-space);
+  --el-menu-level-padding: var(--el-space-sm);
+}
+
+// 使element按钮能够根据component-size的值来变更大小
+.el-button {
+  --el-button-size: var(--el-component-size);
+  height: var(--el-button-size);
+  padding: 0 var(--el-space-sm);
+  &.el-button--small {
+    --el-button-size: var(--el-component-size-small);
+    padding: 0 var(--el-space-xs);
+  }
+  &.el-button--large {
+    --el-button-size: var(--el-component-size-large);
+    padding: 0 var(--el-space);
+  }
+}

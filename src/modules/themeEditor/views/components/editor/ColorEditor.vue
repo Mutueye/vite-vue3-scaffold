@@ -2,7 +2,7 @@
   <el-popover placement="top" width="auto" :visible="pickerVisible" @before-enter="onShow">
     <template #reference>
       <div
-        class="w-full h-32px rounded-base cursor-pointer flex flex-row items-center justify-center"
+        class="w-full h-[var(--el-component-size)] rounded-base cursor-pointer flex flex-row items-center justify-start px-space-sm"
         :style="{ backgroundColor: color }"
         @click.prevent="onClickColor">
         <div class="text-size-12px" :style="{ color: tc }">{{ color }}</div>
