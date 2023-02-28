@@ -37,5 +37,6 @@
     "**/*.js",
     "**/*.ts",
     "**/*.vue"
-  ]
+  ],
+  "volar.inlayHints.eventArgumentInInlineHandlers": false
 }

@@ -14,17 +14,16 @@
       <div class="flex flex-col flex-1 h-full">
         <div
           class="flex flex-row py-space mx-space items-center justify-between relative border-b border-border-light">
-          <div class="text-size-16px font-semibold flex-1 min-w-0 truncate">
+          <div class="text-size-large font-semibold flex-1 min-w-0 truncate">
             {{ currentThemeData.name }}
           </div>
           <el-link
             v-if="currentThemeIndex > 1"
             :underline="false"
             type="danger"
-            @click="themeStore.deleteThemeByIndex(currentThemeIndex)">
+            @click="() => themeStore.deleteThemeByIndex(currentThemeIndex)">
             删除
           </el-link>
-          <!-- <div class="absolute left-space h-1px right-space bottom-0 bg-border-lighter" /> -->
         </div>
         <el-scrollbar>
           <EditorSection
@@ -32,15 +31,18 @@
             :key="item.category"
             :show-divider="index < editorCategories.length - 1"
             :editor-category="item" />
-          <!-- <EditorSection title="主题色" :config-category="ThemeCategory.Color" />
-          <EditorSection title="背景色" :config-category="ThemeCategory.BgColor" />
-          <EditorSection title="文字色" :config-category="ThemeCategory.TextColor" />
-          <EditorSection title="边框色" :config-category="ThemeCategory.BorderColor" />
-          <EditorSection title="填充色" :config-category="ThemeCategory.FillColor" /> -->
         </el-scrollbar>
       </div>
     </div>
-    <div class="flex flex-col flex-1 ml-space h-full rounded-8px min-h-0 bg-bg"></div>
+    <div class="flex flex-col flex-1 ml-space h-full rounded-8px min-h-0 bg-bg">
+      <div
+        class="flex flex-row py-space mx-space items-center justify-between relative border-b border-border-light">
+        <div class="text-size-large font-semibold flex-1 min-w-0 truncate">预览</div>
+      </div>
+      <el-scrollbar>
+        <div class="p-space">ttt</div>
+      </el-scrollbar>
+    </div>
   </div>
 </template>
 

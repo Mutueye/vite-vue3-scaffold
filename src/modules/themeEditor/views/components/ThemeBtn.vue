@@ -1,18 +1,20 @@
 <template>
-  <div class="theme-btn">
+  <div class="theme-btn" :class="selected ? 'my-space-sm ml-space-sm' : 'm-space-sm'">
     <div
       class="theme-btn-cnt"
       :class="selected ? 'selected' : ''"
-      @click="themeStore.setCurrentThemeIndex(themeIndex)">
-      <div class="flex flex-row flex-1 justify-between">
+      @click="() => themeStore.setCurrentThemeIndex(themeIndex)">
+      <div class="flex flex-row flex-1">
         <div
           v-for="(mainColor, index) in mainColorList"
           :key="mainColor"
-          class="w-20px h-24px rounded-base border-bg border-2px relative"
-          :class="index > 0 && !selected ? '-ml-14px' : ''"
+          class="w-24px h-24px rounded-base border-bg border-2px relative"
+          :class="index > 0 && !selected ? '-ml-17px' : ''"
           :style="{ backgroundColor: mainColor, zIndex: mainColorList.length - index }" />
       </div>
-      <div v-if="!selected" class="text-size-12px truncate flex-1 ml-space-xxs">
+      <div
+        v-if="!selected"
+        class="text-size-extra-small font-semibold truncate flex-1 ml-space-xxs">
         {{ themeName }}
       </div>
     </div>
@@ -63,14 +65,14 @@
 
 <style lang="scss" scoped>
   .theme-btn {
-    @apply w-140px flex flex-row m-space-sm cursor-pointer min-w-0;
+    @apply flex flex-row cursor-pointer min-w-0;
     .theme-btn-cnt {
       @apply p-12px flex flex-row flex-1 justify-between items-center rounded-6px bg-bg min-w-0;
       &:hover {
         @apply bg-bg;
       }
       &.selected {
-        @apply bg-bg -mr-space-sm rounded-r-0;
+        @apply bg-bg rounded-r-0;
       }
     }
   }
