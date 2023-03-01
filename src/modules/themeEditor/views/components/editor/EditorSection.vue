@@ -1,28 +1,23 @@
 <template>
-  <div
+  <SectionWrapper
     v-if="configList && configList.length > 0"
-    class="mx-space pt-space pb-space-xxs flex flex-col"
-    :class="showDivider ? 'border-b border-border-lighter' : ''">
-    <div class="font-bold color-text-primary text-size-medium mb-space-xxs">
-      {{ editorCategory.title }}
-    </div>
-    <div class="flex flex-col w-full">
-      <EditorControlItem
-        v-for="item in configList"
-        :key="item.type"
-        :title="item.type"
-        :label="item.cssVar">
-        <ValueEditor
-          v-if="editorCategory.configType === ThemeEditorControlType.Input"
-          :css-value="item.value"
-          @change="(val: string) => onConfigChange(val, item.type)" />
-        <ColorEditor
-          v-else
-          :color="item.value"
-          @change="(val: string) => onConfigChange(val, item.type)" />
-      </EditorControlItem>
-    </div>
-  </div>
+    :title="editorCategory.title"
+    :show-divider="showDivider">
+    <EditorControlItem
+      v-for="item in configList"
+      :key="item.type"
+      :title="item.type"
+      :label="item.cssVar">
+      <ValueEditor
+        v-if="editorCategory.configType === ThemeEditorControlType.Input"
+        :css-value="item.value"
+        @change="(val: string) => onConfigChange(val, item.type)" />
+      <ColorEditor
+        v-else
+        :color="item.value"
+        @change="(val: string) => onConfigChange(val, item.type)" />
+    </EditorControlItem>
+  </SectionWrapper>
 </template>
 
 <script lang="ts" setup>
@@ -39,6 +34,7 @@
     ThemeEditorControlType,
   } from '@/utils/theme/themeManager';
   import EditorControlItem from './EditorControlItem.vue';
+  import SectionWrapper from '../SectionWrapper.vue';
   import ColorEditor from './ColorEditor.vue';
   import ValueEditor from './ValueEditor.vue';
 

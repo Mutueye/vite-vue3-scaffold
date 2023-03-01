@@ -1,5 +1,6 @@
 import { mix, toHex } from 'color2k';
 import { useThemeStore } from '@/store/theme';
+import { GlobalEventBus } from '@/EventBus';
 
 export const cssVarPrepend = '--el';
 
@@ -93,30 +94,22 @@ export const cssVarCodex = {
   [ThemeCategory.Color]: ['primary', 'success', 'warning', 'danger', 'info'],
   [ThemeCategory.TextColor]: ['primary', 'regular', 'secondary', 'placeholder', 'disabled'],
   [ThemeCategory.BgColor]: ['DEFAULT', 'page', 'secondary'],
-  [ThemeCategory.BorderColor]: ['DEFAULT', 'light', 'lighter', 'extra-light', 'dark', 'darker'],
+  [ThemeCategory.BorderColor]: ['extra-light', 'lighter', 'light', 'DEFAULT', 'dark', 'darker'],
   [ThemeCategory.FillColor]: [
-    'DEFAULT',
-    'light',
-    'lighter',
+    'blank',
     'extra-light',
+    'lighter',
+    'light',
+    'DEFAULT',
     'dark',
     'darker',
-    'blank',
   ],
   // border radius 在 element-plus 定义的变量之外，新增了'large'和'huge'值
-  [ThemeCategory.BorderRadius]: ['small', 'base', 'round', 'large', 'huge', 'circle'],
+  [ThemeCategory.BorderRadius]: ['small', 'base', 'large', 'huge', 'round', 'circle'],
   // [ThemeCategory.BoxShadow]: ['DEFAULT', 'light', 'lighter', 'dark'],
-  // TODO font-size component-size space
-
-  // 4px 8px 12px 16px 20px 24px 28px 32px 36px 40px
+  // space不是element-plus原有变量，例--el-space-sm
   [ThemeCategory.Space]: ['xxxs', 'xxs', 'xs', 'sm', 'md', 'DEFAULT', 'lg', 'xl', 'xxl', 'xxxl'],
-
-  // 12px 13px 14px 16px 18px 20px
   [ThemeCategory.FontSize]: ['extra-small', 'small', 'base', 'medium', 'large', 'extra-large'],
-
-  // --el-component-size-large: 40px;
-  // --el-component-size: 32px;
-  // --el-component-size-small: 24px;
   [ThemeCategory.ComponentSize]: ['small', 'DEFAULT', 'large'],
 } as const;
 
@@ -167,6 +160,7 @@ export const setThemeVariables = () => {
     });
   });
   styleEl.innerText = styleStr;
+  GlobalEventBus.emit('onSetThemeVariables');
 };
 
 const generateThemeStyle = ({

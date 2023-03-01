@@ -3,7 +3,7 @@
 :root {
   @apply font-main antialiased color-text-primary bg-bg-page h-full;
   body {
-    @apply h-full text-size-14px;
+    @apply h-full text-size-base;
   }
 
   input {

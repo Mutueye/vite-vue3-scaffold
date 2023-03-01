@@ -40,7 +40,15 @@
         <div class="text-size-large font-semibold flex-1 min-w-0 truncate">预览</div>
       </div>
       <el-scrollbar>
-        <div class="p-space">ttt</div>
+        <MainColorPreview />
+        <TextColorPreview />
+        <BgColorPreview />
+        <BorderColorPreview />
+        <FillColorPreview />
+        <BorderRadiusPreview />
+        <SpacePreview />
+        <FontSizePreview />
+        <ComponentSizePreview />
       </el-scrollbar>
     </div>
   </div>
@@ -52,6 +60,15 @@
   import ThemeBtn from './components/ThemeBtn.vue';
   import ThemeAddBtn from './components/ThemeAddBtn.vue';
   import EditorSection from './components/editor/EditorSection.vue';
+  import MainColorPreview from './components/perviewer/MainColorPreview.vue';
+  import TextColorPreview from './components/perviewer/TextColorPreview.vue';
+  import BgColorPreview from './components/perviewer/BgColorPreview.vue';
+  import BorderColorPreview from './components/perviewer/BorderColorPreview.vue';
+  import FillColorPreview from './components/perviewer/FillColorPreview.vue';
+  import BorderRadiusPreview from './components/perviewer/BorderRadiusPreview.vue';
+  import SpacePreview from './components/perviewer/SpacePreview.vue';
+  import FontSizePreview from './components/perviewer/FontSizePreview.vue';
+  import ComponentSizePreview from './components/perviewer/ComponentSizePreview.vue';
   import { editorCategories } from '@/utils/theme/themeManager';
   import { defaultThemeConfig } from '@/utils/theme/themeConfig';
   import { cloneDeep } from 'lodash-es';

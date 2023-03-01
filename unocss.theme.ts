@@ -77,6 +77,8 @@ export const defaultSizes = {
 // theme配置示例。默认theme配置详见unocss源码：
 // https://github.com/unocss/unocss/tree/main/packages/preset-mini/src/_theme
 export const theme: Theme = {
+  width: defaultSizes,
+  height: defaultSizes,
   spacing: defaultSizes,
   boxShadow: {
     // 示例
@@ -95,6 +97,15 @@ export const theme: Theme = {
     lg: '1024px',
     xl: '1280px',
     xxl: '1536px',
+    W1200: '1200px',
+    W1250: '1250px',
+    W1300: '1300px',
+    W1350: '1350px',
+    W1400: '1400px',
+    W1450: '1450px',
+    W1500: '1500px',
+    W1550: '1550px',
+    W1600: '1600px',
   },
   borderRadius: {
     none: '0',
