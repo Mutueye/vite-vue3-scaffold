@@ -64,7 +64,8 @@ export const useThemeStore = defineStore('persist', {
     },
     resetThemeList() {
       this.themeList = defaultThemeList;
-      this.currentThemeIndex = 0;
+      setThemeVariables();
+      // this.currentThemeIndex = 0;
     },
     setCurrentThemeIndex(themeIndex: number) {
       // set theme class name on "html" tag
