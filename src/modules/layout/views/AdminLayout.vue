@@ -11,7 +11,7 @@
     </div>
     <div class="h-full w-full flex flex-col bg-bg-page">
       <div class="flex flex-row items-center justify-between px-space-xl py-space">
-        <div class="text-size-18px font-semibold color-text-primary">{{ route.meta.title }}</div>
+        <div class="text-size-large font-semibold color-text-primary">{{ route.meta.title }}</div>
         <ThemeToggler />
       </div>
       <RouterView />

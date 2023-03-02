@@ -52,7 +52,7 @@
           </el-link> -->
         </div>
         <el-scrollbar>
-          <el-collapse v-model="activeName" accordion class="mx-space -mt-1 mb-space">
+          <el-collapse v-model="activeName" accordion class="mx-space -mt-1px mb-space">
             <el-collapse-item
               v-for="(item, index) in editorCategories"
               :key="item.category"

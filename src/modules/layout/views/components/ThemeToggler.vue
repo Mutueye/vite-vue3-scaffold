@@ -10,14 +10,14 @@
         v-if="currentThemeIndex === index"
         inline-block
         align-middle
-        text-size-18px
+        text-size-large
         class="i-mdi-check-circle-outline" />
     </button>
     <button class="theme-btn" @click="toggleDayNight">
       <i
         inline-block
         align-middle
-        text-size-18px
+        text-size-large
         dark="i-line-md-moon-filled"
         class="i-line-md-moon-filled-to-sunny-filled-loop-transition color-text-regular" />
     </button>

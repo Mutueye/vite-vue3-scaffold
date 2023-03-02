@@ -5,7 +5,7 @@
   </div>
   <div
     v-else
-    class="flex flex-row items-center w-full justify-start px-space-xs color-text-primary bg-bg-secondary h-[var(--el-component-size)] rounded-base border border-border-light cursor-pointer"
+    class="flex flex-row items-center w-full justify-start px-space-xs color-text-primary bg-bg-secondary h-component-size rounded-base border border-border-light cursor-pointer"
     @click="toggleEditMode">
     <div class="color-text-regular">{{ cssValue }}</div>
   </div>
