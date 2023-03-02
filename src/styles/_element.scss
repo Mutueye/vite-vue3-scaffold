@@ -20,3 +20,13 @@
     padding: 0 var(--el-space);
   }
 }
+
+.el-dialog {
+  .el-dialog__body {
+    padding: var(--el-space-md);
+  }
+}
+
+.el-collapse {
+  --el-collapse-header-text-color: var(--el-text-color-secondary);
+}

@@ -1,8 +1,5 @@
 <template>
-  <SectionWrapper
-    v-if="configList && configList.length > 0"
-    :title="editorCategory.title"
-    :show-divider="showDivider">
+  <div v-if="configList && configList.length > 0">
     <EditorControlItem
       v-for="item in configList"
       :key="item.type"
@@ -17,7 +14,7 @@
         :color="item.value"
         @change="(val: string) => onConfigChange(val, item.type)" />
     </EditorControlItem>
-  </SectionWrapper>
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -34,7 +31,6 @@
     ThemeEditorControlType,
   } from '@/utils/theme/themeManager';
   import EditorControlItem from './EditorControlItem.vue';
-  import SectionWrapper from '../SectionWrapper.vue';
   import ColorEditor from './ColorEditor.vue';
   import ValueEditor from './ValueEditor.vue';
 
@@ -44,7 +40,7 @@
   const { currentThemeData } = storeToRefs(themeStore);
 
   const props = defineProps<{ editorCategory: ThemeEditorCategory; showDivider?: boolean }>();
-  const { editorCategory, showDivider } = toRefs(props);
+  const { editorCategory } = toRefs(props);
 
   const targetConfigData = computed(() => {
     return currentThemeData.value.config[dayNightMode.value][

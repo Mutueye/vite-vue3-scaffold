@@ -3,6 +3,7 @@ import type { UITheme } from '@/utils/theme/themeManager';
 import { setThemeVariables } from '@/utils/theme/themeManager';
 import { defaultThemeConfig, defaultThemeList } from '@/utils/theme/themeConfig';
 import { ElMessageBox } from 'element-plus';
+import { cloneDeep } from 'lodash-es';
 
 interface ThemeState {
   themeList: UITheme[];
@@ -11,7 +12,7 @@ interface ThemeState {
 
 export const useThemeStore = defineStore('persist', {
   state: (): ThemeState => ({
-    themeList: defaultThemeList,
+    themeList: cloneDeep(defaultThemeList),
     currentThemeIndex: 0,
   }),
   persist: {
@@ -63,9 +64,7 @@ export const useThemeStore = defineStore('persist', {
         .catch(() => null);
     },
     resetThemeList() {
-      this.themeList = defaultThemeList;
-      setThemeVariables();
-      // this.currentThemeIndex = 0;
+      this.setThemeList(cloneDeep(defaultThemeList));
     },
     setCurrentThemeIndex(themeIndex: number) {
       // set theme class name on "html" tag

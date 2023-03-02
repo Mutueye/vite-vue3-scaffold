@@ -24,30 +24,51 @@
       </div>
       <div class="flex flex-col flex-1 h-full">
         <div
-          class="flex flex-row py-space mx-space items-center justify-between relative border-b border-border-light">
+          class="flex flex-row h-74px flex-shrink-0 mx-space items-center justify-between relative border-b border-border-light">
           <div class="text-size-large font-semibold flex-1 min-w-0 truncate">
             {{ currentThemeData.name }}
           </div>
-          <el-link
+          <el-dropdown @command="handleDropdownCmd">
+            <div
+              class="w-component-size h-component-size flex group items-center justify-center hover:bg-bg-secondary cursor-pointer rounded-base">
+              <i
+                class="i-mdi-dots-vertical text-size-extra-large color-text-regular group-hover:color-primary" />
+            </div>
+            <template #dropdown>
+              <el-dropdown-menu>
+                <el-dropdown-item command="delete" :disabled="currentThemeIndex <= 1">
+                  删除
+                </el-dropdown-item>
+                <el-dropdown-item command="export">导出json</el-dropdown-item>
+              </el-dropdown-menu>
+            </template>
+          </el-dropdown>
+          <!-- <el-link
             v-if="currentThemeIndex > 1"
             :underline="false"
             type="danger"
             @click="() => themeStore.deleteThemeByIndex(currentThemeIndex)">
             删除
-          </el-link>
+          </el-link> -->
         </div>
         <el-scrollbar>
-          <EditorSection
-            v-for="(item, index) in editorCategories"
-            :key="item.category"
-            :show-divider="index < editorCategories.length - 1"
-            :editor-category="item" />
+          <el-collapse v-model="activeName" accordion class="mx-space -mt-1 mb-space">
+            <el-collapse-item
+              v-for="(item, index) in editorCategories"
+              :key="item.category"
+              :name="(index + 1).toString()">
+              <template #title>
+                <div class="text-size-medium font-bold color-text-primary">{{ item.title }}</div>
+              </template>
+              <EditorSection :editor-category="item" />
+            </el-collapse-item>
+          </el-collapse>
         </el-scrollbar>
       </div>
     </div>
     <div class="flex flex-col flex-1 ml-space h-full rounded-8px min-h-0 bg-bg">
       <div
-        class="flex flex-row py-space mx-space items-center justify-between relative border-b border-border-light">
+        class="flex flex-row h-74px flex-shrink-0 mx-space items-center justify-between relative border-b border-border-light">
         <div class="text-size-large font-semibold flex-1 min-w-0 truncate">预览</div>
       </div>
       <el-scrollbar>
@@ -60,10 +81,12 @@
         <SpacePreview />
         <FontSizePreview />
         <ComponentSizePreview />
+        <MessPreview />
       </el-scrollbar>
     </div>
-    <AddThemeDialog ref="addThemeDialogRef" />
   </div>
+  <AddThemeDialog ref="addThemeDialogRef" />
+  <ExportJsonDialog ref="exportJsonDialogRef" />
 </template>
 
 <script lang="ts" setup>
@@ -82,33 +105,21 @@
   import SpacePreview from './components/perviewer/SpacePreview.vue';
   import FontSizePreview from './components/perviewer/FontSizePreview.vue';
   import ComponentSizePreview from './components/perviewer/ComponentSizePreview.vue';
+  import MessPreview from './components/perviewer/MessPreview.vue';
   import AddThemeDialog from './components/AddThemeDialog.vue';
+  import ExportJsonDialog from './components/ExportJsonDialog.vue';
   import { editorCategories } from '@/utils/theme/themeManager';
-  import { defaultThemeConfig } from '@/utils/theme/themeConfig';
-  import { cloneDeep } from 'lodash-es';
 
   const themeStore = useThemeStore();
   const { themeList, currentThemeData, currentThemeIndex } = storeToRefs(themeStore);
 
   const addThemeDialogRef = ref<HTMLElement & { open: () => void }>();
+  const exportJsonDialogRef = ref<HTMLElement & { open: () => void }>();
+
+  const activeName = ref('1');
 
   const addTheme = () => {
     addThemeDialogRef.value?.open();
-    // let name = `THEME0${themeList.value.length}`;
-    // // avoid duplicate names
-    // themeList.value.forEach((theme) => {
-    //   if (theme.name === name) {
-    //     name = `THEME0${themeList.value.length + 1}`;
-    //   }
-    // });
-    // const newThemeList = [
-    //   ...themeList.value,
-    //   {
-    //     name,
-    //     config: cloneDeep(defaultThemeConfig.config),
-    //   },
-    // ];
-    // themeStore.setThemeList(newThemeList, true);
   };
 
   const resetThemes = () => {
@@ -121,5 +132,13 @@
         themeStore.resetThemeList();
       })
       .catch(() => null);
+  };
+
+  const handleDropdownCmd = (cmd: string) => {
+    if (cmd === 'delete') {
+      themeStore.deleteThemeByIndex(currentThemeIndex.value);
+    } else if (cmd === 'export') {
+      exportJsonDialogRef.value?.open();
+    }
   };
 </script>

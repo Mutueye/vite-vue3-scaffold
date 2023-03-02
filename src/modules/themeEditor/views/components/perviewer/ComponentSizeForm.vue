@@ -1,6 +1,6 @@
 <template>
   <el-form :size="size" :inline="true">
-    <el-form-item :label="configData.type + '组件'">
+    <el-form-item label="表单:">
       <div class="flex flex-row items-center">
         <el-input :value="inputVal" placeholder="请输入" />
         <el-button type="primary" class="ml-space-sm">按钮</el-button>

@@ -1,6 +1,6 @@
 <template>
   <SectionWrapper title="主题色" :show-divider="true">
-    <IntroBox content="根据5种主题色自动生成由浅到深的19级颜色" class="mt-space-xxs" />
+    <IntroBox content="每种主题色会自动生成由19级颜色" class="mt-space-xxs" />
     <div class="flex flex-col w-full pb-space-sm">
       <div
         v-for="key in Object.keys(colorScheme)"

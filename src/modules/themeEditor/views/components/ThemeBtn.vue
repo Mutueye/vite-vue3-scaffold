@@ -67,7 +67,7 @@
   .theme-btn {
     @apply flex flex-row cursor-pointer min-w-0;
     .theme-btn-cnt {
-      @apply p-12px flex flex-row flex-1 justify-between items-center rounded-base bg-bg min-w-0;
+      @apply p-12px flex flex-row flex-1 justify-between items-center rounded-base bg-bg min-w-0 w-140px;
       &:hover {
         @apply bg-bg;
       }

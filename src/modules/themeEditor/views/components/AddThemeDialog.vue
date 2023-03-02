@@ -100,7 +100,7 @@
     });
   };
 
-  // 关闭绑定手机号弹框同时清掉错误提示、文本框内容
+  // 关闭时重置弹窗内容
   const handleClose = () => {
     state.show = false;
     formRef.value && formRef.value.resetFields();
