@@ -9,15 +9,15 @@
             :theme-data="data"
             :theme-index="index" />
         </el-scrollbar>
-        <div class="flex flex-row items-center p-space-sm">
+        <div class="flex flex-row items-center justify-between p-space-sm">
           <el-button
             text
             :disabled="themeList.length >= 6"
-            class="flex-1 mr-space-xxxs"
+            class="w-component-size-large px-0 mr-space-xxxs"
             @click="addTheme">
             <i class="inline-block text-size-extra-large i-mdi-plus" />
           </el-button>
-          <el-button text class="flex-1 ml-space-xxxs" @click="resetThemes">
+          <el-button text class="w-component-size-large px-0 ml-space-xxxs" @click="resetThemes">
             <i class="inline-block text-size-extra-large i-mdi-refresh" />
           </el-button>
         </div>
