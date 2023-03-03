@@ -66,6 +66,23 @@ export const useThemeStore = defineStore('persist', {
     resetThemeList() {
       this.setThemeList(cloneDeep(defaultThemeList));
     },
+    resetTheme(themeIndex: number) {
+      if (themeIndex < 3) {
+        const themeName = this.themeList[themeIndex].name
+          ? this.themeList[themeIndex].name
+          : `THEME${themeIndex}`;
+        ElMessageBox.confirm(`确定要重置主题：${themeName}到初始状态？`, '提示', {
+          confirmButtonText: '确定',
+          cancelButtonClass: '取消',
+          icon: '',
+        })
+          .then(() => {
+            this.themeList[themeIndex] = cloneDeep(defaultThemeList[themeIndex]);
+            setThemeVariables();
+          })
+          .catch(() => null);
+      }
+    },
     setCurrentThemeIndex(themeIndex: number) {
       // set theme class name on "html" tag
       const htmlEl = document.getElementsByTagName('html')[0];

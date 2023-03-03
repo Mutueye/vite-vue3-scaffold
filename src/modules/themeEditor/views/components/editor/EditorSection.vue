@@ -49,7 +49,7 @@
   });
 
   const opsiteModeConfigData = computed(() => {
-    return currentThemeData.value.config[isDark ? DayNightModeEnum.light : DayNightModeEnum.dark][
+    return currentThemeData.value.config[isDark ? DayNightModeEnum.dark : DayNightModeEnum.light][
       editorCategory.value.category
     ] as Record<string, string>;
   });
@@ -83,6 +83,7 @@
       editorCategory.value.category === ThemeCategory.Color ||
       editorCategory.value.configType === ThemeEditorControlType.Input
     ) {
+      console.log('val::::::::::::', val);
       opsiteModeConfigData.value[configKey] = val;
     }
     setThemeVariables();

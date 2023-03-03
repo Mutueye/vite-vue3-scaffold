@@ -37,8 +37,9 @@
             <template #dropdown>
               <el-dropdown-menu>
                 <el-dropdown-item command="delete" :disabled="currentThemeIndex <= 1">
-                  删除
+                  删除主题
                 </el-dropdown-item>
+                <el-dropdown-item command="reset">重置主题</el-dropdown-item>
                 <el-dropdown-item command="export">导出json</el-dropdown-item>
               </el-dropdown-menu>
             </template>
@@ -52,7 +53,11 @@
           </el-link> -->
         </div>
         <el-scrollbar>
-          <el-collapse v-model="activeName" accordion class="mx-space -mt-1px mb-space">
+          <el-collapse
+            :key="currentThemeIndex"
+            v-model="activeName"
+            accordion
+            class="mx-space -mt-1px mb-space">
             <el-collapse-item
               v-for="(item, index) in editorCategories"
               :key="item.category"
@@ -123,7 +128,7 @@
   };
 
   const resetThemes = () => {
-    ElMessageBox.confirm('确定要重置前3个默认主题吗？', '提示', {
+    ElMessageBox.confirm('即将重置为初始的3个默认主题，确定要重置吗？', '重置主题', {
       confirmButtonText: '确定',
       cancelButtonClass: '取消',
       icon: '',
@@ -139,6 +144,8 @@
       themeStore.deleteThemeByIndex(currentThemeIndex.value);
     } else if (cmd === 'export') {
       exportJsonDialogRef.value?.open();
+    } else if (cmd === 'reset') {
+      themeStore.resetTheme(currentThemeIndex.value);
     }
   };
 </script>

@@ -37,7 +37,7 @@
 <style lang="scss" scoped>
   $btn-size: 28px;
   .theme-btn {
-    @apply rounded-full bg-bg-page border-none cursor-pointer flex flex-col items-center justify-center;
+    @apply rounded-full bg-bg-secondary border-none cursor-pointer flex flex-col items-center justify-center;
     width: $btn-size;
     height: $btn-size;
     outline-offset: 1px;
