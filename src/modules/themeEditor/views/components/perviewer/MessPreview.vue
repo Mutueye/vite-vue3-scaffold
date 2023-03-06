@@ -242,6 +242,59 @@
           <el-table-column prop="address" label="Address" />
         </el-table>
       </MessPreviewSection>
+
+      <MessPreviewSection title="弹窗">
+        <div class="flex flex-row">
+          <el-button @click="dialogVisible = true">点击打开弹窗</el-button>
+        </div>
+
+        <el-dialog v-model="dialogVisible" title="Tips" width="30%" :before-close="handleClose">
+          <span>This is a message</span>
+          <template #footer>
+            <span class="dialog-footer">
+              <el-button @click="dialogVisible = false">Cancel</el-button>
+              <el-button type="primary" @click="dialogVisible = false">Confirm</el-button>
+            </span>
+          </template>
+        </el-dialog>
+      </MessPreviewSection>
+
+      <MessPreviewSection title="消息提示">
+        <div class="flex flex-row">
+          <el-button :plain="true" @click="open2">success</el-button>
+          <el-button :plain="true" @click="open3">warning</el-button>
+          <el-button :plain="true" @click="open1">message</el-button>
+          <el-button :plain="true" @click="open4">error</el-button>
+        </div>
+      </MessPreviewSection>
+
+      <MessPreviewSection title="标签页">
+        <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
+          <el-tab-pane label="User" name="first">User</el-tab-pane>
+          <el-tab-pane label="Config" name="second">Config</el-tab-pane>
+          <el-tab-pane label="Role" name="third">Role</el-tab-pane>
+          <el-tab-pane label="Task" name="fourth">Task</el-tab-pane>
+        </el-tabs>
+        <el-tabs v-model="activeName" type="card" class="demo-tabs" @tab-click="handleClick">
+          <el-tab-pane label="User" name="first">User</el-tab-pane>
+          <el-tab-pane label="Config" name="second">Config</el-tab-pane>
+          <el-tab-pane label="Role" name="third">Role</el-tab-pane>
+          <el-tab-pane label="Task" name="fourth">Task</el-tab-pane>
+        </el-tabs>
+        <el-tabs type="border-card">
+          <el-tab-pane label="User">User</el-tab-pane>
+          <el-tab-pane label="Config">Config</el-tab-pane>
+          <el-tab-pane label="Role">Role</el-tab-pane>
+          <el-tab-pane label="Task">Task</el-tab-pane>
+        </el-tabs>
+      </MessPreviewSection>
+
+      <MessPreviewSection title="分页">
+        <el-pagination layout="prev, pager, next" :total="1000" class="mb-space-xs" />
+        <el-pagination background layout="prev, pager, next" :total="1000" class="mb-space-xs" />
+        <el-pagination small layout="prev, pager, next" :total="50" class="mb-space-xs" />
+        <el-pagination small background layout="prev, pager, next" :total="50" />
+      </MessPreviewSection>
     </div>
   </SectionWrapper>
 </template>
@@ -252,6 +305,8 @@
   import IntroBox from './IntroBox.vue';
   import MessPreviewSection from './MessPreviewSection.vue';
   import FormPreview from './FormPreview.vue';
+  import { ElMessageBox, ElMessage } from 'element-plus';
+  import type { TabsPaneContext } from 'element-plus';
 
   const inputa = ref('');
   const inputb = ref('');
@@ -268,6 +323,10 @@
   const radio2 = ref('New York');
 
   const switchVal = ref(true);
+
+  const dialogVisible = ref(false);
+
+  const activeName = ref('first');
 
   const buttons = [
     { type: '', text: 'plain' },
@@ -300,4 +359,55 @@
       address: 'No. 189, Grove St, Los Angeles',
     },
   ];
+
+  const handleClose = (done: () => void) => {
+    ElMessageBox.confirm('Are you sure to close this dialog?')
+      .then(() => {
+        done();
+      })
+      .catch(() => {
+        // catch error
+      });
+  };
+
+  const open1 = () => {
+    ElMessage('this is a message.');
+  };
+  const open2 = () => {
+    ElMessage({
+      message: 'Congrats, this is a success message.',
+      type: 'success',
+    });
+  };
+  const open3 = () => {
+    ElMessage({
+      message: 'Warning, this is a warning message.',
+      type: 'warning',
+    });
+  };
+  const open4 = () => {
+    ElMessage.error('Oops, this is a error message.');
+  };
+
+  const handleClick = (tab: TabsPaneContext, event: Event) => {
+    console.log(tab, event);
+  };
 </script>
+
+<style lang="scss">
+  .demo-tabs {
+    @apply mb-space-sm;
+    .el-tabs__header {
+      &.is-top {
+        margin: 0;
+      }
+    }
+    .el-tabs__content {
+      padding: 32px;
+      font-size: 32px;
+      font-weight: 600;
+      color: #6b778c;
+      background-color: var(--el-bg-color-page);
+    }
+  }
+</style>
