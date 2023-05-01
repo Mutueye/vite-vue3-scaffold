@@ -20,7 +20,8 @@
 
 <script lang="ts" setup>
   import SectionWrapper from '../SectionWrapper.vue';
-  import { ThemeCategory } from '@/utils/theme/themeManager';
+  // import { ThemeCategory } from '@/utils/theme/themeManager';
+  import { ThemeCategory } from '@itshixun/qst-ui-system';
   import { useThemeConfigList } from '../../composables/useThemeConfigList';
 
   const { configList } = useThemeConfigList(ThemeCategory.BorderColor);

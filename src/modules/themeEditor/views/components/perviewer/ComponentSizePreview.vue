@@ -12,7 +12,8 @@ C
   import SectionWrapper from '../SectionWrapper.vue';
   import IntroBox from './IntroBox.vue';
   import ComponentSizeForm from './ComponentSizeForm.vue';
-  import { ThemeCategory } from '@/utils/theme/themeManager';
+  // import { ThemeCategory } from '@/utils/theme/themeManager';
+  import { ThemeCategory } from '@itshixun/qst-ui-system';
   import { useThemeConfigList } from '../../composables/useThemeConfigList';
 
   const { configList } = useThemeConfigList(ThemeCategory.ComponentSize);

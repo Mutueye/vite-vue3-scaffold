@@ -24,12 +24,11 @@
   import { useToggleDayNight } from '@/componsables/useToggleDayNight';
   import {
     setThemeVariables,
-    DayNightModeEnum,
     cssVarPrepend,
-    ThemeCategory,
     ThemeEditorCategory,
     ThemeEditorControlType,
   } from '@/utils/theme/themeManager';
+  import { DayNightModeEnum, ThemeCategory } from '@itshixun/qst-ui-system';
   import EditorControlItem from './EditorControlItem.vue';
   import ColorEditor from './ColorEditor.vue';
   import ValueEditor from './ValueEditor.vue';
@@ -37,7 +36,7 @@
   const { isDark, dayNightMode } = useToggleDayNight();
 
   const themeStore = useThemeStore();
-  const { currentThemeData } = storeToRefs(themeStore);
+  const { currentThemeData, themeList } = storeToRefs(themeStore);
 
   const props = defineProps<{ editorCategory: ThemeEditorCategory; showDivider?: boolean }>();
   const { editorCategory } = toRefs(props);
@@ -83,9 +82,8 @@
       editorCategory.value.category === ThemeCategory.Color ||
       editorCategory.value.configType === ThemeEditorControlType.Input
     ) {
-      console.log('val::::::::::::', val);
       opsiteModeConfigData.value[configKey] = val;
     }
-    setThemeVariables();
+    setThemeVariables(themeList.value);
   };
 </script>

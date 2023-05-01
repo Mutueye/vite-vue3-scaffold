@@ -26,7 +26,8 @@
   import { computed } from 'vue';
   import SectionWrapper from '../SectionWrapper.vue';
   import IntroBox from './IntroBox.vue';
-  import { cssVarPrepend, cssVarCodex } from '@/utils/theme/themeManager';
+  import { cssVarPrepend } from '@/utils/theme/themeManager';
+  import { cssVarCodex } from '@itshixun/qst-ui-system';
 
   const colorTypeList = cssVarCodex['color'];
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

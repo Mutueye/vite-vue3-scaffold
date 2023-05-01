@@ -1,7 +1,7 @@
 import { watch, ref, nextTick, onMounted } from 'vue';
 import { GlobalEventBus } from '@/EventBus';
-import { cssVarPrepend, ThemeCategory } from '@/utils/theme/themeManager';
-import { cssVarCodex } from '@/utils/theme/themeManager';
+import { cssVarPrepend } from '@/utils/theme/themeManager';
+import { ThemeCategory, cssVarCodex } from '@itshixun/qst-ui-system';
 import { useToggleDayNight } from '@/componsables/useToggleDayNight';
 
 export const useThemeConfigList = (configKey: ThemeCategory) => {

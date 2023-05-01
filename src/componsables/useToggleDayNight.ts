@@ -1,5 +1,5 @@
 import { computed } from 'vue';
-import { DayNightModeEnum } from '@/utils/theme/themeManager';
+import { DayNightModeEnum } from '@itshixun/qst-ui-system';
 import { useDark, useToggle } from '@vueuse/core';
 
 export const useToggleDayNight = () => {

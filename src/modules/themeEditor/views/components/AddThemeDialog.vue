@@ -31,7 +31,7 @@
   import { storeToRefs } from 'pinia';
   import { ElForm, ElMessage, FormRules } from 'element-plus';
   import { useThemeStore } from '@/store/theme';
-  import { defaultThemeConfig } from '@/utils/theme/themeConfig';
+  import { defaultThemeList } from '@itshixun/qst-ui-system';
   import { cloneDeep } from 'lodash-es';
 
   const themeStore = useThemeStore();
@@ -90,7 +90,7 @@
             ...themeList.value,
             {
               name: formData.themeName,
-              config: cloneDeep(defaultThemeConfig.config),
+              config: cloneDeep(defaultThemeList[0].config),
             },
           ];
           themeStore.setThemeList(newThemeList, true);

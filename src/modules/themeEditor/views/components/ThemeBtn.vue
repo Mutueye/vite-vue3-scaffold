@@ -25,7 +25,7 @@
   import { toRefs, computed } from 'vue';
   import { storeToRefs } from 'pinia';
   import { useThemeStore } from '@/store/theme';
-  import { DayNightModeEnum } from '@/utils/theme/themeManager';
+  import { DayNightModeEnum } from '@itshixun/qst-ui-system';
 
   const themeStore = useThemeStore();
   const { themeList, currentThemeIndex } = storeToRefs(themeStore);

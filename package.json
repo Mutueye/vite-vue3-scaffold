@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "@iconify/json": "^2.2.3",
+    "@itshixun/qst-ui-system": "^0.0.2",
     "@vueuse/core": "^9.10.0",
     "@vueuse/head": "^1.0.22",
     "axios": "^1.2.2",

@@ -1,13 +1,13 @@
-@use './element';
+// @use './element';
 
 :root {
-  @apply font-main antialiased color-text-primary bg-bg-page h-full;
+  @apply color-text-primary bg-bg h-full;
   body {
-    @apply h-full text-size-base;
+    @apply h-full w-full min-w-0 text-size-base;
   }
 
-  input,
-  pre {
-    @apply font-main;
-  }
+  // input,
+  // pre {
+  //   @apply font-main;
+  // }
 }
