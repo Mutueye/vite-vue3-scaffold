@@ -1,5 +1,8 @@
 <template>
-  <el-menu :default-active="activeMenuRouteName" class="bg-transparent border-none">
+  <el-menu
+    :collapse="false"
+    :default-active="activeMenuRouteName"
+    class="bg-transparent border-none admin-menu">
     <menu-item v-for="item in menus" :key="item.name" :menu-data="item" />
   </el-menu>
 </template>
@@ -14,6 +17,7 @@
   import MenuItem from './MenuItem.vue';
 
   const props = defineProps<{ layout: LayoutEnum }>();
+  // 根据传入的layout过滤路由，生成菜单
   const { layout } = toRefs(props);
 
   const { allRoutes, route } = useRouteInfo();
@@ -56,3 +60,12 @@
     }
   };
 </script>
+
+<style lang="scss">
+  .admin-menu {
+    background-color: transparent;
+    .el-menu-item.is-active {
+      background-color: var(--el-bg-color);
+    }
+  }
+</style>

@@ -1,6 +1,7 @@
 <template>
   <div class="flex flex-row h-full min-h-0 px-space-xl pb-space-xl">
-    <div class="flex flex-row w-500px h-full rounded-8px overflow-hidden min-h-0 bg-bg">
+    <div
+      class="flex flex-row w-500px h-full rounded-8px overflow-hidden min-h-0 bg-bg border border-border-light">
       <div class="flex flex-col h-full bg-bg-secondary">
         <el-scrollbar>
           <ThemeBtn
@@ -71,7 +72,8 @@
         </el-scrollbar>
       </div>
     </div>
-    <div class="flex flex-col flex-1 ml-space h-full rounded-8px min-h-0 bg-bg">
+    <div
+      class="flex flex-col flex-1 ml-space h-full rounded-8px min-h-0 bg-bg border border-border-light">
       <div
         class="flex flex-row h-74px flex-shrink-0 mx-space items-center justify-between relative border-b border-border-light">
         <div class="text-size-large font-semibold flex-1 min-w-0 truncate">预览</div>
