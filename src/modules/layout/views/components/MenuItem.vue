@@ -41,9 +41,11 @@
   const { menuData } = toRefs(props);
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   .admin-sub-menu {
-    @apply mr-1px;
+    .el-sub-menu__title {
+      @apply mr-1px;
+    }
   }
   .admin-menu-item {
     @apply relative mr-1px;
