@@ -6,7 +6,8 @@ module.exports = {
     'stylelint-config-recommended-vue/scss', // add overrides for .Vue files
     'stylelint-config-recess-order', // use the recess order for properties
     'stylelint-config-css-modules', // configure for CSS Modules methodology
-    'stylelint-config-prettier', // turn off any rules that conflict with Prettier
+    // stylelint v15 nolonger need stylelint-config-prettier
+    // 'stylelint-config-prettier', // turn off any rules that conflict with Prettier
   ],
   rules: {
     'rule-empty-line-before': null,

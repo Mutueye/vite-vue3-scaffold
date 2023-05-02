@@ -50,9 +50,9 @@ $pnpm build
 ## 里程碑/TODO
 - [x] 基本框架，约定技术选型
 - [ ] cli工具
-- [ ] 表单通用验证规则范例
-- [ ] 表单通用交互规则范例
-- [ ] 统一的UI规范(色系/字体/间距等)
+- [x] 表单通用验证规则范例
+- [x] 表单通用交互规则范例
+- [x] 统一的UI规范(色系/字体/间距等)
 - [ ] 更多..
 
 ## 从0开始的搭建记录
@@ -273,7 +273,7 @@ $ pnpm lint
 install packages
 
 ```bash
-$ pnpm add -D sass postcss postcss-scss postcss-html stylelint stylelint-scss stylelint-config-standard-scss stylelint-config-recommended-vue stylelint-config-recess-order stylelint-config-css-modules stylelint-config-prettier
+$ pnpm add -D sass postcss postcss-scss postcss-html stylelint stylelint-scss stylelint-config-standard-scss stylelint-config-recommended-vue stylelint-config-recess-order stylelint-config-css-modules
 # 各package的功能说明：
 # postcss // peer dependency of postcss-scss
 # postcss-scss // peer dependency of stylelint-config-recommended-scss
@@ -297,7 +297,8 @@ module.exports = {
     'stylelint-config-recommended-vue/scss', // add overrides for .Vue files
     'stylelint-config-recess-order', // use the recess order for properties
     'stylelint-config-css-modules', // configure for CSS Modules methodology
-    'stylelint-config-prettier', // turn off any rules that conflict with Prettier
+    // stylelint v15 nologner need stylelint-config-prettier
+    // 'stylelint-config-prettier', // turn off any rules that conflict with Prettier
   ],
   rules: {
     'rule-empty-line-before': null,
