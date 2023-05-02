@@ -31,10 +31,10 @@
 
   const colorTypeList = cssVarCodex['color'];
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  type ColorType = typeof colorTypeList[number];
+  type ColorType = (typeof colorTypeList)[number];
 
   const colorScheme = computed(() => {
-    type ColorSchemeType = Record<typeof colorTypeList[number], string[]>;
+    type ColorSchemeType = Record<(typeof colorTypeList)[number], string[]>;
     const scheme: Partial<ColorSchemeType> = {};
     colorTypeList.forEach((type) => {
       scheme[type] = generateColorVars(type);
