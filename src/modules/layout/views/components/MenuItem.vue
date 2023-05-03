@@ -62,10 +62,10 @@
       @apply inline-block color-theme text-size-18px;
     }
     .active-arrow {
-      @apply absolute w-20px h-20px top-1/2 -mt-10px right-space-xxxs flex items-center justify-center transition-all duration-200 ease-out opacity-0 -translate-x-30px;
+      @apply absolute w-20px h-20px top-1/2 -mt-10px right-spacing-xxxs flex items-center justify-center transition-all duration-200 ease-out opacity-0 -translate-x-30px;
     }
     .active-dot {
-      @apply absolute w-20px h-20px top-1/2 -mt-10px right-space-xxxs flex scale-90 items-center justify-center transition-all;
+      @apply absolute w-20px h-20px top-1/2 -mt-10px right-spacing-xxxs flex scale-90 items-center justify-center transition-all;
     }
     .active-dot-1 {
       @apply duration-300 ease-out opacity-0 -translate-x-60px;

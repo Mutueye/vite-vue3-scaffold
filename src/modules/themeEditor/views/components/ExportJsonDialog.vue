@@ -6,11 +6,11 @@
     :before-close="handleClose">
     <div class="h-40vh flex flex-col border border-border-light rounded-base bg-bg-page">
       <el-scrollbar>
-        <pre class="p-space-sm">{{ jsonStr }}</pre>
+        <pre class="p-spacing-sm">{{ jsonStr }}</pre>
         <!-- <el-input type="textarea" autosize :value="jsonStr" /> -->
       </el-scrollbar>
     </div>
-    <div class="flex flex-row justify-end mt-space-md">
+    <div class="flex flex-row justify-end mt-spacing-md">
       <el-button @click="handleClose">取消</el-button>
       <el-button type="primary" @click="submit">导出</el-button>
     </div>

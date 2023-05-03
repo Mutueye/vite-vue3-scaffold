@@ -3,7 +3,7 @@
     <el-form-item label="表单:">
       <div class="flex flex-row items-center">
         <el-input :value="inputVal" placeholder="请输入" />
-        <el-button type="primary" class="ml-space-sm">按钮</el-button>
+        <el-button type="primary" class="ml-spacing-sm">按钮</el-button>
       </div>
     </el-form-item>
   </el-form>

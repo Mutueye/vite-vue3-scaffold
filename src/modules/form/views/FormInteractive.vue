@@ -1,12 +1,12 @@
 <template>
   <ScrollableContentPage>
     <div class="flex flex-col w-560px mx-auto">
-      <div class="border border-border p-space mb-space-xl rounded-base">
-        <div class="text-size-base color-text-regular mb-space">
+      <div class="border border-border p-spacing mb-spacing-xl rounded-base">
+        <div class="text-size-base color-text-regular mb-spacing">
           <span class="color-text-primary font-bold">说明：</span>
           下方表单结合了ElementUI自带的交互细节和以往项目中常用的交互细节，在本页面进行展示，方便讨论时参考
         </div>
-        <div class="text-size-base color-text-regular mb-space">
+        <div class="text-size-base color-text-regular mb-spacing">
           <span class="color-text-primary font-bold">目标：</span>
           确定常规表单交互细节(是否显示必填星标/点击清空图标时是否对字段进行验证/不同控件(输入框/下拉菜单等)的验证时机(change或blur)等)
         </div>

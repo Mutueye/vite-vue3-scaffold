@@ -9,8 +9,8 @@
 
 <template>
   <div>{{ msg }}</div>
-  <div class="py-space-sm flex flex-col items-center">
+  <div class="py-spacing-sm flex flex-col items-center">
     <el-button type="primary" @click="count++">count is {{ count }}</el-button>
-    <el-input v-model="inputStr" class="mt-space-sm" placeholder="输入框" />
+    <el-input v-model="inputStr" class="mt-spacing-sm" placeholder="输入框" />
   </div>
 </template>

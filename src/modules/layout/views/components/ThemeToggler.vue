@@ -3,7 +3,7 @@
     <button
       v-for="(theme, index) in themeList"
       :key="'primary' + theme.name"
-      class="theme-btn mr-space color-white"
+      class="theme-btn mr-spacing color-white"
       :style="{ backgroundColor: theme.config[dayNightMode].color.primary }"
       @click="themeStore.setCurrentThemeIndex(index)">
       <i

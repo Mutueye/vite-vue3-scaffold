@@ -48,7 +48,7 @@ export const editorCategories: ThemeEditorCategory[] = [
   },
   {
     title: '间距',
-    category: ThemeCategory.Space,
+    category: ThemeCategory.Spacing,
     configType: ThemeEditorControlType.Input,
   },
   {

@@ -1,6 +1,6 @@
 <template>
   <el-divider content-position="left">{{ title }}</el-divider>
-  <div class="flex flex-col mb-space-xs">
+  <div class="flex flex-col mb-spacing-xs">
     <slot />
   </div>
 </template>

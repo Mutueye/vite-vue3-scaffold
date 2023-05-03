@@ -33,9 +33,9 @@
 
 <style lang="scss" scoped>
   .rule-box {
-    @apply p-space-sm mt-space mb-space-xl border border-warning-light-7 rounded-base bg-warning-light-9;
+    @apply p-spacing-sm mt-spacing mb-spacing-xl border border-warning-light-7 rounded-base bg-warning-light-9;
     .rule-item {
-      @apply pl-space-sm text-size-12px mt-space-xxs relative leading-18px;
+      @apply pl-spacing-sm text-size-12px mt-spacing-xxs relative leading-18px;
       &::before {
         @apply content-empty absolute w-5px h-5px top-6px left-2px transform rotate-45 bg-text-secondary;
       }
@@ -44,7 +44,7 @@
       }
     }
     .separator {
-      @apply border-t border-warning-light-7 pt-space-sm mt-space-sm;
+      @apply border-t border-warning-light-7 pt-spacing-sm mt-spacing-sm;
     }
     .reg-content {
       @apply font-bold text-size-12px color-warning;

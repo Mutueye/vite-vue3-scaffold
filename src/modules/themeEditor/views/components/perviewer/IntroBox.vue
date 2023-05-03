@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-bg-page p-space-sm text-size-base">{{ content }}</div>
+  <div class="bg-bg-page p-spacing-sm text-size-base">{{ content }}</div>
 </template>
 
 <script lang="ts" setup>

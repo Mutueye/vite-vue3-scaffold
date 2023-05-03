@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-row h-full min-h-0 px-space-xl pb-space-xl">
+  <div class="flex flex-row h-full min-h-0 px-spacing-xl pb-spacing-xl">
     <div
       class="flex flex-row w-500px h-full rounded-8px overflow-hidden min-h-0 bg-bg border border-border-light">
       <div class="flex flex-col h-full bg-bg-secondary">
@@ -10,22 +10,22 @@
             :theme-data="data"
             :theme-index="index" />
         </el-scrollbar>
-        <div class="flex flex-row items-center justify-between p-space-sm">
+        <div class="flex flex-row items-center justify-between p-spacing-sm">
           <el-button
             text
             :disabled="themeList.length >= 6"
-            class="w-component-size-large px-0 mr-space-xxxs"
+            class="w-component-size-large px-0 mr-spacing-xxxs"
             @click="addTheme">
             <i class="inline-block text-size-extra-large i-mdi-plus" />
           </el-button>
-          <el-button text class="w-component-size-large px-0 ml-space-xxxs" @click="resetThemes">
+          <el-button text class="w-component-size-large px-0 ml-spacing-xxxs" @click="resetThemes">
             <i class="inline-block text-size-extra-large i-mdi-refresh" />
           </el-button>
         </div>
       </div>
       <div class="flex flex-col flex-1 h-full">
         <div
-          class="flex flex-row h-74px flex-shrink-0 mx-space items-center justify-between relative border-b border-border-light">
+          class="flex flex-row h-74px flex-shrink-0 mx-spacing items-center justify-between relative border-b border-border-light">
           <div class="text-size-large font-semibold flex-1 min-w-0 truncate">
             {{ currentThemeData.name }}
           </div>
@@ -58,7 +58,7 @@
             :key="currentThemeIndex"
             v-model="activeName"
             accordion
-            class="mx-space -mt-1px mb-space">
+            class="mx-spacing -mt-1px mb-spacing">
             <el-collapse-item
               v-for="(item, index) in editorCategories"
               :key="item.category"
@@ -73,9 +73,9 @@
       </div>
     </div>
     <div
-      class="flex flex-col flex-1 ml-space h-full rounded-8px min-h-0 bg-bg border border-border-light">
+      class="flex flex-col flex-1 ml-spacing h-full rounded-8px min-h-0 bg-bg border border-border-light">
       <div
-        class="flex flex-row h-74px flex-shrink-0 mx-space items-center justify-between relative border-b border-border-light">
+        class="flex flex-row h-74px flex-shrink-0 mx-spacing items-center justify-between relative border-b border-border-light">
         <div class="text-size-large font-semibold flex-1 min-w-0 truncate">预览</div>
       </div>
       <el-scrollbar>

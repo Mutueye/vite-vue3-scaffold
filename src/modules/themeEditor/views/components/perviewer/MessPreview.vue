@@ -2,7 +2,7 @@
   <SectionWrapper title="综合示例" :show-divider="false">
     <IntroBox
       content="以下示例结合element-plus的常用组件，用以展示修改主题后对应组件的变化效果"
-      class="mt-space-xxs" />
+      class="mt-spacing-xxs" />
     <div class="flex flex-col self-stretch flex-shrink-0">
       <MessPreviewSection title="按钮样式">
         <el-row class="mb-4">
@@ -60,19 +60,19 @@
 
       <MessPreviewSection title="文字按钮">
         <p class="text-size-extra-small">基础文字按钮</p>
-        <div class="flex justify-start mb-4 flex-wrap gap-space-xxxs mt-space-xxs">
+        <div class="flex justify-start mb-4 flex-wrap gap-spacing-xxxs mt-spacing-xxs">
           <el-button v-for="button in buttons" :key="button.text" :type="button.type" text>
             {{ button.text }}
           </el-button>
         </div>
         <p class="text-size-extra-small">背景常驻</p>
-        <div class="flex justify-start mb-4 flex-wrap gap-space-xxxs mt-space-xxs">
+        <div class="flex justify-start mb-4 flex-wrap gap-spacing-xxxs mt-spacing-xxs">
           <el-button v-for="button in buttons" :key="button.text" :type="button.type" text bg>
             {{ button.text }}
           </el-button>
         </div>
         <p class="text-size-extra-small">文字按钮禁用</p>
-        <div class="flex justify-start mb-4 flex-wrap gap-space-xxxs mt-space-xxs">
+        <div class="flex justify-start mb-4 flex-wrap gap-spacing-xxxs mt-spacing-xxs">
           <el-button v-for="button in buttons" :key="button.text" :type="button.type" text disabled>
             {{ button.text }}
           </el-button>
@@ -111,20 +111,20 @@
       </MessPreviewSection>
 
       <MessPreviewSection title="输入框">
-        <el-input v-model="inputa" placeholder="基本输入框" class="mb-space-sm" />
-        <el-input disabled placeholder="禁用状态输入框" class="mb-space-sm" />
-        <el-input v-model="inputb" placeholder="一键清空输入框" class="mb-space-sm" clearable />
+        <el-input v-model="inputa" placeholder="基本输入框" class="mb-spacing-sm" />
+        <el-input disabled placeholder="禁用状态输入框" class="mb-spacing-sm" />
+        <el-input v-model="inputb" placeholder="一键清空输入框" class="mb-spacing-sm" clearable />
         <el-input
           v-model="inputc"
           type="password"
           placeholder="密码输入框"
           show-password
-          class="mb-space-sm" />
-        <el-input v-model="inputd" placeholder="输入框内前缀/后缀内容" class="mb-space-sm">
+          class="mb-spacing-sm" />
+        <el-input v-model="inputd" placeholder="输入框内前缀/后缀内容" class="mb-spacing-sm">
           <template #prefix><i class="i-mdi-account-cog text-size-lg" /></template>
           <template #suffix><i class="i-mdi-card-search text-size-lg" /></template>
         </el-input>
-        <el-input v-model="input1" placeholder="输入框前置/后置内容" class="mb-space-sm">
+        <el-input v-model="input1" placeholder="输入框前置/后置内容" class="mb-spacing-sm">
           <template #prepend>Http://</template>
           <template #append>.com</template>
         </el-input>
@@ -143,7 +143,7 @@
       </MessPreviewSection>
 
       <MessPreviewSection title="数字输入框">
-        <div class="flex flex-row items-center gap-space-xxs flex-wrap">
+        <div class="flex flex-row items-center gap-spacing-xxs flex-wrap">
           <el-input-number v-model="num" :min="1" :max="10" />
           <el-input-number v-model="num" disabled :min="1" :max="10" />
 
@@ -152,7 +152,7 @@
       </MessPreviewSection>
 
       <MessPreviewSection title="单选框">
-        <div class="flex flex-col gap-space-xxs">
+        <div class="flex flex-col gap-spacing-xxs">
           <el-radio-group v-model="radio1">
             <el-radio label="1">Option 1</el-radio>
             <el-radio label="2">Option 2</el-radio>
@@ -181,7 +181,7 @@
       </MessPreviewSection>
 
       <MessPreviewSection title="开关">
-        <div class="flex flex-col gap-space-xxs">
+        <div class="flex flex-col gap-spacing-xxs">
           <el-switch v-model="switchVal" />
           <el-switch v-model="switchVal" disabled />
           <el-switch
@@ -290,9 +290,9 @@
       </MessPreviewSection>
 
       <MessPreviewSection title="分页">
-        <el-pagination layout="prev, pager, next" :total="1000" class="mb-space-xs" />
-        <el-pagination background layout="prev, pager, next" :total="1000" class="mb-space-xs" />
-        <el-pagination small layout="prev, pager, next" :total="50" class="mb-space-xs" />
+        <el-pagination layout="prev, pager, next" :total="1000" class="mb-spacing-xs" />
+        <el-pagination background layout="prev, pager, next" :total="1000" class="mb-spacing-xs" />
+        <el-pagination small layout="prev, pager, next" :total="50" class="mb-spacing-xs" />
         <el-pagination small background layout="prev, pager, next" :total="50" />
       </MessPreviewSection>
     </div>
@@ -396,7 +396,7 @@
 
 <style lang="scss">
   .demo-tabs {
-    @apply mb-space-sm;
+    @apply mb-spacing-sm;
     .el-tabs__header {
       &.is-top {
         margin: 0;

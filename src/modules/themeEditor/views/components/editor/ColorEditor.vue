@@ -2,7 +2,7 @@
   <el-popover placement="top" width="auto" :visible="pickerVisible" @before-enter="onShow">
     <template #reference>
       <div
-        class="w-full h-component-size rounded-base cursor-pointer flex flex-row items-center justify-start px-space-sm"
+        class="w-full h-component-size rounded-base cursor-pointer flex flex-row items-center justify-start px-spacing-sm"
         :style="{ backgroundColor: color }"
         @click.prevent="onClickColor">
         <div class="text-size-12px" :style="{ color: tc }">{{ color }}</div>
@@ -10,8 +10,8 @@
     </template>
     <div v-click-outside="onClickOutside" class="flex flex-col">
       <hex-alpha-color-picker :color="pickerColor" @color-changed="handleColorChanged" />
-      <div class="flex flex-row items-center justify-between pt-space-xs">
-        <el-input v-model="pickerColor" class="mr-space-xs flex-1 w-50px"></el-input>
+      <div class="flex flex-row items-center justify-between pt-spacing-xs">
+        <el-input v-model="pickerColor" class="mr-spacing-xs flex-1 w-50px"></el-input>
         <el-button type="primary" @click="onConfirmPicker">确定</el-button>
       </div>
     </div>

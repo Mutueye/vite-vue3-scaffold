@@ -1,11 +1,11 @@
 <template>
   <div v-if="editing" class="flex flex-row items-center justify-between w-full min-w-0">
-    <el-input v-model="inputValue" class="mr-space-xs flex-1"></el-input>
+    <el-input v-model="inputValue" class="mr-spacing-xs flex-1"></el-input>
     <el-button type="primary" @click="onConfirm">确定</el-button>
   </div>
   <div
     v-else
-    class="flex flex-row items-center w-full justify-start px-space-xs color-text-primary bg-bg-secondary h-component-size rounded-base border border-border-light cursor-pointer"
+    class="flex flex-row items-center w-full justify-start px-spacing-xs color-text-primary bg-bg-secondary h-component-size rounded-base border border-border-light cursor-pointer"
     @click="toggleEditMode">
     <div class="color-text-regular">{{ cssValue }}</div>
   </div>

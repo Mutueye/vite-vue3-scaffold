@@ -3,7 +3,7 @@
     <div
       v-for="item in configList"
       :key="item.cssVar"
-      class="w-full mb-space-xs"
+      class="w-full mb-spacing-xs"
       :style="{ fontSize: `var(${item.cssVar})` }">
       FontSize字号大小示例 ({{ item.type }}: {{ item.val }})
     </div>

@@ -1,11 +1,11 @@
 <template>
   <SectionWrapper title="主题色" :show-divider="true">
-    <IntroBox content="每种主题色会自动生成由19级颜色" class="mt-space-xxs" />
-    <div class="flex flex-col w-full pb-space-sm">
+    <IntroBox content="每种主题色会自动生成由19级颜色" class="mt-spacing-xxs" />
+    <div class="flex flex-col w-full pb-spacing-sm">
       <div
         v-for="key in Object.keys(colorScheme)"
         :key="key"
-        class="flex flex-row items-center min-w-0 w-full mt-space-sm">
+        class="flex flex-row items-center min-w-0 w-full mt-spacing-sm">
         <el-tooltip
           v-for="color in colorScheme[key as ColorType]"
           :key="color"

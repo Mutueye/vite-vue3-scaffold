@@ -1,12 +1,12 @@
 <template>
   <ScrollableContentPage>
     <div class="flex flex-col w-560px mx-auto">
-      <div class="border border-border p-space mb-space-xl rounded-base">
-        <div class="text-size-base color-text-regular mb-space">
+      <div class="border border-border p-spacing mb-spacing-xl rounded-base">
+        <div class="text-size-base color-text-regular mb-spacing">
           <span class="color-text-primary font-bold">说明：</span>
           以下字段验证规则汇总了用户中心和优加竞赛所涉及的相关规则，在本页面进行展示，方便讨论时参考
         </div>
-        <div class="text-size-base color-text-regular mb-space">
+        <div class="text-size-base color-text-regular mb-spacing">
           <span class="color-text-primary font-bold">目标：</span>
           1. 确定常用字段验证规则；2. 确定每个字段各种情况下的错误提示文字
         </div>

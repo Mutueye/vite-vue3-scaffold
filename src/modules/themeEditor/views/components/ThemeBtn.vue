@@ -1,5 +1,5 @@
 <template>
-  <div class="theme-btn" :class="selected ? 'my-space-sm ml-space-sm' : 'm-space-sm'">
+  <div class="theme-btn" :class="selected ? 'my-spacing-sm ml-spacing-sm' : 'm-spacing-sm'">
     <div
       class="theme-btn-cnt"
       :class="selected ? 'selected' : ''"
@@ -14,7 +14,7 @@
       </div>
       <div
         v-if="!selected"
-        class="text-size-extra-small font-semibold truncate flex-1 ml-space-xxs">
+        class="text-size-extra-small font-semibold truncate flex-1 ml-spacing-xxs">
         {{ themeName }}
       </div>
     </div>

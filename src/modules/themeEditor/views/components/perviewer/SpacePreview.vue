@@ -3,7 +3,7 @@
     <div
       v-for="item in configList"
       :key="item.cssVar"
-      class="flex flex-col w-full mb-space-xs border border-border-light rounded-base"
+      class="flex flex-col w-full mb-spacing-xs border border-border-light rounded-base"
       :style="{ padding: item.val }">
       <div
         class="grid grid-cols-2 W1600:grid-cols-4"
@@ -26,5 +26,5 @@
   import { ThemeCategory } from '@itshixun/qst-ui-system';
   import { useThemeConfigList } from '../../composables/useThemeConfigList';
 
-  const { configList } = useThemeConfigList(ThemeCategory.Space);
+  const { configList } = useThemeConfigList(ThemeCategory.Spacing);
 </script>

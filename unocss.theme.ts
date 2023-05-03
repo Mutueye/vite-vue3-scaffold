@@ -1,6 +1,7 @@
 import { generateUnocssTheme } from '@itshixun/qst-ui-system';
+import { merge } from 'lodash-es';
 
-export const theme = Object.assign(generateUnocssTheme(), {
+export const theme = merge(generateUnocssTheme(), {
   breakpoints: {
     sm: '640px',
     md: '768px',
