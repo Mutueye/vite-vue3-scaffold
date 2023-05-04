@@ -1,14 +1,15 @@
 <template>
-  <div class="flex flex-row h-full min-h-0 px-spacing-xl pb-spacing-xl">
+  <div class="flex flex-row w-full h-full min-h-0 min-w-0 px-spacing-xl pb-spacing-xl">
     <div
-      class="flex flex-row w-500px h-full rounded-8px overflow-hidden min-h-0 bg-bg border border-border-light">
+      class="flex flex-row w-500px flex-shrink-0 h-full rounded-8px overflow-hidden min-h-0 bg-bg border border-border-light">
       <div class="flex flex-col h-full bg-bg-secondary">
         <el-scrollbar>
           <ThemeBtn
             v-for="(data, index) in themeList"
             :key="'primary' + (data.name ? data.name : index)"
             :theme-data="data"
-            :theme-index="index" />
+            :theme-index="index"
+            @change-theme="onChangeTheme" />
         </el-scrollbar>
         <div class="flex flex-row items-center justify-between p-spacing-sm">
           <el-button
@@ -45,15 +46,8 @@
               </el-dropdown-menu>
             </template>
           </el-dropdown>
-          <!-- <el-link
-            v-if="currentThemeIndex > 1"
-            :underline="false"
-            type="danger"
-            @click="() => themeStore.deleteThemeByIndex(currentThemeIndex)">
-            删除
-          </el-link> -->
         </div>
-        <el-scrollbar>
+        <el-scrollbar v-if="!pageLoading" :key="currentThemeIndex">
           <el-collapse
             :key="currentThemeIndex"
             v-model="activeName"
@@ -70,15 +64,34 @@
             </el-collapse-item>
           </el-collapse>
         </el-scrollbar>
+        <div v-else class="flex flex-1 p-spacing overflow-hidden">
+          <el-skeleton>
+            <template #template>
+              <el-skeleton-item variant="rect" class="w-1/3 h-component-size mb-spacing" />
+              <el-skeleton-item variant="rect" class="w-full h-component-size mb-spacing" />
+              <el-skeleton-item variant="rect" class="w-full h-component-size mb-spacing" />
+              <el-skeleton-item variant="rect" class="w-full h-component-size mb-spacing" />
+              <el-skeleton-item variant="rect" class="w-full h-component-size mb-spacing" />
+              <el-skeleton-item variant="rect" class="w-full h-component-size mb-spacing" />
+              <el-skeleton-item variant="rect" class="w-full h-component-size mb-spacing" />
+              <el-skeleton-item variant="rect" class="w-full h-component-size mb-spacing" />
+              <el-skeleton-item variant="rect" class="w-full h-component-size mb-spacing" />
+              <el-skeleton-item variant="rect" class="w-full h-component-size mb-spacing" />
+              <el-skeleton-item variant="rect" class="w-full h-component-size mb-spacing" />
+              <el-skeleton-item variant="rect" class="w-full h-component-size mb-spacing" />
+              <el-skeleton-item variant="rect" class="w-full h-component-size mb-spacing" />
+            </template>
+          </el-skeleton>
+        </div>
       </div>
     </div>
     <div
-      class="flex flex-col flex-1 ml-spacing h-full rounded-8px min-h-0 bg-bg border border-border-light">
+      class="flex flex-col flex-1 min-w-0 ml-spacing h-full rounded-8px min-h-0 bg-bg border border-border-light">
       <div
         class="flex flex-row h-74px flex-shrink-0 mx-spacing items-center justify-between relative border-b border-border-light">
         <div class="text-size-large font-semibold flex-1 min-w-0 truncate">预览</div>
       </div>
-      <el-scrollbar>
+      <el-scrollbar v-if="!pageLoading">
         <MainColorPreview />
         <TextColorPreview />
         <BgColorPreview />
@@ -90,6 +103,9 @@
         <ComponentSizePreview />
         <MessPreview />
       </el-scrollbar>
+      <div v-else class="flex flex-1 p-spacing overflow-hidden">
+        <el-skeleton :rows="20" />
+      </div>
     </div>
   </div>
   <AddThemeDialog ref="addThemeDialogRef" />
@@ -97,7 +113,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { ref } from 'vue';
+  import { ref, onMounted } from 'vue';
   import { storeToRefs } from 'pinia';
   import { useThemeStore } from '@/store/theme';
   import { ElMessageBox } from 'element-plus';
@@ -122,8 +138,23 @@
 
   const addThemeDialogRef = ref<HTMLElement & { open: () => void }>();
   const exportJsonDialogRef = ref<HTMLElement & { open: () => void }>();
-
+  const pageLoading = ref(true);
   const activeName = ref('1');
+
+  onMounted(() => {
+    fakePageLoading();
+  });
+
+  const fakePageLoading = () => {
+    setTimeout(() => {
+      pageLoading.value = false;
+    }, 500);
+  };
+
+  const onChangeTheme = () => {
+    pageLoading.value = true;
+    fakePageLoading();
+  };
 
   const addTheme = () => {
     addThemeDialogRef.value?.open();

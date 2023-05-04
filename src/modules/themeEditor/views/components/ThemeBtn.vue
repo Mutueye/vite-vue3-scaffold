@@ -1,9 +1,6 @@
 <template>
   <div class="theme-btn" :class="selected ? 'my-spacing-sm ml-spacing-sm' : 'm-spacing-sm'">
-    <div
-      class="theme-btn-cnt"
-      :class="selected ? 'selected' : ''"
-      @click="() => themeStore.setCurrentThemeIndex(themeIndex)">
+    <div class="theme-btn-cnt" :class="selected ? 'selected' : ''" @click="clickThemeBtn">
       <div class="flex flex-row flex-1">
         <div
           v-for="(mainColor, index) in mainColorList"
@@ -32,6 +29,13 @@
 
   const props = defineProps<{ themeIndex: number }>();
   const { themeIndex } = toRefs(props);
+
+  const emit = defineEmits(['changeTheme']);
+
+  const clickThemeBtn = () => {
+    emit('changeTheme');
+    themeStore.setCurrentThemeIndex(themeIndex.value);
+  };
 
   // 主题配置
   const themeData = computed(() => themeList.value[themeIndex.value]);
