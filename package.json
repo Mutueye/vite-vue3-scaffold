@@ -25,8 +25,8 @@
     "deploy:pages": "cd dist && cp index.html 404.html && cd .. && gh-pages -d dist"
   },
   "dependencies": {
-    "@iconify/json": "^2.2.60",
-    "@itshixun/qst-ui-system": "^0.0.6",
+    "@iconify/json": "^2.2.61",
+    "@itshixun/qst-ui-system": "^0.0.7",
     "@vueuse/core": "^10.1.2",
     "@vueuse/head": "^1.1.26",
     "axios": "^1.4.0",

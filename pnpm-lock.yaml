@@ -2,11 +2,11 @@ lockfileVersion: '6.0'
 
 dependencies:
   '@iconify/json':
-    specifier: ^2.2.60
-    version: 2.2.60
+    specifier: ^2.2.61
+    version: 2.2.61
   '@itshixun/qst-ui-system':
-    specifier: ^0.0.6
-    version: 0.0.6
+    specifier: ^0.0.7
+    version: 0.0.7
   '@vueuse/core':
     specifier: ^10.1.2
     version: 10.1.2(vue@3.2.47)
@@ -519,8 +519,8 @@ packages:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
     dev: true
 
-  /@iconify/json@2.2.60:
-    resolution: {integrity: sha512-0wyZcoJJ193WrLa/NI4yeRnsB9/7s7MKxyOgttU01z5l0Sn7kqtWHc2ltjHVpEI7G465lsdmH0+7ymixUIlR6Q==}
+  /@iconify/json@2.2.61:
+    resolution: {integrity: sha512-N2aHf3iIE7CWnZieytACY3K5auRyE25Nc4rEuKwMIH/hkbNNgYubPvMqpEqIOHkv/0QsDQXPeeG1tK27wiXgWA==}
     dependencies:
       '@iconify/types': 2.0.0
       pathe: 1.1.0
@@ -547,8 +547,8 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /@itshixun/qst-ui-system@0.0.6:
-    resolution: {integrity: sha512-qxRXXwE5kd1N4FoauJpIcM9l86hBr/ksWdqZMhhF0q+UD2G4CnRjYKpvevSlHzt2GuXr2AH+594gHU41ozEV9g==}
+  /@itshixun/qst-ui-system@0.0.7:
+    resolution: {integrity: sha512-ZiYs/jg2HbzUJCZum++s9OdHXubaweMy2bzyI5gq5IkFW5h5JW35p1AsgxbW/4mjEc8atIXmmP/N4SrQCc/wKw==}
     dependencies:
       color2k: 2.0.2
     dev: false

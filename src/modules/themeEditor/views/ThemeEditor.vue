@@ -161,7 +161,7 @@
   };
 
   const resetThemes = () => {
-    ElMessageBox.confirm('即将重置为初始的2个默认主题，确定要重置吗？', '重置主题', {
+    ElMessageBox.confirm('即将重置为初始默认主题，确定要重置吗？', '重置主题', {
       confirmButtonText: '确定',
       cancelButtonClass: '取消',
       icon: '',
