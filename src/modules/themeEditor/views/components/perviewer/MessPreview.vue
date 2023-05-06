@@ -143,40 +143,104 @@
       </MessPreviewSection>
 
       <MessPreviewSection title="数字输入框">
-        <div class="flex flex-row items-center gap-spacing-xxs flex-wrap">
+        <div class="flex flex-row items-center gap-spacing-xxs flex-wrap mb-spacing-md">
+          <el-input-number v-model="num" :min="1" :max="10" size="small" />
           <el-input-number v-model="num" :min="1" :max="10" />
+          <el-input-number v-model="num" :min="1" :max="10" size="large" />
+        </div>
+        <div class="flex flex-row items-center gap-spacing-xxs flex-wrap mb-spacing-md">
+          <el-input-number v-model="num" disabled :min="1" :max="10" size="small" />
           <el-input-number v-model="num" disabled :min="1" :max="10" />
-
+          <el-input-number v-model="num" disabled :min="1" :max="10" size="large" />
+        </div>
+        <div class="flex flex-row items-center gap-spacing-xxs flex-warp">
+          <el-input-number v-model="num" controls-position="right" :max="10" size="small" />
           <el-input-number v-model="num" controls-position="right" :max="10" />
+          <el-input-number v-model="num" controls-position="right" :max="10" size="large" />
         </div>
       </MessPreviewSection>
 
       <MessPreviewSection title="单选框">
         <div class="flex flex-col gap-spacing-xxs">
-          <el-radio-group v-model="radio1">
+          <el-radio-group v-model="radio1" size="large">
             <el-radio label="1">Option 1</el-radio>
             <el-radio label="2">Option 2</el-radio>
           </el-radio-group>
-          <el-radio-group v-model="radio1" disabled>
+          <el-radio-group v-model="radio1" disabled size="small">
             <el-radio label="1">Option 1</el-radio>
             <el-radio label="2">Option 2</el-radio>
           </el-radio-group>
-          <el-radio-group v-model="radio1">
+          <el-radio-group v-model="radio1" size="large">
             <el-radio label="1" border>Option 1</el-radio>
             <el-radio label="2" border>Option 2</el-radio>
           </el-radio-group>
-          <el-radio-group v-model="radio2">
+          <el-radio-group v-model="radio2" size="large">
             <el-radio-button label="New York" />
             <el-radio-button label="Washington" />
             <el-radio-button label="Los Angeles" />
             <el-radio-button label="Chicago" />
           </el-radio-group>
-          <el-radio-group v-model="radio2" disabled>
+          <el-radio-group v-model="radio2" disabled size="small">
             <el-radio-button label="New York" />
             <el-radio-button label="Washington" />
             <el-radio-button label="Los Angeles" />
             <el-radio-button label="Chicago" />
           </el-radio-group>
+        </div>
+      </MessPreviewSection>
+
+      <MessPreviewSection title="复选框">
+        <div class="flex flex-col mb-spacing-md">
+          <div>
+            <el-checkbox v-model="checked1" label="Option 1" size="large" />
+            <el-checkbox v-model="checked2" label="Option 2" size="large" />
+          </div>
+          <div>
+            <el-checkbox v-model="checked3" label="Option 1" />
+            <el-checkbox v-model="checked4" label="Option 2" />
+          </div>
+          <div>
+            <el-checkbox v-model="checked5" label="Option 1" size="small" />
+            <el-checkbox v-model="checked6" label="Option 2" size="small" />
+          </div>
+          <div>
+            <el-checkbox v-model="checked5" label="Option 1" size="small" disabled />
+            <el-checkbox v-model="checked6" label="Option 2" size="small" disabled />
+          </div>
+        </div>
+        <div class="flex flex-col mb-spacing-md">
+          <div>
+            <el-checkbox-group v-model="checkboxGroup1" size="large">
+              <el-checkbox-button v-for="city in cities" :key="city" :label="city">
+                {{ city }}
+              </el-checkbox-button>
+            </el-checkbox-group>
+          </div>
+          <div class="mt-spacing-md">
+            <el-checkbox-group v-model="checkboxGroup2">
+              <el-checkbox-button v-for="city in cities" :key="city" :label="city">
+                {{ city }}
+              </el-checkbox-button>
+            </el-checkbox-group>
+          </div>
+          <div class="mt-spacing-md">
+            <el-checkbox-group v-model="checkboxGroup3" size="small">
+              <el-checkbox-button
+                v-for="city in cities"
+                :key="city"
+                :label="city"
+                :disabled="city === 'Beijing'">
+                {{ city }}
+              </el-checkbox-button>
+            </el-checkbox-group>
+          </div>
+          <div class="mt-spacing-md">
+            <el-checkbox-group v-model="checkboxGroup4" size="small" disabled>
+              <el-checkbox-button v-for="city in cities" :key="city" :label="city">
+                {{ city }}
+              </el-checkbox-button>
+            </el-checkbox-group>
+          </div>
         </div>
       </MessPreviewSection>
 
@@ -212,6 +276,9 @@
             style="--el-switch-on-color: #13ce66; --el-switch-off-color: #ff4949"
             active-text="完整展示多个内容"
             inactive-text="多个内容" />
+          <el-switch v-model="value" size="large" active-text="Open" inactive-text="Close" />
+          <el-switch v-model="value" active-text="Open" inactive-text="Close" />
+          <el-switch v-model="value" size="small" active-text="Open" inactive-text="Close" />
         </div>
       </MessPreviewSection>
 
@@ -328,6 +395,21 @@
 
   const activeName = ref('first');
 
+  const checked1 = ref(true);
+  const checked2 = ref(false);
+  const checked3 = ref(false);
+  const checked4 = ref(false);
+  const checked5 = ref(false);
+  const checked6 = ref(false);
+
+  const checkboxGroup1 = ref(['Shanghai']);
+  const checkboxGroup2 = ref(['Shanghai']);
+  const checkboxGroup3 = ref(['Shanghai']);
+  const checkboxGroup4 = ref(['Shanghai']);
+  const cities = ['Shanghai', 'Beijing', 'Guangzhou', 'Shenzhen'];
+
+  const value = ref(false);
+
   const buttons = [
     { type: '', text: 'plain' },
     { type: 'primary', text: 'primary' },
@@ -406,7 +488,7 @@
       padding: 32px;
       font-size: 32px;
       font-weight: 600;
-      color: #6b778c;
+      color: var(--el-text-color-regular);
       background-color: var(--el-bg-color-page);
     }
   }
