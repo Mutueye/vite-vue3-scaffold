@@ -1,5 +1,5 @@
-import AdminLayout from '@/modules/layout/views/AdminLayout.vue';
-import BaseLayout from '@/modules/layout/views/Baselayout.vue';
+import AdminLayout from '@/layouts/admin/AdminLayout.vue';
+import BaseLayout from '@/layouts/base/Baselayout.vue';
 import type { RouteRecordRaw } from 'vue-router';
 import type { Component } from 'vue';
 

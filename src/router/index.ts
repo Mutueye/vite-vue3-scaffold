@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import type { RouteRecordRaw } from 'vue-router';
 
 import type { RouteRecordData } from './types';
-import { layoutRoutes, LayoutEnum } from './layoutRouteConfig';
+import { layoutRoutes, LayoutEnum } from '../layouts/layoutRouteConfig';
 
 const generateAllRoutes = (staticRoutes: RouteRecordRaw[]): RouteRecordRaw[] => {
   const allRoutes: RouteRecordRaw[] = [...staticRoutes];

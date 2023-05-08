@@ -24,7 +24,7 @@
   // import { onMounted, ref } from 'vue';
   // import { get } from 'lodash-es';
   import HelloWorld from '@/components/HelloWorld.vue';
-  import ScrollableContentPage from '@/modules/layout/views/components/ScrollableContentPage.vue';
+  import ScrollableContentPage from '@/components/ScrollableContentPage.vue';
   // import { ConfigModel, getSchoolList, SchoolModel, getConfigList } from '@/api/dicts';
 
   // const selectedSchool = ref<SchoolModel>();

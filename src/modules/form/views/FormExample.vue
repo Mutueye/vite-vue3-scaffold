@@ -117,7 +117,7 @@
 <script lang="ts" setup>
   import { ref, reactive } from 'vue';
   import { ElForm, ElMessage, FormInstance, FormRules } from 'element-plus';
-  import ScrollableContentPage from '@/modules/layout/views/components/ScrollableContentPage.vue';
+  import ScrollableContentPage from '@/components/ScrollableContentPage.vue';
   import RuleInfoBox from './components/RuleInfoBox.vue';
   import { globalFormRules } from '@/utils/formRules';
   import { ruleInfoList } from '../utils/ruleInfo';

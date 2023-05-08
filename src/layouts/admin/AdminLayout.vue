@@ -21,7 +21,7 @@
 
 <script lang="ts" setup>
   import { useRoute } from 'vue-router';
-  import { LayoutEnum } from '@/router/layoutRouteConfig';
+  import { LayoutEnum } from '@/layouts/layoutRouteConfig';
   import Menu from './components/Menu.vue';
   import ThemeToggler from './components/ThemeToggler.vue';
 

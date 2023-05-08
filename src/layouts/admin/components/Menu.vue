@@ -11,7 +11,7 @@
   import { toRefs, computed } from 'vue';
   import { sortBy, get } from 'lodash-es';
 
-  import { LayoutEnum } from '@/router/layoutRouteConfig';
+  import { LayoutEnum } from '@/layouts/layoutRouteConfig';
   import { useRouteInfo } from '@/componsables/useRouteInfo';
   import type { RouteLocationNormalizedLoaded, RouteRecordRaw } from 'vue-router';
   import MenuItem from './MenuItem.vue';
