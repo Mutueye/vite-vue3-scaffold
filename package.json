@@ -25,8 +25,8 @@
     "deploy:pages": "cd dist && cp index.html 404.html && cd .. && gh-pages -d dist"
   },
   "dependencies": {
-    "@iconify/json": "^2.2.61",
-    "@itshixun/qst-ui-system": "^0.0.7",
+    "@iconify/json": "^2.2.62",
+    "@itshixun/qst-ui-system": "^0.0.9",
     "@vueuse/core": "^10.1.2",
     "@vueuse/head": "^1.1.26",
     "axios": "^1.4.0",
@@ -34,7 +34,7 @@
     "element-plus": "^2.3.4",
     "lodash-es": "^4.17.21",
     "mitt": "^3.0.0",
-    "pinia": "^2.0.35",
+    "pinia": "^2.0.36",
     "pinia-plugin-persist": "^1.0.0",
     "vanilla-colorful": "^0.7.2",
     "vue": "^3.2.47",
@@ -42,15 +42,15 @@
   },
   "devDependencies": {
     "@types/lodash-es": "^4.17.7",
-    "@types/node": "^20.1.0",
-    "@typescript-eslint/eslint-plugin": "^5.59.2",
-    "@typescript-eslint/parser": "^5.59.2",
+    "@types/node": "^20.1.1",
+    "@typescript-eslint/eslint-plugin": "^5.59.5",
+    "@typescript-eslint/parser": "^5.59.5",
     "@vitejs/plugin-vue": "^4.2.1",
     "@vitest/coverage-c8": "^0.31.0",
     "@vue/test-utils": "^2.3.2",
     "eslint": "^8.40.0",
     "eslint-config-prettier": "^8.8.0",
-    "eslint-plugin-vue": "^9.11.0",
+    "eslint-plugin-vue": "^9.11.1",
     "gh-pages": "^5.0.0",
     "jsdom": "^22.0.0",
     "lint-staged": "^13.2.2",
@@ -70,7 +70,7 @@
     "unocss": "^0.51.12",
     "vite": "^4.3.5",
     "vitest": "^0.31.0",
-    "vue-eslint-parser": "^9.2.0",
+    "vue-eslint-parser": "^9.2.1",
     "vue-tsc": "^1.6.4"
   },
   "simple-git-hooks": {
