@@ -5,7 +5,7 @@ import { ThemeCategory, cssVarCodex } from '@itshixun/qst-ui-system';
 import { useToggleDayNight } from '@/componsables/useToggleDayNight';
 
 export const useThemeConfigList = (configKey: ThemeCategory) => {
-  const { isDark } = useToggleDayNight();
+  const { isDark } = useToggleDayNight(false);
 
   const getConfigDataList = () => {
     const colorDataList: { cssVar: string; type: string; val: string }[] = [];

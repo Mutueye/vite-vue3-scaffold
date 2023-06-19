@@ -33,7 +33,7 @@
   import ColorEditor from './ColorEditor.vue';
   import ValueEditor from './ValueEditor.vue';
 
-  const { isDark, dayNightMode } = useToggleDayNight();
+  const { isDark, dayNightMode } = useToggleDayNight(false);
 
   const themeStore = useThemeStore();
   const { currentThemeData, themeList } = storeToRefs(themeStore);
